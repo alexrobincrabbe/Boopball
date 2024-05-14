@@ -15,9 +15,11 @@
     border:solid black 5px;
     border-radius: 10px;
     margin:0;
+    overflow: hidden;
 }
 
 #character{
+    user-select: none;
     z-index: 3;
     height:fit-content;
     width:auto;
@@ -27,6 +29,7 @@
 }
 
 #character img{
+    user-select: none;
     width: 75px;
     height:auto;
 }
