@@ -9,15 +9,20 @@ let xPos=0;
 let yPos=0;
 let yPosBall=xPos+140;
 let xPosBall=yPos+65;
+let xPosHoop=500;
+let yPosHoop=400;
+let hoopSize=100;
 let xVel=0;
 let yVel=0;
 let resetTimer=0;
+let score=0;
+let scoreReady=false;
 
 let character = document.getElementById('character');
 let ball = document.getElementById('ball');
 let arrowImage = document.getElementById('arrow-image');
-
-
+let scoreBox = document.getElementById('score-box');
+let hoop = document.getElementById('hoop');
 /* rotate the arrow by rotationIncrement every rotationRate(milli seconds) */
 let setRotation = setInterval(rotateArrow,rotationRate);
 
@@ -37,7 +42,9 @@ function aimThrow () {
         clearInterval(setRotation);
         setForce = setInterval (growArrow,20);
         isAiming=true;
-    } 
+    } else if (isThrowing){
+        resetBall();
+    }
 }
 
 /* stop aiming and release throw when touch is released */
@@ -57,9 +64,9 @@ function Throw () {
 
 function moveBall () {
     resetTimer += 1;
-    if (yPosBall>750){
+    if (yPosBall>775){
         yVel=-yVel;
-        yPosBall=750;
+        yPosBall=775;
     }
 
     if (yPosBall<0){
@@ -67,9 +74,9 @@ function moveBall () {
         xVel=xVel/2;
         yPosBall=0;
     }
-    if (xPosBall>450){
+    if (xPosBall>475){
         xVel=-xVel/2;
-        xPosBall=450;
+        xPosBall=475;
     }
 
     if (xPosBall<0){
@@ -88,6 +95,14 @@ function moveBall () {
     if (resetTimer>((1000/20)*5)){
         resetBall();
     }
+
+    if((xPosBall>(xPosHoop-hoopSize) && xPosBall<(xPosHoop+hoopSize)
+         && yPosBall < (yPosHoop + 20) && yPosBall >= (yPosHoop))&& scoreReady==true){
+        score +=1;
+        scoreReady=false;
+        scoreBox.innerText=`Score : ${score}`;
+        hoop.style.backgroundColor="red";
+        }
 }
 
 function resetBall () {
@@ -100,6 +115,7 @@ function resetBall () {
     setRotation = setInterval(rotateArrow,rotationRate);
     resetTimer=0;
     isThrowing=false;
+    scoreReady=true;
 }
 
 
