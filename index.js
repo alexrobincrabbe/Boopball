@@ -98,9 +98,9 @@ function moveBall () {
     if (resetTimer>((1000/moveBallInterval)*5)){
         resetBall();
     }
-
+    /* score a point if ball passes through hoop from above */
     if((xPosBall>(xPosHoop-hoopSize) && xPosBall<(xPosHoop+hoopSize)
-         && yPosBall < (yPosHoop + 20) && yPosBall >= (yPosHoop))&& scoreReady==true){
+         && yPosBall < (yPosHoop + 20) && yPosBall >= (yPosHoop))&& yVel<0 && scoreReady==true){
         score +=1;
         scoreReady=false;
         scoreBox.innerText=`Score : ${score}`;
