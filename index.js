@@ -4,6 +4,14 @@ let arrowWidth=50;
 let force=arrowWidth;
 let setForce=null;
 let isAiming=false;
+let isThrowing=false;
+let xPos=0;
+let yPos=0;
+let yPosBall=xPos+140;
+let xPosBall=yPos+65;
+let xVel=0;
+let yVel=0;
+let resetTimer=0;
 
 let character = document.getElementById('character');
 let ball = document.getElementById('ball');
@@ -24,7 +32,7 @@ character.addEventListener('touchend',Throw);
 
 /* increase the throw force until touch is released */
 function aimThrow () {
-    if (!isAiming){
+    if (!isAiming && !isThrowing){
         arrowWidth=50;
         clearInterval(setRotation);
         setForce = setInterval (growArrow,20);
@@ -34,19 +42,64 @@ function aimThrow () {
 
 /* stop aiming and release throw when touch is released */
 function Throw () {
-    if(isAiming){
+    if(isAiming && !isThrowing){
         clearInterval(setForce);
         arrowWidth=50;
         arrowImage.style.width=`${arrowWidth}px`
-        setRotation = setInterval(rotateArrow,rotationRate);
+        arrowImage.style.display="none";
         isAiming=false;
-        throwBall()
+        xVel=force*Math.cos(rotation*2*Math.PI/360);
+        yVel=force*Math.sin(-rotation*2*Math.PI/360);
+        isThrowing=true;
+        setThrow=setInterval(moveBall,20);
     }
 }
 
-/* Function to handle ball throw */
-function throwBall () {
+function moveBall () {
+    resetTimer += 1;
+    if (yPosBall>750){
+        yVel=-yVel;
+        yPosBall=750;
+    }
 
+    if (yPosBall<0){
+        yVel=-yVel/2;
+        xVel=xVel/2;
+        yPosBall=0;
+    }
+    if (xPosBall>450){
+        xVel=-xVel/2;
+        xPosBall=450;
+    }
+
+    if (xPosBall<0){
+        xVel=-xVel/2;
+        xPosBall=0;
+    }
+    xPosBall+= xVel*0.01;
+    yPosBall+= yVel*0.01;
+    
+    yVel-= 30;
+   
+    ball.style.position="absolute";
+    ball.style.left=`${xPosBall}px`;
+    ball.style.bottom=`${yPosBall}px`;
+
+    if (resetTimer>((1000/20)*5)){
+        resetBall();
+    }
+}
+
+function resetBall () {
+    clearInterval(setThrow);
+    xPosBall=xPos+65;
+    yPosBall=yPos+140;
+    ball.style.left=`${xPosBall}px`;
+    ball.style.bottom=`${yPosBall}px`;
+    arrowImage.style.display="inline";
+    setRotation = setInterval(rotateArrow,rotationRate);
+    resetTimer=0;
+    isThrowing=false;
 }
 
 
@@ -55,10 +108,10 @@ function throwBall () {
  * holding the touch on the character
  */
 function growArrow ()   {
-    let growArrowIncrement=10;
+    let growArrowIncrement=30;
     arrowImage.style.width=`${arrowWidth}px`
     arrowWidth += growArrowIncrement;
-    force=arrowWidth;
+    force=arrowWidth*5;
 }
 
 /**
