@@ -7,8 +7,8 @@ let isAiming=false;
 let isThrowing=false;
 let xPos=50;
 let yPos=0;
-let yPosBall=xPos+140;
-let xPosBall=yPos+65;
+let yPosBall=yPos+140;
+let xPosBall=xPos+65;
 let xPosHoop=400;
 let yPosHoop=400;
 let hoopSize=100;
@@ -110,6 +110,9 @@ function moveBall () {
 
 function resetBall () {
     clearInterval(setThrow);
+    clearInterval(setForce);
+    force=0;
+    arrowWidth=50;
     xPosBall=xPos+65;
     yPosBall=yPos+140;
     ball.style.left=`${xPosBall}px`;
@@ -130,7 +133,7 @@ function growArrow ()   {
     let growArrowIncrement=30;
     arrowImage.style.width=`${arrowWidth}px`
     arrowWidth += growArrowIncrement;
-    force=arrowWidth*5-100;
+    force=(arrowWidth*2)-100;
 }
 
 /**
