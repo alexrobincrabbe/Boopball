@@ -1,0 +1,77 @@
+#body{
+    display: flex;
+    flex: column;
+    justify-content: center;
+    align-items: center;
+    padding:0;
+    margin:0;
+}
+
+#game-window{
+    z-index: 0;
+    position: relative;
+    height:800px;
+    width:500px;
+    border:solid black 5px;
+    border-radius: 10px;
+    margin:0;
+}
+
+#character{
+    z-index: 3;
+    height:fit-content;
+    width:auto;
+    position: absolute;
+    left:0px;
+    bottom:0px;
+}
+
+#character img{
+    width: 75px;
+    height:auto;
+}
+
+#ball{
+    z-index:2;
+    height:fit-content;
+    width:auto;
+    position: absolute;
+    bottom:140px;
+    left:65px;
+    width:auto;
+}
+
+#ball img{
+    height:25px;
+    width:25px;;
+}
+
+#arrow{
+    z-index:1;
+    height:fit-content;
+    width:auto;
+    position: absolute;
+    bottom:140px;
+    left:78px;
+    width:auto;
+}
+
+#arrow img{
+    height:25px;
+    width:50px;
+}
+
+#hoop {
+    z-index:1;
+    height:fit-content;
+    width:auto;
+    position: absolute;
+    bottom:400px;
+    right:0px;
+    width:auto;
+}
+
+#hoop img {
+    height:50px;
+    width:200px;
+}
