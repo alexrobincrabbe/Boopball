@@ -5,11 +5,11 @@ let force=arrowWidth;
 let setForce=null;
 let isAiming=false;
 let isThrowing=false;
-let xPos=0;
+let xPos=50;
 let yPos=0;
 let yPosBall=xPos+140;
 let xPosBall=yPos+65;
-let xPosHoop=500;
+let xPosHoop=400;
 let yPosHoop=400;
 let hoopSize=100;
 let xVel=0;
@@ -17,6 +17,7 @@ let yVel=0;
 let resetTimer=0;
 let score=0;
 let scoreReady=false;
+let moveBallInterval=5;
 
 let character = document.getElementById('character');
 let ball = document.getElementById('ball');
@@ -55,10 +56,10 @@ function Throw () {
         arrowImage.style.width=`${arrowWidth}px`
         arrowImage.style.display="none";
         isAiming=false;
-        xVel=force*Math.cos(rotation*2*Math.PI/360);
-        yVel=force*Math.sin(-rotation*2*Math.PI/360);
+        xVel=force*Math.cos(rotation*2*Math.PI/360)*moveBallInterval/20;
+        yVel=force*Math.sin(-rotation*2*Math.PI/360)*moveBallInterval/20;
         isThrowing=true;
-        setThrow=setInterval(moveBall,20);
+        setThrow=setInterval(moveBall,moveBallInterval);
     }
 }
 
@@ -83,16 +84,18 @@ function moveBall () {
         xVel=-xVel/2;
         xPosBall=0;
     }
-    xPosBall+= xVel*0.01;
-    yPosBall+= yVel*0.01;
+    xPosBall+= xVel*0.2/moveBallInterval;
+    yPosBall+= yVel*0.2/moveBallInterval;
     
-    yVel-= 30;
+    yVel -= 30*moveBallInterval/200;
    
     ball.style.position="absolute";
     ball.style.left=`${xPosBall}px`;
     ball.style.bottom=`${yPosBall}px`;
 
-    if (resetTimer>((1000/20)*5)){
+    /* reset the ball 5 seconds after it is thrown */
+
+    if (resetTimer>((1000/moveBallInterval)*5)){
         resetBall();
     }
 
@@ -127,7 +130,7 @@ function growArrow ()   {
     let growArrowIncrement=30;
     arrowImage.style.width=`${arrowWidth}px`
     arrowWidth += growArrowIncrement;
-    force=arrowWidth*5;
+    force=arrowWidth*5-100;
 }
 
 /**
