@@ -19,7 +19,6 @@
 }
 
 #character{
-    user-select: none;
     z-index: 3;
     height:fit-content;
     width:auto;
@@ -29,6 +28,7 @@
 }
 
 #character img{
+    pointer-events: none;
     user-select: none;
     width: 75px;
     height:auto;
