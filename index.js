@@ -1,11 +1,11 @@
-/* arrow control variables */
+/* Arrow control variables */
 let rotation = 0;
 let rotationRate = 20;
 let arrowWidth=50;
 /* Character position variables */
 let xPos=50;
 let yPos=0;
-/* ball position variables */
+/* Ball position variables */
 let yPosBall=yPos+140;
 let xPosBall=xPos+65;
 let xVel=0;
@@ -19,29 +19,37 @@ let force=arrowWidth;
 let setForce=null;
 let isAiming=false;
 let isThrowing=false;
+let scoreReady=true;
 let resetTimer=0;
 let score=0;
-let scoreReady=true;
 let moveBallInterval=5;
 
-/* set Html element variables */
+/* Set Html element variables */
 let character = document.getElementById('character');
 let ball = document.getElementById('ball');
 let arrowImage = document.getElementById('arrow-image');
 let scoreBox = document.getElementById('score-box');
 let hoop = document.getElementById('hoop');
 
-/* rotate the arrow around the ball */
+/* Rotate the arrow around the ball */
 let setRotation = setInterval(rotateArrow,rotationRate);
 
 /* Increase the throw force while player is holding touch on character */
 character.addEventListener('touchstart',aimThrow);
+character.addEventListener('mousedown',aimThrow);
+
 
 /* Stop increasing throw force when player released touch */
-character.addEventListener('touchend',Throw);
+character.addEventListener('touchend',throwBall);
+character.addEventListener('mouseup',throwBall);
 
-/* increase the throw force until touch is released */
-function aimThrow () {
+
+/* Increase the throw force until touch is released */
+function aimThrow (event) {
+    /* Prevent touch from also triggering mouse event */
+    event.preventDefault();
+
+    /* Check that no instances of intervals are already running before setting interval */
     if (!isAiming && !isThrowing){
         arrowWidth=50;
         clearInterval(setRotation);
@@ -53,7 +61,7 @@ function aimThrow () {
 }
 
 /* stop aiming and release throw when touch is released */
-function Throw () {
+function throwBall () {
     if(isAiming && !isThrowing){
         clearInterval(setForce);
         arrowWidth=50;
