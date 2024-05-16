@@ -1,18 +1,31 @@
+/* Responsivity code: Get actual size of game window in pixels, so game coordinates
+and element sizes (in pixels) can be scaled correctly */
+
+/* Get height, width, and border width in pixels */
+let Game_window_height=document.getElementById('game-window').offsetHeight;
+let Game_window_width=document.getElementById('game-window').offsetWidth;
+let Game_window_border=getComputedStyle(document.getElementById('game-window')).borderWidth;
+/* Remove "px" and convert to number so Game_window_border can be used to calculate */
+Game_window_border=Number(Game_window_border.substring(0,(Game_window_border.length-2)));
+/* Game window scale factors: bottom left of Game window is (0,0), top right is(500,1000) */
+let scaleX=(Game_window_width-(2*Game_window_border))/500;
+let scaleY=(Game_window_height-(2*Game_window_border))/1000;
+
 /* Arrow control variables */
 let rotation = 0;
 let rotationRate = 20;
-let arrowWidth=50;
+let arrowWidth=50*scaleX;
 /* Character position variables */
-let xPos=50;
-let yPos=0;
+let xPos=50*scaleX;
+let yPos=0*scaleY;
 /* Ball position variables */
-let yPosBall=yPos+140;
-let xPosBall=xPos+65;
-let xVel=0;
-let yVel=0;
+let xPosBall=xPos+(65/scaleX);
+let yPosBall=yPos+(140*scaleY);
+let xVel=0/scaleX;
+let yVel=0/scaleY;
 /* Hoop position variables*/
 let xPosHoop=400;
-let yPosHoop=400;
+let yPosHoop=700;
 let hoopSize=100;
 /* throw control variables */
 let force=arrowWidth;
@@ -25,33 +38,33 @@ let score=0;
 let moveBallInterval=5;
 
 /* Set Html element variables */
-let character = document.getElementById('character');
-let ball = document.getElementById('ball');
-let arrowImage = document.getElementById('arrow-image');
-let scoreBox = document.getElementById('score-box');
-let hoop = document.getElementById('hoop');
+const character = document.getElementById('character');
+const ball = document.getElementById('ball');
+const arrowImage = document.getElementById('arrow-image');
+const scoreBox = document.getElementById('score-box');
+const hoop = document.getElementById('hoop');
 
 /* Rotate the arrow around the ball */
 let setRotation = setInterval(rotateArrow,rotationRate);
 
-/* Increase the throw force while player is holding touch on character */
+/* Increase the throw force while player is holding touch/mouse on character */
 character.addEventListener('touchstart',aimThrow);
 character.addEventListener('mousedown',aimThrow);
 
 
-/* Stop increasing throw force when player released touch */
+/* Stop increasing throw force when player released touch/mouse */
 character.addEventListener('touchend',throwBall);
 character.addEventListener('mouseup',throwBall);
 
 
-/* Increase the throw force until touch is released */
+/* Increase the throw force until touch/mouse is released */
 function aimThrow (event) {
     /* Prevent touch from also triggering mouse event */
     event.preventDefault();
 
-    /* Check that no instances of intervals are already running before setting interval */
+    /* Check that no instances of intervals are already running */
     if (!isAiming && !isThrowing){
-        arrowWidth=50;
+        arrowWidth=50*scaleX;
         clearInterval(setRotation);
         setForce = setInterval (growArrow,20);
         isAiming=true;
@@ -62,10 +75,11 @@ function aimThrow (event) {
 
 /* stop aiming and release throw when touch is released */
 function throwBall () {
+    /* Check that character is aiming and no instances of interval are running */
     if(isAiming && !isThrowing){
         clearInterval(setForce);
-        arrowWidth=50;
-        arrowImage.style.width=`${arrowWidth}px`
+        arrowWidth=50*scaleX;
+        arrowImage.style.width=`${arrowWidth}%`
         arrowImage.style.display="none";
         isAiming=false;
         xVel=force*Math.cos(rotation*2*Math.PI/360)*moveBallInterval/20;
@@ -81,32 +95,33 @@ function throwBall () {
  * ,apply gravity
  * ,score when the ball passes through the hoop
  */
+
 function moveBall () {
     resetTimer += 1;
-
+    const ballSize=5;
     /* Detect edges of game window */
-    if (yPosBall>775){
+    if (yPosBall > (1000-ballSize)*scaleY){
         yVel=-yVel;
-        yPosBall=775;
+        yPosBall = (1000-ballSize)*scaleY;
     }
-    if (yPosBall<0){
+    if (yPosBall < 0){
         yVel=-yVel/2;
         xVel=xVel/2;
         yPosBall=0;
     }
-    if (xPosBall>475){
+    if (xPosBall> (500-ballSize)*scaleX){
         xVel=-xVel/2;
-        xPosBall=475;
+        xPosBall= (500-ballSize)*scaleX;
     }
     if (xPosBall<0){
         xVel=-xVel/2;
         xPosBall=0;
     }
 
-    /*Move the ball */
+    /* Move the ball */
     xPosBall+= xVel*0.2/moveBallInterval;
     yPosBall+= yVel*0.2/moveBallInterval;
-    /* gravity acceleratoin */
+    /* Add gravity acceleratoin */
     yVel -= 30*moveBallInterval/200;
     
     /* Apply new coordinates to Html Ball element*/
@@ -120,8 +135,9 @@ function moveBall () {
     }
 
     /* score a point if ball passes through hoop from above */
-    if((xPosBall>(xPosHoop-hoopSize) && xPosBall<(xPosHoop+hoopSize)
-         && yPosBall < (yPosHoop + 20) && yPosBall >= (yPosHoop))&& yVel<0 && scoreReady==true){
+    if((xPosBall>(xPosHoop-hoopSize)*scaleX && xPosBall<(xPosHoop+hoopSize)*scaleX
+         && yPosBall < (yPosHoop + 20)*scaleY && yPosBall >= (yPosHoop)*scaleY)&&
+          yVel<0 && scoreReady==true){
         score +=1;
         scoreReady=false;
         scoreBox.innerText=`Score : ${score}`;
@@ -134,12 +150,13 @@ function resetBall () {
     clearInterval(setThrow);
     clearInterval(setForce);
     force=0;
-    arrowWidth=50;
-    xPosBall=xPos+65;
-    yPosBall=yPos+140;
+    arrowWidth=100;
+    xPosBall=xPos+(65*scaleX);
+    yPosBall=yPos+(140*scaleY);
     ball.style.left=`${xPosBall}px`;
     ball.style.bottom=`${yPosBall}px`;
     arrowImage.style.display="inline";
+    arrowImage.style.width=`${arrowWidth}%`;
     setRotation = setInterval(rotateArrow,rotationRate);
     resetTimer=0;
     isThrowing=false;
@@ -151,8 +168,8 @@ function resetBall () {
  * holding the touch on the character
  */
 function growArrow ()   {
-    let growArrowIncrement=30;
-    arrowImage.style.width=`${arrowWidth}px`
+    let growArrowIncrement=30*scaleX;
+    arrowImage.style.width=`${arrowWidth*5}%`;
     arrowWidth += growArrowIncrement;
     force=(arrowWidth*2)-100;
 }

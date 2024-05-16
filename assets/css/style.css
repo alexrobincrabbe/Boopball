@@ -1,16 +1,23 @@
 body{
     padding:0px;
     margin:0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #game-window{
     z-index: 0;
     position: relative;
-    height:800px;
-    width:500px;
+    width:90vw;
+    height:180vw;
+    max-width: 40vh;
+    max-height:80vh;
     border:solid black 5px;
     border-radius: 10px;
     margin:0px;
+    padding:0px;
     overflow: hidden;
 }
 
@@ -19,14 +26,15 @@ body{
     height:fit-content;
     width:auto;
     position: absolute;
-    left:50px;
-    bottom:0px;
+    left:10%;
+    bottom:0%;
 }
 
 #character img{
     pointer-events: none;
     user-select: none;
-    width: 75px;
+    width: 13.5vw;
+    max-width:6vh;
     height:auto;
 }
 
@@ -35,29 +43,30 @@ body{
     height:fit-content;
     width:auto;
     position: absolute;
-    bottom:140px;
-    left:115px;
-    width:auto;
+    bottom:14%;
+    left:23%;
 }
 
 #ball img{
-    height:25px;
-    width:25px;;
+    width:4.5vw;
+    max-width:2vh ;
+    height:auto;
+
 }
 
 #arrow{
     z-index:1;
-    height:fit-content;
-    width:auto;
+    height:4.4%;
+    width:11.1vw;
+    max-width:4.94vh;
     position: absolute;
-    bottom:140px;
-    left:128px;
-    width:auto;
+    bottom:14%;
+    left:25.6%;
 }
 
 #arrow img{
-    height:25px;
-    width:50px;
+    height:100%;
+    width:100%;
     transform-origin: 0% 50%;
 }
 
@@ -66,12 +75,14 @@ body{
     height:fit-content;
     width:auto;
     position: absolute;
-    bottom:400px;
-    right:0px;
+    bottom:70%;
+    right:0%;
     width:auto;
 }
 
 #hoop img {
-    height:50px;
-    width:200px;
+    height:9vw;
+    width:36vw;
+    max-width:16vh;
+    max-height:4vh;
 }
