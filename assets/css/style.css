@@ -19,6 +19,9 @@ body{
     margin:0px 0px 0px 0px;
     padding:0px;
     overflow: hidden;
+    background:  url("../images/background.png") no-repeat fixed center/cover;
+    background-size: contain;
+    background-color: black;
 }
 
 #character{
