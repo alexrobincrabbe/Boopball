@@ -31,6 +31,7 @@ let score = 0;
 let setRotation;
 let setThrowPower;
 let setMoveball;
+let setCountDown;
 
 /* Set Html element variables */
 const character = document.getElementById('character');
@@ -38,6 +39,11 @@ const ball = document.getElementById('ball');
 const arrowImage = document.getElementById('arrow-image');
 const scoreBox = document.getElementById('score-box');
 const hoop = document.getElementById('hoop');
+const clock=document.getElementById('clock');
+
+/* level variables */
+levelTimer=15;
+
 
 let scaleX=100/500;
 let scaleY=100/1000;
@@ -60,6 +66,7 @@ function runGame() {
     or reset the ball if it is already thrown*/
     character.addEventListener('touchend', throwBall);
     character.addEventListener('mouseup', throwBall);
+    let setCountDown=setInterval(countDown,1000)
 }
 
 /* Increase the throw force until touch/mouse is released */
@@ -190,4 +197,22 @@ function rotateArrow() {
         rotation = 0;
     }
     arrowImage.style.transform = `rotate(${rotation}deg)`;
+}
+
+function countDown () {
+    levelTimer = levelTimer-1;
+    clock.innerText=`${levelTimer}`;
+    if (levelTimer < 0) {
+        gameOver();
+    }
+}
+
+function gameOver () {
+    clearInterval(setRotation);
+    clearInterval(setCountDown);
+    alert('gamer over');
+    levelTimer=60; 
+    score=0;
+    scoreBox.innerText = `${score}/5`;
+    runGame();
 }
