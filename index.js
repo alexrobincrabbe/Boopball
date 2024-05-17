@@ -42,13 +42,13 @@ const hoop = document.getElementById('hoop');
 const clock=document.getElementById('clock');
 
 /* level variables */
-levelTimer=60;
-
+let levelTimer=60;
+let level=1;
 
 let scaleX=100/500;
 let scaleY=100/1000;
 
-runGame();
+runGame(level);
 
 /**
  * Main game function:
@@ -153,7 +153,9 @@ function moveBall(timeStep) {
                 score += 1;
                 scoreReady = false;
                 scoreBox.innerText = `${score}/5`;
-                hoop.style.backgroundColor = "red";
+                if (score === 5){
+                    completeLevel();
+                }
             }
     }
 }
@@ -215,4 +217,13 @@ function gameOver () {
     score=0;
     scoreBox.innerText = `${score}/5`;
     runGame();
+}
+
+function completeLevel () {
+    alert(`level ${level} complete`)
+    level=level+1;
+    levelTimer=60;
+    score=0;
+    runGame(level);
+    
 }
