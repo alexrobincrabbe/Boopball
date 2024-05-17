@@ -5,8 +5,16 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgb(101, 93, 91);
 }
 
+header {
+    color:white;
+}
+
+h1 {
+    font-size:300%;
+}
 #game-window{
     z-index: 0;
     position: relative;
@@ -14,7 +22,7 @@ body{
     height:180vw;
     max-width: 40vh;
     max-height:80vh;
-    border:solid black 5px;
+    border:solid white 5px;
     border-radius: 10px;
     margin:0px 0px 0px 0px;
     padding:0px;
@@ -108,9 +116,11 @@ body{
 }
 
 #info-bar {
+    color:white;
     display: flex;
     justify-content: space-between;
-    align-content: space-between;
+    align-content: center;
+    align-items: center;
     flex-grow: 1;
     width:90vw;
     max-width: 40vh;
@@ -118,10 +128,10 @@ body{
 }
 
 #info-bar span{
-    
     display: flex;
     align-content: center;
     justify-content: center;
+    align-content: center;
 }
 #info-bar > span {
     font-size: 200%;
@@ -133,6 +143,8 @@ body{
 }
 #clock {
     border:solid black 3px;
+    color:black;
+    background-color: white;
     border-radius:50%;
     padding:5px;
     margin:5px;
@@ -140,6 +152,9 @@ body{
 }
 #score-box {
     border-radius: 5px;
+    height:40px;
+    color:black;
     border:solid black 3px;
+    background-color: white;
     padding:0px 20px;
 }
