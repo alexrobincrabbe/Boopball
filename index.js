@@ -1,21 +1,24 @@
-let scaleX
-let scaleY
-scaleGameWindow();
+/* Global variables */
+
 /* Arrow control variables */
 let rotation = 0;
-let arrowWidth = 50 * scaleX;
+let arrowWidth;
+
 /* Character position variables */
-let xPos = 50 * scaleX;
-let yPos = 0 * scaleY;
+let xPos = 50;
+let yPos = 0;
+
 /* Ball position variables */
-let xPosBall = xPos + (65 * scaleX);
-let yPosBall = yPos + (140 * scaleY);
-let xVel = 0 / scaleX;
-let yVel = 0 / scaleY;
+let xPosBall = xPos + 65;
+let yPosBall = yPos + 140;
+let xVel = 0;
+let yVel = 0;
+
 /* Hoop position variables*/
 let xPosHoop = 400;
 let yPosHoop = 700;
 let hoopSize = 100;
+
 /* throw control variables */
 let force = arrowWidth;
 let isAiming = false;
@@ -24,6 +27,10 @@ let scoreReady = true;
 let resetTimer = 0;
 let score = 0;
 
+/* Interval variables */
+let setRotation;
+let setThrowPower;
+let setMoveball;
 
 /* Set Html element variables */
 const character = document.getElementById('character');
@@ -31,10 +38,9 @@ const ball = document.getElementById('ball');
 const arrowImage = document.getElementById('arrow-image');
 const scoreBox = document.getElementById('score-box');
 const hoop = document.getElementById('hoop');
-/* Interval variables */
-let setRotation;
-let setThrowPower;
-let setMoveball;
+
+scaleX=100/500;
+scaleY=100/1000;
 runGame();
 
 /**
@@ -43,14 +49,14 @@ runGame();
  * add event listeners for game mechanics
  */
 function runGame() {
-    /* Rotate the arrow around the ball */
+    /* Postion ball at player and set arrow rotation interval*/
     resetBall();
-
     /* Increase the throw force while player is holding touch/mouse on character */
     character.addEventListener('touchstart', aimThrow);
     character.addEventListener('mousedown', aimThrow);
 
-    /* Stop increasing throw force when player released touch/mouse */
+    /* Stop increasing throw force when player released touch/mouse and throw the ball
+    or reset the ball if it is already thrown*/
     character.addEventListener('touchend', throwBall);
     character.addEventListener('mouseup', throwBall);
 }
@@ -95,18 +101,18 @@ function moveBall(timeStep) {
     resetTimer += 1;
     const ballSize = 5;
     /* Detect edges of game window */
-    if (yPosBall > (1000 - ballSize) * scaleY) {
+    if (yPosBall > (1000 - ballSize)) {
         yVel = -yVel;
-        yPosBall = (1000 - ballSize) * scaleY;
+        yPosBall = (1000 - ballSize);
     }
     if (yPosBall < 0) {
         yVel = -yVel / 2;
         xVel = xVel / 2;
         yPosBall = 0;
     }
-    if (xPosBall > (500 - ballSize) * scaleX) {
+    if (xPosBall > (500 - ballSize)) {
         xVel = -xVel / 2;
-        xPosBall = (500 - ballSize) * scaleX;
+        xPosBall = (500 - ballSize);
     }
     if (xPosBall < 0) {
         xVel = -xVel / 2;
@@ -114,14 +120,14 @@ function moveBall(timeStep) {
     }
 
     /* Move the ball */
-    xPosBall += xVel * 0.2 / timeStep;
-    yPosBall += yVel * 0.2 / timeStep;
+    xPosBall += (xVel * 0.2 / timeStep)/scaleX;
+    yPosBall += (yVel * 0.2 / timeStep)/scaleY;
     /* Add gravity acceleratoin */
     yVel -= 30 * timeStep / 200;
 
     /* Apply new coordinates to Html Ball element*/
-    ball.style.left = `${xPosBall}px`;
-    ball.style.bottom = `${yPosBall}px`;
+    ball.style.left = `${xPosBall*scaleX}%`;
+    ball.style.bottom = `${yPosBall*scaleY}%`;
 
     /* reset the ball 5 seconds after it is thrown */
     if (resetTimer > ((1000 / timeStep) * 5)) {
@@ -129,8 +135,8 @@ function moveBall(timeStep) {
     }
 
     /* score a point if ball passes through hoop from above */
-    if ((xPosBall > (xPosHoop - hoopSize) * scaleX && xPosBall < (xPosHoop + hoopSize) * scaleX
-        && yPosBall < (yPosHoop + 20) * scaleY && yPosBall >= (yPosHoop) * scaleY) &&
+    if ((xPosBall > (xPosHoop - hoopSize)  && xPosBall < (xPosHoop + hoopSize)
+        && yPosBall < (yPosHoop + 20) && yPosBall >= (yPosHoop) ) &&
         yVel < 0 && scoreReady == true) {
         score += 1;
         scoreReady = false;
@@ -146,10 +152,10 @@ function resetBall() {
     clearInterval(setThrowPower);
     force = 0;
     arrowWidth = 100;
-    xPosBall = xPos + (65 * scaleX);
-    yPosBall = yPos + (140 * scaleY);
-    ball.style.left = `${xPosBall}px`;
-    ball.style.bottom = `${yPosBall}px`;
+    xPosBall = xPos + 65;
+    yPosBall = yPos + 140;
+    ball.style.left = `${xPosBall*scaleX}%`;
+    ball.style.bottom = `${yPosBall*scaleY}%`;
     arrowImage.style.display = "inline";
     arrowImage.style.width = `${arrowWidth}%`;
     setRotation = setInterval(rotateArrow, rotationRate);
@@ -163,7 +169,7 @@ function resetBall() {
  * holding the touch on the character
  */
 function growArrow() {
-    let growArrowIncrement = 30 * scaleX;
+    let growArrowIncrement = 30;
     arrowImage.style.width = `${arrowWidth * 5}%`;
     arrowWidth += growArrowIncrement;
     force = (arrowWidth * 2) - 100;
@@ -179,19 +185,3 @@ function rotateArrow() {
     }
     arrowImage.style.transform = `rotate(${rotation}deg)`;
 }
-
-/**
- * Responsivity function: Get actual size of game window in pixels, so game coordinates
-and element sizes (in pixels) can be scaled correctly
- */
-function scaleGameWindow() {
-    /* Get height, width, and border width in pixels */
-   let Game_window_height = document.getElementById('game-window').offsetHeight;
-   let Game_window_width = document.getElementById('game-window').offsetWidth;
-   let Game_window_border = getComputedStyle(document.getElementById('game-window')).borderWidth;
-   /* Remove "px" and convert to number so Game_window_border can be used to calculate */
-   Game_window_border = Number(Game_window_border.substring(0, (Game_window_border.length - 2)));
-   /* Game window scale factors: bottom left of Game window is (0,0), top right is(500,1000) */
-   scaleX = (Game_window_width - (2 * Game_window_border)) / 500;
-   scaleY = (Game_window_height - (2 * Game_window_border)) / 1000;
-   }
