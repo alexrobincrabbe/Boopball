@@ -116,15 +116,15 @@ h1 {
 }
 
 #info-bar {
+    background-color: rgba(0,0,0,0.5);
     color:white;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-content: center;
     align-items: center;
     flex-grow: 1;
-    width:90vw;
-    max-width: 40vh;
-    height:80px;
+    width:100%;
+    margin:auto;
 }
 
 #info-bar span{
@@ -134,12 +134,13 @@ h1 {
     align-content: center;
 }
 #info-bar > span {
-    font-size: 200%;
+    font-size: 120%;
     display: flex;
     justify-content:center;
     align-content: center;
     align-items: center;
     margin:3px;
+    width:30%;
 }
 #clock {
     border:solid black 3px;
@@ -148,13 +149,16 @@ h1 {
     border-radius:50%;
     padding:5px;
     margin:5px;
-    width:40px;
 }
 #score-box {
     border-radius: 5px;
-    height:40px;
     color:black;
     border:solid black 3px;
     background-color: white;
-    padding:0px 20px;
+    padding:3px 5px;
+}
+
+#level {
+    font-size: 170%;
+    padding:0px 5px;
 }
