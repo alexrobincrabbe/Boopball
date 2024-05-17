@@ -42,7 +42,7 @@ const hoop = document.getElementById('hoop');
 const clock=document.getElementById('clock');
 
 /* level variables */
-levelTimer=15;
+levelTimer=60;
 
 
 let scaleX=100/500;
@@ -66,7 +66,7 @@ function runGame() {
     or reset the ball if it is already thrown*/
     character.addEventListener('touchend', throwBall);
     character.addEventListener('mouseup', throwBall);
-    let setCountDown=setInterval(countDown,1000)
+    setCountDown=setInterval(countDown,1000)
 }
 
 /* Increase the throw force until touch/mouse is released */
@@ -202,14 +202,14 @@ function rotateArrow() {
 function countDown () {
     levelTimer = levelTimer-1;
     clock.innerText=`${levelTimer}`;
-    if (levelTimer < 0) {
+    if (levelTimer < 1) {
+        clearInterval(setCountDown);
         gameOver();
     }
 }
 
 function gameOver () {
     clearInterval(setRotation);
-    clearInterval(setCountDown);
     alert('gamer over');
     levelTimer=60; 
     score=0;
