@@ -20,7 +20,7 @@ let yPosHoop = 700;
 let hoopSize = 100;
 
 /* throw control variables */
-let force = arrowWidth;
+let force;
 let isAiming = false;
 let isThrowing = false;
 let scoreReady = true;
@@ -39,8 +39,9 @@ const arrowImage = document.getElementById('arrow-image');
 const scoreBox = document.getElementById('score-box');
 const hoop = document.getElementById('hoop');
 
-scaleX=100/500;
-scaleY=100/1000;
+let scaleX=100/500;
+let scaleY=100/1000;
+
 runGame();
 
 /**
@@ -83,8 +84,8 @@ function throwBall() {
         clearInterval(setThrowPower);        
         arrowImage.style.display = "none";
         const timeStep = 5;
-        xVel = force * Math.cos(rotation * 2 * Math.PI / 360) * timeStep / 20;
-        yVel = force * Math.sin(-rotation * 2 * Math.PI / 360) * timeStep / 20;
+        xVel = force * Math.cos(rotation * 2 * Math.PI / 360) * timeStep/1000;
+        yVel = force * Math.sin(-rotation * 2 * Math.PI / 360) * timeStep/1000;
         isAiming = false;
         isThrowing = true;
         setMoveball = setInterval(() => moveBall(timeStep), timeStep);
@@ -120,10 +121,11 @@ function moveBall(timeStep) {
     }
 
     /* Move the ball */
-    xPosBall += (xVel * 0.2 / timeStep)/scaleX;
-    yPosBall += (yVel * 0.2 / timeStep)/scaleY;
+    xPosBall += (xVel);
+    yPosBall += (yVel);
     /* Add gravity acceleratoin */
-    yVel -= 30 * timeStep / 200;
+    gravity=10;
+    yVel -= gravity* timeStep/1000;
 
     /* Apply new coordinates to Html Ball element*/
     ball.style.left = `${xPosBall*scaleX}%`;
@@ -172,7 +174,7 @@ function growArrow() {
     let growArrowIncrement = 30;
     arrowImage.style.width = `${arrowWidth * 5}%`;
     arrowWidth += growArrowIncrement;
-    force = (arrowWidth * 2) - 100;
+    force = (arrowWidth - 100)*8.5;
 }
 
 /* Function to rotate the arrow by rotation increment */
