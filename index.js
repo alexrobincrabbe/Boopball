@@ -83,7 +83,7 @@ function throwBall() {
     if (isAiming && !isThrowing) {
         clearInterval(setThrowPower);        
         arrowImage.style.display = "none";
-        const timeStep = 5;
+        const timeStep = 1;
         xVel = force * Math.cos(rotation * 2 * Math.PI / 360) * timeStep/1000;
         yVel = force * Math.sin(-rotation * 2 * Math.PI / 360) * timeStep/1000;
         isAiming = false;
@@ -100,7 +100,7 @@ function throwBall() {
  */
 function moveBall(timeStep) {
     resetTimer += 1;
-    const ballSize = 5;
+    const ballSize = 40;
     /* Detect edges of game window */
     if (yPosBall > (1000 - ballSize)) {
         yVel = -yVel;
@@ -124,7 +124,7 @@ function moveBall(timeStep) {
     xPosBall += (xVel);
     yPosBall += (yVel);
     /* Add gravity acceleratoin */
-    gravity=10;
+    gravity=25;
     yVel -= gravity* timeStep/1000;
 
     /* Apply new coordinates to Html Ball element*/
@@ -132,7 +132,7 @@ function moveBall(timeStep) {
     ball.style.bottom = `${yPosBall*scaleY}%`;
 
     /* reset the ball 5 seconds after it is thrown */
-    if (resetTimer > ((1000 / timeStep) * 5)) {
+    if (resetTimer > ((1000 / (3*timeStep)) * 5)) {
         resetBall();
     }
 
@@ -154,8 +154,8 @@ function resetBall() {
     clearInterval(setThrowPower);
     force = 0;
     arrowWidth = 100;
-    xPosBall = xPos + 65;
-    yPosBall = yPos + 140;
+    xPosBall = xPos-10;/*65*/
+    yPosBall = yPos + 190; /*140*/
     ball.style.left = `${xPosBall*scaleX}%`;
     ball.style.bottom = `${yPosBall*scaleY}%`;
     arrowImage.style.display = "inline";
@@ -174,7 +174,7 @@ function growArrow() {
     let growArrowIncrement = 30;
     arrowImage.style.width = `${arrowWidth * 5}%`;
     arrowWidth += growArrowIncrement;
-    force = (arrowWidth - 100)*8.5;
+    force = (arrowWidth - 100)*34;
 }
 
 /* Function to rotate the arrow by rotation increment */

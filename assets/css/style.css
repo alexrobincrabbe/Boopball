@@ -26,15 +26,15 @@ body{
     height:fit-content;
     width:auto;
     position: absolute;
-    left:10%;
+    left:5%;
     bottom:0%;
 }
 
 #character img{
     pointer-events: none;
     user-select: none;
-    width: 13.5vw;
-    max-width:6vh;
+    width: 40.5vw;
+    max-width:18vh;
     height:auto;
 }
 
@@ -43,13 +43,13 @@ body{
     height:fit-content;
     width:auto;
     position: absolute;
-    bottom:14%;
-    left:23%;
+    bottom:19%;/*14*/
+    left:8%;
 }
 
 #ball img{
-    width:4.5vw;
-    max-width:2vh ;
+    width:9vw;
+    max-width:4vh ;
     height:auto;
 
 }
@@ -60,8 +60,8 @@ body{
     width:11.1vw;
     max-width:4.94vh;
     position: absolute;
-    bottom:14%;
-    left:25.6%;
+    bottom:20%;
+    left:13%;
 }
 
 #arrow img{
@@ -70,7 +70,24 @@ body{
     transform-origin: 0% 50%;
 }
 
-#hoop {
+#hoop1 {
+    z-index:3;
+    height:fit-content;
+    width:auto;
+    position: absolute;
+    bottom:70%;
+    right:0%;
+    width:auto;
+}
+
+#hoop1 img {
+    height:9vw;
+    width:36vw;
+    max-width:16vh;
+    max-height:4vh;
+}
+
+#hoop2 {
     z-index:1;
     height:fit-content;
     width:auto;
@@ -80,7 +97,7 @@ body{
     width:auto;
 }
 
-#hoop img {
+#hoop2 img {
     height:9vw;
     width:36vw;
     max-width:16vh;
