@@ -3,7 +3,6 @@ let scaleY
 scaleGameWindow();
 /* Arrow control variables */
 let rotation = 0;
-let rotationRate = 20;
 let arrowWidth = 50 * scaleX;
 /* Character position variables */
 let xPos = 50 * scaleX;
@@ -45,7 +44,7 @@ runGame();
  */
 function runGame() {
     /* Rotate the arrow around the ball */
-    setRotation = setInterval(rotateArrow, rotationRate);
+    resetBall();
 
     /* Increase the throw force while player is holding touch/mouse on character */
     character.addEventListener('touchstart', aimThrow);
@@ -142,6 +141,7 @@ function moveBall(timeStep) {
 
 /* Function to reset the ball to be thrown again */
 function resetBall() {
+    let rotationRate=20;
     clearInterval(setMoveball);
     clearInterval(setThrowPower);
     force = 0;
