@@ -18,6 +18,7 @@ let yVel = 0;
 let xPosHoop = 400;
 let yPosHoop = 700;
 let hoopSize = 100;
+let bumped=false;
 
 /* throw control variables */
 let force;
@@ -32,13 +33,15 @@ let setRotation;
 let setThrowPower;
 let setMoveball;
 let setCountDown;
+let setBump;
 
 /* Set Html element variables */
 const character = document.getElementById('character');
 const ball = document.getElementById('ball');
 const arrowImage = document.getElementById('arrow-image');
 const scoreBox = document.getElementById('score-box');
-const hoop = document.getElementById('hoop');
+const hoop1 = document.getElementById('hoop1');
+const hoop2 = document.getElementById('hoop2');
 const clock=document.getElementById('clock');
 
 /* level variables */
@@ -158,6 +161,21 @@ function moveBall(timeStep) {
                 }
             }
     }
+
+    if ((xPosBall > (xPosHoop - hoopSize)  && xPosBall < (xPosHoop + hoopSize)
+        && yPosBall + ballSize > (yPosHoop - yVel) && yPosBall <= (yPosHoop) ) &&
+        yVel > 0 && !bumped){
+            yVel=-yVel;
+            bumpHoop(10);
+            setBump=setInterval(bumpHoop,50,-10,true);
+        }
+}
+
+function bumpHoop(bump){
+    yPosHoop+=bump;
+    hoop1.style.bottom=`${yPosHoop*scaleY}%`;
+    hoop2.style.bottom=`${yPosHoop*scaleY}%`;
+    clearInterval(setBump);
 }
 
 /* Function to reset the ball to be thrown again */
