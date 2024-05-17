@@ -138,12 +138,16 @@ function moveBall(timeStep) {
 
     /* score a point if ball passes through hoop from above */
     if ((xPosBall > (xPosHoop - hoopSize)  && xPosBall < (xPosHoop + hoopSize)
-        && yPosBall < (yPosHoop + 20) && yPosBall >= (yPosHoop) ) &&
+        && yPosBall -ballSize < (yPosHoop - yVel) && yPosBall >= (yPosHoop) ) &&
         yVel < 0 && scoreReady == true) {
-        score += 1;
-        scoreReady = false;
-        scoreBox.innerText = `Score : ${score}`;
-        hoop.style.backgroundColor = "red";
+            if(xPosBall <((xPosHoop - hoopSize)+20) || xPosBall >((xPosHoop + hoopSize)-20)){
+                yVel=-yVel/2;
+            }else{
+                score += 1;
+                scoreReady = false;
+                scoreBox.innerText = `Score : ${score}`;
+                hoop.style.backgroundColor = "red";
+            }
     }
 }
 
