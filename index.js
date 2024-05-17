@@ -145,7 +145,7 @@ function moveBall(timeStep) {
             }else{
                 score += 1;
                 scoreReady = false;
-                scoreBox.innerText = `Score : ${score}`;
+                scoreBox.innerText = `${score}/5`;
                 hoop.style.backgroundColor = "red";
             }
     }
