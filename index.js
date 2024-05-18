@@ -61,6 +61,8 @@ let scaleY=100/1000;
 startScreen();
 
 function startScreen (){
+    score=0;
+    level=1;
     alertMessage.innerText="WELCOME!";
     option1.innerHTML="<strong>PLAY GAME</strong>"
     option2.innerHTML="<strong>SETTINGS</strong>"
@@ -77,6 +79,16 @@ function alertSettings(){
 function gamerOverScreen (){
     alertMessage.innerText="GAME OVER...";
     option1.innerHTML="<strong>PLAY AGAIN</strong>"
+    option2.innerHTML="<strong>QUIT</strong>"
+    arrowImage.style.display="none";
+    option1.addEventListener("click",runGame);
+    option2.addEventListener("click",startScreen);
+    alertWindow.style.display="flex";
+}
+
+function nextLevelScreen () {
+    alertMessage.innerText=`LEVEL ${level} Complete`;
+    option1.innerHTML="<strong>PLAY NEXT LEVEL</strong>"
     option2.innerHTML="<strong>QUIT</strong>"
     arrowImage.style.display="none";
     option1.addEventListener("click",runGame);
@@ -295,5 +307,5 @@ function completeLevel () {
     level=level+1;
     levelTimer=60;
     score=0;
-    setdelayRungame=setInterval(runGame,1000);
+    nextLevelScreen();
 }
