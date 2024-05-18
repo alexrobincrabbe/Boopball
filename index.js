@@ -43,7 +43,7 @@ const scoreBox = document.getElementById('score-box');
 const hoop1 = document.getElementById('hoop1');
 const hoop2 = document.getElementById('hoop2');
 const clock=document.getElementById('clock');
-
+const levelDisplay=document.getElementById('level');
 /* level variables */
 let levelTimer=60;
 let level=1;
@@ -58,9 +58,14 @@ runGame(level);
  * Sets arrow rotation interval, 
  * add event listeners for game mechanics
  */
-function runGame() {
+function runGame(level) {
     /* Postion ball at player and set arrow rotation interval*/
     resetBall();
+    clearInterval(setCountDown);
+    levelTimer=60;
+    score=0;
+    levelDisplay.innerText=level;
+    scoreBox.innerText=`${score}/5`
     /* Increase the throw force while player is holding touch/mouse on character */
     character.addEventListener('touchstart', aimThrow);
     character.addEventListener('mousedown', aimThrow);
@@ -230,6 +235,7 @@ function countDown () {
 
 function gameOver () {
     clearInterval(setRotation);
+    clearInterval(setCountDown);
     alert('gamer over');
     levelTimer=60; 
     score=0;
@@ -238,6 +244,7 @@ function gameOver () {
 }
 
 function completeLevel () {
+    clearInterval(setCountDown);
     alert(`level ${level} complete`)
     level=level+1;
     levelTimer=60;
