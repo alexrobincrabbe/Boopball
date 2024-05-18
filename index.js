@@ -91,6 +91,9 @@ function nextLevelScreen () {
     option1.innerHTML="<strong>PLAY NEXT LEVEL</strong>"
     option2.innerHTML="<strong>QUIT</strong>"
     arrowImage.style.display="none";
+    level=level+1;
+    levelTimer=60;
+    score=0;
     option1.addEventListener("click",runGame);
     option2.addEventListener("click",startScreen);
     alertWindow.style.display="flex";
@@ -304,8 +307,5 @@ function gameOver () {
 
 function completeLevel () {
     clearInterval(setCountDown);
-    level=level+1;
-    levelTimer=60;
-    score=0;
     nextLevelScreen();
 }
