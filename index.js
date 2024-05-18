@@ -44,6 +44,7 @@ const hoop1 = document.getElementById('hoop1');
 const hoop2 = document.getElementById('hoop2');
 const clock=document.getElementById('clock');
 const levelDisplay=document.getElementById('level');
+const alertWindow=document.getElementById('alert-window');
 /* level variables */
 let levelTimer=60;
 let level=1;
@@ -51,7 +52,15 @@ let level=1;
 let scaleX=100/500;
 let scaleY=100/1000;
 
-runGame(level);
+startScreen();
+
+function startScreen (){
+    arrowImage.style.display="none";
+    const option1=document.getElementById('alert-option1');
+    let playGame=option1.addEventListener("click",()=>runGame(level));
+    const option2=document.getElementById('alert-option2');
+    let settings=option2.addEventListener("click",()=>alert('settings'));
+}
 
 /**
  * Main game function:
@@ -60,6 +69,8 @@ runGame(level);
  */
 function runGame(level) {
     /* Postion ball at player and set arrow rotation interval*/
+    alertWindow.style.display="none";
+    arrowImage.style.display="block";
     resetBall();
     clearInterval(setCountDown);
     levelTimer=60;
@@ -239,8 +250,9 @@ function gameOver () {
     alert('gamer over');
     levelTimer=60; 
     score=0;
+    level=1;
     scoreBox.innerText = `${score}/5`;
-    runGame();
+    runGame(level);
 }
 
 function completeLevel () {
