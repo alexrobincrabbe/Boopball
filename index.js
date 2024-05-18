@@ -35,6 +35,8 @@ let setMoveball;
 let setCountDown;
 let setBump;
 let setColorHoop;
+let setdelayRungame;
+
 /* Set Html element variables */
 const character = document.getElementById('character');
 const ball = document.getElementById('ball');
@@ -45,6 +47,10 @@ const hoop2 = document.getElementById('hoop2');
 const clock=document.getElementById('clock');
 const levelDisplay=document.getElementById('level');
 const alertWindow=document.getElementById('alert-window');
+const alertMessage=document.getElementById('alert');
+const option1=document.getElementById('alert-option1');
+const option2=document.getElementById('alert-option2');
+
 /* level variables */
 let levelTimer=60;
 let level=1;
@@ -55,11 +61,27 @@ let scaleY=100/1000;
 startScreen();
 
 function startScreen (){
+    alertMessage.innerText="WELCOME!";
+    option1.innerHTML="<strong>PLAY GAME</strong>"
+    option2.innerHTML="<strong>SETTINGS</strong>"
     arrowImage.style.display="none";
-    const option1=document.getElementById('alert-option1');
-    let playGame=option1.addEventListener("click",()=>runGame(level));
-    const option2=document.getElementById('alert-option2');
-    let settings=option2.addEventListener("click",()=>alert('settings'));
+    option1.addEventListener("click",runGame);
+    option2.addEventListener("click",alertSettings);
+    alertWindow.style.display="flex";
+}
+
+function alertSettings(){
+    alert('settings');
+}
+
+function gamerOverScreen (){
+    alertMessage.innerText="GAME OVER...";
+    option1.innerHTML="<strong>PLAY AGAIN</strong>"
+    option2.innerHTML="<strong>QUIT</strong>"
+    arrowImage.style.display="none";
+    option1.addEventListener("click",runGame);
+    option2.addEventListener("click",startScreen);
+    alertWindow.style.display="flex";
 }
 
 /**
@@ -67,7 +89,12 @@ function startScreen (){
  * Sets arrow rotation interval, 
  * add event listeners for game mechanics
  */
-function runGame(level) {
+function runGame() {
+    clearInterval(setdelayRungame);
+    option1.removeEventListener("click",runGame);
+    option2.removeEventListener("click",alertSettings);
+    option2.removeEventListener("click",startScreen);
+
     /* Postion ball at player and set arrow rotation interval*/
     alertWindow.style.display="none";
     arrowImage.style.display="block";
@@ -255,20 +282,18 @@ function countDown () {
 function gameOver () {
     clearInterval(setRotation);
     clearInterval(setCountDown);
-    alert('game over');
+    gamerOverScreen();
     levelTimer=60; 
     score=0;
     level=1;
     scoreBox.innerText = `${score}/5`;
-    runGame(level);
+    
 }
 
 function completeLevel () {
     clearInterval(setCountDown);
-    alert(`level ${level} complete`)
     level=level+1;
     levelTimer=60;
     score=0;
-    runGame(level);
-    
+    setdelayRungame=setInterval(runGame,1000);
 }
