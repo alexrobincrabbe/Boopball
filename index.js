@@ -34,7 +34,7 @@ let setThrowPower;
 let setMoveball;
 let setCountDown;
 let setBump;
-
+let setColorHoop;
 /* Set Html element variables */
 const character = document.getElementById('character');
 const ball = document.getElementById('ball');
@@ -172,6 +172,8 @@ function moveBall(timeStep) {
                 score += 1;
                 scoreReady = false;
                 scoreBox.innerText = `${score}/5`;
+                colorHoop("hoop1_green.png","hoop2_green.png");
+                setColorHoop=setInterval(colorHoop,150,"hoop1.png","hoop2.png");
                 if (score === 5){
                     completeLevel();
                 }
@@ -183,8 +185,14 @@ function moveBall(timeStep) {
         yVel > 0 && !bumped){
             yVel=-yVel;
             bumpHoop(10);
-            setBump=setInterval(bumpHoop,50,-10,true);
+            setBump=setInterval(bumpHoop,50,-10);
         }
+}
+
+function colorHoop(hoop1Color,hoop2Color){
+    hoop1.innerHTML=`<img src="assets/images/${hoop1Color}" alt="" srcset=""></img>`;
+    hoop2.innerHTML=`<img src="assets/images/${hoop2Color}" alt="" srcset=""></img>`;
+    clearInterval(setColorHoop);
 }
 
 function bumpHoop(bump){
@@ -247,7 +255,7 @@ function countDown () {
 function gameOver () {
     clearInterval(setRotation);
     clearInterval(setCountDown);
-    alert('gamer over');
+    alert('game over');
     levelTimer=60; 
     score=0;
     level=1;
