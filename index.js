@@ -211,8 +211,8 @@ function moveBall(timeStep) {
                 score += 1;
                 scoreReady = false;
                 scoreBox.innerText = `${score}/5`;
-                colorHoop("hoop1_green.png","hoop2_green.png");
-                setColorHoop=setInterval(colorHoop,150,"hoop1.png","hoop2.png");
+                colorHoop("brightness(200%)");
+                setColorHoop=setInterval(colorHoop,100,"brightness(100%)");
                 if (score === 5){
                     completeLevel();
                 }
@@ -228,9 +228,9 @@ function moveBall(timeStep) {
         }
 }
 
-function colorHoop(hoop1Color,hoop2Color){
-    hoop1.innerHTML=`<img src="assets/images/${hoop1Color}" alt="" srcset=""></img>`;
-    hoop2.innerHTML=`<img src="assets/images/${hoop2Color}" alt="" srcset=""></img>`;
+function colorHoop(brightness){
+    hoop1.style.filter=brightness;
+    hoop2.style.filter=brightness;
     clearInterval(setColorHoop);
 }
 
