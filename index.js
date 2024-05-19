@@ -15,9 +15,9 @@ let xVel = 0;
 let yVel = 0;
 
 /* Hoop position variables*/
-let xPosHoop = 400;
+let xPosHoop = 300;
 let yPosHoop = 700;
-let hoopSize = 100;
+let hoopSize = 200;
 let bumped=false;
 
 /* throw control variables */
@@ -138,8 +138,41 @@ function runGame() {
     character.addEventListener('touchend', throwBall);
     character.addEventListener('mouseup', throwBall);
     setCountDown=setInterval(countDown,1000)
+    stageStart();
+    
 }
 
+function stageStart () {
+    switch(level){
+        case 1:
+            switch(score){
+                case 0:
+                    xPosHoop=300;
+                    yPosHoop=350;
+                    break;
+                case 1:
+                    xPosHoop=300;
+                    yPosHoop=700;
+                    break;
+                case 2:
+                    xPosHoop=0;
+                    yPosHoop=700;
+                    break;
+                case 3:
+                    xPosHoop=0;
+                    yPosHoop=350;
+                    break;
+                case 4:
+                    xPosHoop=300;
+                    yPosHoop=850;
+                    break;
+            }
+    }
+    hoop1.style.left=`${xPosHoop*scaleX}%`
+    hoop1.style.bottom=`${yPosHoop*scaleY}%`
+    hoop2.style.left=`${xPosHoop*scaleX}%`
+    hoop2.style.bottom=`${yPosHoop*scaleY}%`
+}
 /* Increase the throw force until touch/mouse is released */
 function aimThrow(event) {
     /* Prevent touch from also triggering mouse event */
@@ -215,10 +248,10 @@ function moveBall(timeStep) {
     }
 
     /* score a point if ball passes through hoop from above */
-    if ((xPosBall > (xPosHoop - hoopSize)  && xPosBall < (xPosHoop + hoopSize)
+    if ((xPosBall > (xPosHoop)  && xPosBall < (xPosHoop + hoopSize)
         && yPosBall -ballSize < (yPosHoop - yVel) && yPosBall >= (yPosHoop) ) &&
         yVel < 0 && scoreReady == true) {
-            if(xPosBall <((xPosHoop - hoopSize)+20) || xPosBall >((xPosHoop + hoopSize)-20)){
+            if(xPosBall <((xPosHoop)+20) || xPosBall >((xPosHoop + hoopSize)-20)){
                 yVel=-yVel/2;
             }else{
                 score += 1;
@@ -233,7 +266,7 @@ function moveBall(timeStep) {
             }
     }
 
-    if ((xPosBall > (xPosHoop - hoopSize)  && xPosBall < (xPosHoop + hoopSize)
+    if ((xPosBall > (xPosHoop)  && xPosBall < (xPosHoop + hoopSize)
         && yPosBall + ballSize > (yPosHoop - yVel) && yPosBall <= (yPosHoop) ) &&
         yVel > 0 && !bumped){
             yVel=-yVel;
@@ -274,6 +307,7 @@ function resetBall() {
     resetTimer = 0;
     isThrowing = false;
     scoreReady = true;
+    stageStart();
 }
 
 /**
