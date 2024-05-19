@@ -63,6 +63,7 @@ startScreen();
 function startScreen (){
     score=0;
     level=1;
+    levelTimer=60;
     alertMessage.innerText="WELCOME!";
     option1.innerHTML="<strong>PLAY GAME</strong>"
     option2.innerHTML="<strong>SETTINGS</strong>"
@@ -249,10 +250,11 @@ function resetBall() {
     let rotationRate=20;
     clearInterval(setMoveball);
     clearInterval(setThrowPower);
+    clearInterval(setRotation);
     force = 0;
     arrowWidth = 100;
-    xPosBall = xPos-10;/*65*/
-    yPosBall = yPos + 190; /*140*/
+    xPosBall = xPos-10;
+    yPosBall = yPos + 190; 
     ball.style.left = `${xPosBall*scaleX}%`;
     ball.style.bottom = `${yPosBall*scaleY}%`;
     arrowImage.style.display = "inline";
