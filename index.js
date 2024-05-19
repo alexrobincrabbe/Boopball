@@ -19,6 +19,8 @@ let xPosHoop = 300;
 let yPosHoop = 700;
 let hoopSize = 200;
 let bumped=false;
+let xVelHoop;
+let yVelHoop;
 
 /* throw control variables */
 let force;
@@ -37,6 +39,7 @@ let setBump;
 let setColorHoop;
 let setdelayRungame;
 let setBackgroundMusic
+let setMoveHoop
 
 /* Set Html element variables */
 const character = document.getElementById('character');
@@ -55,6 +58,7 @@ const option2=document.getElementById('alert-option2');
 /* level variables */
 let levelTimer=60;
 let level=1;
+let changeScore=false;
 
 let scaleX=100/500;
 let scaleY=100/1000;
@@ -139,12 +143,16 @@ function runGame() {
     character.addEventListener('mouseup', throwBall);
     setCountDown=setInterval(countDown,1000)
     stageStart();
+    clearInterval(setMoveHoop);
+    setMoveHoop = setInterval(moveHoop, 1);
     
 }
 
 function stageStart () {
     switch(level){
         case 1:
+            xVelHoop=0;
+            yVelHoop=0;
             switch(score){
                 case 0:
                     xPosHoop=300;
@@ -165,6 +173,40 @@ function stageStart () {
                 case 4:
                     xPosHoop=300;
                     yPosHoop=850;
+                    break;
+            }
+            break;
+        case 2:
+            switch(score){
+                case 0:
+                    xVelHoop=-1;
+                    yVelHoop=0;
+                    xPosHoop=300;
+                    yPosHoop=350;
+                    break;
+                case 1:
+                    xVelHoop=-1
+                    yVelHoop=0;
+                    xPosHoop=300;
+                    yPosHoop=700;
+                    break;
+                case 2:
+                    xVelHoop=0;
+                    yVelHoop=1;
+                    xPosHoop=300;
+                    yPosHoop=350;
+                    break;
+                case 3:
+                    xVelHoop=0;
+                    yVelHoop=1;
+                    xPosHoop=300;
+                    yPosHoop=350;
+                    break;
+                case 4:
+                    xVelHoop=-1;
+                    yVelHoop=1;
+                    xPosHoop=300;
+                    yPosHoop=350;
                     break;
             }
     }
@@ -255,6 +297,7 @@ function moveBall(timeStep) {
                 yVel=-yVel/2;
             }else{
                 score += 1;
+                changeScore=true;
                 scoreReady = false;
                 scoreBox.innerText = `${score}/5`;
                 colorHoop("brightness(200%)");
@@ -274,6 +317,37 @@ function moveBall(timeStep) {
             sadBoop.play();
             setBump=setInterval(bumpHoop,50,-10);
         }
+}
+
+function moveHoop() {
+    /* Detect edges of game window */
+    if (yPosHoop > (850)) {
+        yVelHoop = -yVelHoop;
+        yPosHoop = (850);
+    }
+    if (yPosHoop < 350) {
+        yVelHoop = -yVelHoop;
+        yPosHoop = 350;
+    }
+    
+    if (xPosHoop > (500 - hoopSize)) {
+        xVelHoop = -xVelHoop;
+        xPosHoop = (500 - hoopSize);
+    }
+    if (xPosHoop < 0) {
+        xVelHoop = -xVelHoop;
+        xPosHoop = 0;
+    }
+
+    /* Move the Hoop */
+    xPosHoop += (xVelHoop);
+    yPosHoop += (yVelHoop);
+
+    /* Apply new coordinates to Html Ball element*/
+    hoop1.style.left = `${xPosHoop*scaleX}%`;
+    hoop1.style.bottom = `${yPosHoop*scaleY}%`;
+    hoop2.style.left = `${xPosHoop*scaleX}%`;
+    hoop2.style.bottom = `${yPosHoop*scaleY}%`;
 }
 
 function colorHoop(brightness){
@@ -307,7 +381,11 @@ function resetBall() {
     resetTimer = 0;
     isThrowing = false;
     scoreReady = true;
-    stageStart();
+    if (changeScore==true){
+        changeScore=false;
+        stageStart();
+    }
+
 }
 
 /**
