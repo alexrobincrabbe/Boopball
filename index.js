@@ -58,6 +58,10 @@ let level=1;
 let scaleX=100/500;
 let scaleY=100/1000;
 
+/* Sounds */
+
+let sadBoop = new sound('assets/sounds/sad_boop.m4a');
+let happyBoop = new sound('assets/sounds/happy_boop.m4a');
 startScreen();
 
 function startScreen (){
@@ -216,6 +220,7 @@ function moveBall(timeStep) {
                 scoreReady = false;
                 scoreBox.innerText = `${score}/5`;
                 colorHoop("brightness(200%)");
+                happyBoop.play();
                 setColorHoop=setInterval(colorHoop,100,"brightness(100%)");
                 if (score === 5){
                     completeLevel();
@@ -228,6 +233,7 @@ function moveBall(timeStep) {
         yVel > 0 && !bumped){
             yVel=-yVel;
             bumpHoop(10);
+            sadBoop.play();
             setBump=setInterval(bumpHoop,50,-10);
         }
 }
@@ -310,4 +316,19 @@ function gameOver () {
 function completeLevel () {
     clearInterval(setCountDown);
     nextLevelScreen();
+}
+
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
 }
