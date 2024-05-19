@@ -36,6 +36,7 @@ let setCountDown;
 let setBump;
 let setColorHoop;
 let setdelayRungame;
+let setBackgroundMusic
 
 /* Set Html element variables */
 const character = document.getElementById('character');
@@ -62,6 +63,7 @@ let scaleY=100/1000;
 
 let sadBoop = new sound('assets/sounds/sad_boop.m4a');
 let happyBoop = new sound('assets/sounds/happy_boop.m4a');
+let backgroundMusic = new sound('assets/sounds/background_music.m4a')
 startScreen();
 
 function startScreen (){
@@ -110,6 +112,9 @@ function nextLevelScreen () {
  * add event listeners for game mechanics
  */
 function runGame() {
+    clearInterval(setBackgroundMusic);
+    setBackgroundMusic= setInterval(()=>backgroundMusic.play(),1);
+
     clearInterval(setdelayRungame);
     option1.removeEventListener("click",runGame);
     option2.removeEventListener("click",alertSettings);
