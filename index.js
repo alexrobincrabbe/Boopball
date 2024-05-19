@@ -63,7 +63,7 @@ let scaleY=100/1000;
 
 let sadBoop = new sound('assets/sounds/sad_boop.m4a');
 let happyBoop = new sound('assets/sounds/happy_boop.m4a');
-let backgroundMusic = new sound('assets/sounds/background_music.m4a')
+/*let backgroundMusic = new sound('assets/sounds/background_music.m4a')*/   
 startScreen();
 
 function startScreen (){
@@ -112,8 +112,8 @@ function nextLevelScreen () {
  * add event listeners for game mechanics
  */
 function runGame() {
-    clearInterval(setBackgroundMusic);
-    setBackgroundMusic= setInterval(()=>backgroundMusic.play(),1);
+    /*clearInterval(setBackgroundMusic);/*
+    /*setBackgroundMusic= setInterval(()=>backgroundMusic.play(),100);*/
 
     clearInterval(setdelayRungame);
     option1.removeEventListener("click",runGame);
