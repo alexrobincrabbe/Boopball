@@ -67,6 +67,7 @@ let scaleY = 100 / 1000;
 
 let sadBoop = new sound('assets/sounds/sad_boop.m4a');
 let happyBoop = new sound('assets/sounds/happy_boop.m4a');
+let tap =new sound('assets/sounds/tap.wav');
 /*let backgroundMusic = new sound('assets/sounds/background_music.m4a')*/
 startScreen();
 
@@ -326,21 +327,27 @@ function moveBall(timeStep) {
     const ballSize = 40;
     /* Detect edges of game window */
     if (yPosBall > (1000 - ballSize)) {
+        tap.play();
         yVel = -yVel;
         yPosBall = (1000 - ballSize);
     }
     if (yPosBall < 0) {
+        if (yVel<-2){
+            tap.play();
+        }
         yVel = -yVel / 2;
         xVel = xVel / 2;
         yPosBall = 0;
     }
     if (xPosBall > (500 - ballSize)) {
+        tap.play();
         xVel = -xVel / 2;
         xPosBall = (500 - ballSize);
     }
     if (xPosBall < 0) {
         xVel = -xVel / 2;
         xPosBall = 0;
+        tap.play();
     }
 
     /* Move the ball */
