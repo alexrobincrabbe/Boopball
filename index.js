@@ -68,6 +68,7 @@ let scaleY = 100 / 1000;
 let sadBoop = new sound('assets/sounds/sad_boop.m4a');
 let happyBoop = new sound('assets/sounds/happy_boop.m4a');
 let tap =new sound('assets/sounds/tap.wav');
+let button = new sound('assets/sounds/buttonclick.mp3');
 /*let backgroundMusic = new sound('assets/sounds/background_music.m4a')*/
 startScreen();
 
@@ -80,9 +81,17 @@ function startScreen() {
     option2.innerHTML = "<strong>SETTINGS</strong>"
     arrowImage.style.display = "none";
     option1.addEventListener("click", runGame);
+    option1.addEventListener("click", buttonSound);
     option2.addEventListener("click", alertSettings);
+    option2.addEventListener("click", buttonSound);
+
     alertWindow.style.display = "flex";
 }
+
+function buttonSound(){
+    button.play();
+}
+
 
 function alertSettings() {
     alert('settings');
