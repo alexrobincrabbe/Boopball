@@ -116,6 +116,8 @@ hr {
     width:9vw;
     max-width:4vh ;
     height:auto;
+    border-radius:50%;
+    box-shadow:0px 0px 30px rgb(255, 255, 255);
 }
 
 #arrow{
@@ -124,7 +126,7 @@ hr {
     width:11.1vw;
     max-width:4.94vh;
     position: absolute;
-    bottom:20%;
+    bottom:21%;
     left:13%;
 }
 
@@ -188,7 +190,7 @@ hr {
 }
 
 #info-bar > span {
-    font-size: 120%;
+    font-size: 80%;
     display: flex;
     justify-content:center;
     align-content: center;
@@ -221,7 +223,7 @@ hr {
 
 #alert-window {
     z-index: 10;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.5);
     border:solid rgb(194,175,44) 3px;
     margin:5%;;
     position:absolute;
@@ -235,8 +237,9 @@ hr {
     justify-content: space-around;
     align-items: center;
     align-content: center;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: -10px 10px 10px black;
+    font-size: 60%;
 }
 
 
@@ -252,7 +255,7 @@ hr {
     box-shadow: -5px 5px 5px black;
 }
 
-@media screen and (min-width:600px){
+@media screen and (min-width:900px){
     main{
         flex-direction: row;
     }
@@ -270,7 +273,7 @@ hr {
     }
 
     .text-box{
-        font-size:150%;
+        font-size:100%;
         padding:0px 0px 10px 0px;
         background-color: rgb(124, 59, 59);        
         box-sizing: border-box;
