@@ -3,24 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Monoton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Monoton&family=Rock+Salt&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Merienda:wght@300..900&family=Monoton&family=Rock+Salt&display=swap');
+
 body{
     padding:0px;
     margin:0px;
-    
     background-color: rgb(184   ,109,44)
 }
 
-main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(184   ,109,44);
-    font-family: "Rock Salt", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-
+/* Header styles */
 header {
     color:rgb(194,175,44);
     display:flex;
@@ -47,6 +37,35 @@ h1 {
     color:rgb(237, 206, 70);;
 }
 
+hr {
+    height: 5px;
+    background-color: rgb(194,175,44);
+    box-shadow: 0px -5px 20px white;
+}
+
+/* Class added to use transition in javascripts */
+.line-animate {
+    transition: 2s;
+}
+
+/*Main page section styles */
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(184   ,109,44);
+    font-family: "Rock Salt", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Text box styles */
+
+.text-box{
+}
+
+
 h2 {
     box-shadow:0px 5px 5px black;
     background-color:rgb(83,48,72);
@@ -56,19 +75,11 @@ h2 {
     font-style: normal;
     margin:0;
     padding-left: 5px;
-
 }
 
-hr {
-    height: 5px;
-    background-color: rgb(194,175,44);
-    box-shadow: 0px -5px 20px white;
-}
 
-.line-animate {
-    transition: 2s;
-}
 
+/* Game window styles */ 
 #game-window{
     z-index: 0;
     position: relative;
@@ -91,6 +102,7 @@ hr {
     border-width: 10px;
 }
 
+/* Game window graphic elements */
 #character{
     z-index: 3;
     height:fit-content;
@@ -175,6 +187,7 @@ hr {
     max-height:4vh;
 }
 
+/* Info bar styles */
 #info-bar {
     background-color: rgba(0,0,0,0.5);
     color:white;
@@ -226,6 +239,7 @@ hr {
     padding:0px 5px;
 }
 
+/* Alert window styles */
 #alert-window {
     z-index: 10;
     background-color: rgba(0,0,0,0.5);
@@ -260,24 +274,33 @@ hr {
     box-shadow: -5px 5px 5px black;
 }
 
+/* Tablets and larger screen sizes */
 @media screen and (min-width:900px){
+    /* Header Styles */
+    h1 {
+        font-size:500%;
+    }
+
+    /* Main page section styles */
     main{
         flex-direction: row;
     }
+    
     #instructions{
         order:1;
-        width:30%;
-    }
-    #game-window{
-        order:2;
-    }
-    #controls{
-        order:3;
-        width:30%;
         
     }
 
+    #game-window{
+        order:2;
+    }
+
+    #controls{
+        order:3;  
+    }
+
     .text-box{
+        width:30%;
         font-size:100%;
         padding:0px 0px 10px 0px;
         background-color: rgb(124, 59, 59);        
@@ -297,9 +320,5 @@ hr {
 
     .text-box ul {
         margin:10px;
-    }
-
-    h1 {
-        font-size:500%;
     }
 }
