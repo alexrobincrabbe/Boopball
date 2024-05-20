@@ -1,12 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Monoton&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Monoton&family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Merienda:wght@300..900&family=Monoton&family=Rock+Salt&display=swap');
 body{
     padding:0px;
     margin:0px;
     
-    background-color: rgb(101, 93, 91);
+    background-color: rgb(184   ,109,44)
 }
 
 main{
@@ -14,19 +15,26 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(101, 93, 91);
+    background-color: rgb(184   ,109,44);
+    font-family: "Rock Salt", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 header {
-    color:white;
+    color:rgb(194,175,44);
     display:flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0px 10px 10px black;
     margin-bottom: 20px;
-    background-color:rgb(132, 1, 1);
+    background-color:rgb(83,48,72);
     padding:0px;
   
+}
+
+header span {
+    width:30%;
 }
 
 h1 {
@@ -36,17 +44,24 @@ h1 {
     font-family: "Monoton", sans-serif;
     font-weight: 400;
     font-style: normal;
+    color:rgb(237, 206, 70);;
 }
 
 h2 {
     box-shadow:0px 5px 5px black;
-    background-color: rgb(124, 59, 59);
-    color:white;
+    background-color:rgb(83,48,72);
+    color:rgb(237, 206, 70);
     font-family: "Monoton", sans-serif;
     font-weight: 400;
     font-style: normal;
+    margin:0;
 }
 
+hr {
+    height: 5px;
+    background-color: rgb(194,175,44);
+    box-shadow: 0px -5px 20px white;
+}
 #game-window{
     z-index: 0;
     position: relative;
@@ -54,14 +69,16 @@ h2 {
     height:180vw;
     max-width: 40vh;
     max-height:80vh;
-    border:solid white 5px;
-    border-radius: 10px;
+    border:solid rgb(194,175,44) 5px;
+    border-radius: 20px;
     margin:0px 0px 0px 0px;
     padding:0px;
     overflow: hidden;
     background:  url("../images/background.png") no-repeat top center/cover;
     background-size: 125%;
     background-color: black;
+    border-style:outset;
+    border-width: 10px;
 }
 
 #character{
@@ -200,7 +217,7 @@ h2 {
 #alert-window {
     z-index: 10;
     background-color: rgba(0,0,0,0.7);
-    border:solid white 3px;
+    border:solid rgb(194,175,44) 3px;
     margin:5%;;
     position:absolute;
     bottom:50%;
@@ -223,8 +240,7 @@ h2 {
 }
 
 .alert-option{
-    background-color: red;
-    background-image: radial-gradient(rgb(255, 74, 74),red,rgb(186, 0, 0));
+    background-color: rgb(58, 160,223);
     border:solid white 1px;
     padding:5px;
     border-radius:5px;
@@ -238,27 +254,29 @@ h2 {
     #instructions{
         order:1;
         width:30%;
-        padding:10px;
-        font-size:150%;
     }
     #game-window{
         order:2;
     }
     #controls{
-        font-size:150%;
         order:3;
         width:30%;
-        padding :10px;
-        box-shadow:5px 5px 5px black;
+        
     }
 
     .text-box{
-        background-color: rgb(163, 154, 154);
+        font-size:150%;
+        padding:0px 0px 10px 0px;
+        background-color: rgb(124, 59, 59);        
         box-sizing: border-box;
         margin:0px 50px;
-        color:rgb(132, 1, 1);
-        font-family: "Clicker Script", cursive;
-        font-weight: 400;
+        color:rgb(194,175,44);
+        font-family: "Merienda", cursive;
+        font-optical-sizing: auto;
+        font-weight: 600;
         font-style: normal;
+        border-radius: 10px;
+        box-shadow:-5px 5px 5px black;
+        overflow: hidden;
     }
 }
