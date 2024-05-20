@@ -1,16 +1,3 @@
-lines = document.getElementsByClassName('line');
-
-for (line of lines){
-    line.classList.add('line-animate');
-}
-window.addEventListener('load', ()=> {
-    lines[0].style.width="30%";
-});
-window.addEventListener('load', ()=> {
-    lines[1].style.width="30%";
-});
-
-
 /* Global variables */
 
 /* Arrow control variables */
@@ -18,8 +5,8 @@ let rotation = 0;
 let arrowWidth;
 
 /* Character position variables */
-let xPos = 50;
-let yPos = 0;
+const xPos = 50;
+const yPos = 0;
 
 /* Ball position variables */
 let xPosBall = xPos + 65;
@@ -43,14 +30,13 @@ let scoreReady = true;
 let resetTimer = 0;
 let score = 0;
 
-/* Interval variables */
+/* Interval functions*/
 let setRotation;
 let setThrowPower;
 let setMoveball;
 let setCountDown;
 let setBump;
 let setColorHoop;
-let setdelayRungame;
 let setBackgroundMusic
 let setMoveHoop
 
@@ -67,24 +53,37 @@ const alertWindow = document.getElementById('alert-window');
 const alertMessage = document.getElementById('alert');
 const option1 = document.getElementById('alert-option1');
 const option2 = document.getElementById('alert-option2');
+const lines = document.getElementsByClassName('line');
+
 
 /* level variables */
 let levelTimer = 60;
 let level = 1;
 let changeScore = false;
 
-let scaleX = 100 / 500;
-let scaleY = 100 / 1000;
+const scaleX = 100 / 500;
+const scaleY = 100 / 1000;
 
 /* Sounds */
+const sadBoop = new sound('assets/sounds/sad_boop.m4a');
+const happyBoop = new sound('assets/sounds/happy_boop.m4a');
+const tap =new sound('assets/sounds/tap.wav');
+const button = new sound('assets/sounds/buttonclick.mp3');
 
-let sadBoop = new sound('assets/sounds/sad_boop.m4a');
-let happyBoop = new sound('assets/sounds/happy_boop.m4a');
-let tap =new sound('assets/sounds/tap.wav');
-let button = new sound('assets/sounds/buttonclick.mp3');
-/*let backgroundMusic = new sound('assets/sounds/background_music.m4a')*/
+/* Header animation on page load */
+for (let line of lines){
+    line.classList.add('line-animate');
+    window.addEventListener('load', ()=> {
+        line.style.width="30%";
+    });
+}
+
+/* load start screen */
 startScreen();
 
+
+/* Game functions */
+/* Game alert windows */
 function startScreen() {
     score = 0;
     level = 1;
@@ -93,22 +92,13 @@ function startScreen() {
     option1.innerHTML = "<strong>PLAY GAME</strong>"
     option2.innerHTML = "<strong>SETTINGS</strong>"
     arrowImage.style.display = "none";
+    option1.addEventListener("click", ()=>button.play());
     option1.addEventListener("click", runGame);
-    option1.addEventListener("click", buttonSound);
+    option2.addEventListener("click", ()=>button.play());
     option2.addEventListener("click", alertSettings);
-    option2.addEventListener("click", buttonSound);
-
     alertWindow.style.display = "flex";
 }
 
-function buttonSound(){
-    button.play();
-}
-
-
-function alertSettings() {
-    alert('settings');
-}
 
 function gamerOverScreen() {
     alertMessage.innerText = "GAME OVER...";
@@ -133,29 +123,35 @@ function nextLevelScreen() {
     alertWindow.style.display = "flex";
 }
 
+/* Placeholder function */
+function alertSettings() {
+    alert('settings');
+}
+
 /**
  * Main game function:
  * Sets arrow rotation interval, 
  * add event listeners for game mechanics
  */
 function runGame() {
-    /*clearInterval(setBackgroundMusic);/*
-    /*setBackgroundMusic= setInterval(()=>backgroundMusic.play(),100);*/
-
-    clearInterval(setdelayRungame);
+    /* clear event listeners from alert window buttons */
     option1.removeEventListener("click", runGame);
     option2.removeEventListener("click", alertSettings);
     option2.removeEventListener("click", startScreen);
-
-    /* Postion ball at player and set arrow rotation interval*/
+    /* hid alert window */
     alertWindow.style.display = "none";
+    /* Postion ball at player and set arrow rotation interval*/
     arrowImage.style.display = "block";
     resetBall();
+    /* Start level timer */
     clearInterval(setCountDown);
     levelTimer = 60;
+    setCountDown = setInterval(countDown, 1000)
     score = 0;
+    /* update infobar display */
     levelDisplay.innerText = level;
     scoreBox.innerText = `${score}/5`
+
     /* Increase the throw force while player is holding touch/mouse on character */
     character.addEventListener('touchstart', aimThrow);
     character.addEventListener('mousedown', aimThrow);
@@ -164,13 +160,248 @@ function runGame() {
     or reset the ball if it is already thrown*/
     character.addEventListener('touchend', throwBall);
     character.addEventListener('mouseup', throwBall);
-    setCountDown = setInterval(countDown, 1000)
+    /* Set the hoop postion and velocity for current stage */
     stageStart();
+    /* Move the hoop */
     clearInterval(setMoveHoop);
     setMoveHoop = setInterval(moveHoop, 1);
+}
+
+/* Functions controlling the ball throw */
+
+/* Increase the throw force until touch/mouse is released */
+function aimThrow(event) {
+    /* Prevent touch from also triggering mouse event */
+    event.preventDefault();
+
+    /* Check that no instances of intervals are already running */
+    if (!isAiming && !isThrowing) {
+        clearInterval(setRotation);
+        setThrowPower = setInterval(growArrow, 20);
+        isAiming = true;
+    } else if (isThrowing) {
+        resetBall();
+    }
+}
+
+/* Function to reset the ball to be thrown again */
+function resetBall() {
+    let rotationRate = 20;
+    clearInterval(setMoveball);
+    clearInterval(setThrowPower);
+    clearInterval(setRotation);
+    force = 0;
+    arrowWidth = 100;
+    xPosBall = xPos - 10;
+    yPosBall = yPos + 190;
+    ball.style.left = `${xPosBall * scaleX}%`;
+    ball.style.bottom = `${yPosBall * scaleY}%`;
+    arrowImage.style.display = "inline";
+    arrowImage.style.width = `${arrowWidth}%`;
+    setRotation = setInterval(rotateArrow, rotationRate);
+    resetTimer = 0;
+    isThrowing = false;
+    scoreReady = true;
+    if (changeScore == true) {
+        changeScore = false;
+        stageStart();
+    }
 
 }
 
+/**
+ * Function to increase the arrow length and throw force while player is
+ * holding the touch on the character
+ */
+function growArrow() {
+    let growArrowIncrement = 30;
+    arrowImage.style.width = `${arrowWidth * 5}%`;
+    arrowWidth += growArrowIncrement;
+    force = (arrowWidth - 100) * 34;
+}
+
+/* Function to rotate the arrow by rotation increment */
+function rotateArrow() {
+    let rotationIncrement = 10;
+    rotation += rotationIncrement;
+    /* restrict angle to range 0-360 degrees for debugging purposes */
+    if (rotation === 360) {
+        rotation = 0;
+    }
+    arrowImage.style.transform = `rotate(${rotation}deg)`;
+}
+
+/* stop aiming and release throw when touch is released */
+function throwBall() {
+    /* Check that character is aiming and no instances of interval are running */
+    if (isAiming && !isThrowing) {
+        clearInterval(setThrowPower);
+        arrowImage.style.display = "none";
+        const timeStep = 1;
+        xVel = force * Math.cos(rotation * 2 * Math.PI / 360) * timeStep / 1000;
+        yVel = force * Math.sin(-rotation * 2 * Math.PI / 360) * timeStep / 1000;
+        isAiming = false;
+        isThrowing = true;
+        setMoveball = setInterval(() => moveBall(timeStep), timeStep);
+    }
+}
+
+/* Functions controlling movement of game elements and scoring*/
+
+/**
+ * Function to move the ball
+ * ,detect edges of game window
+ * ,apply gravity
+ * ,score when the ball passes through the hoop
+ */
+function moveBall(timeStep) {
+    resetTimer += 1;
+    const ballSize = 40;
+    /* Detect edges of game window */
+    if (yPosBall > (1000 - ballSize)) {
+        tap.play();
+        yVel = -yVel;
+        yPosBall = (1000 - ballSize);
+    }
+    if (yPosBall < 0) {
+        if (yVel<-2){
+            tap.play();
+        }
+        yVel = -yVel / 2;
+        xVel = xVel / 2;
+        yPosBall = 0;
+    }
+    if (xPosBall > (500 - ballSize)) {
+        tap.play();
+        xVel = -xVel / 2;
+        xPosBall = (500 - ballSize);
+    }
+    if (xPosBall < 0) {
+        xVel = -xVel / 2;
+        xPosBall = 0;
+        tap.play();
+    }
+
+    /* Move the ball */
+    xPosBall += (xVel);
+    yPosBall += (yVel);
+    /* Add gravity acceleratoin */
+    gravity = 25;
+    yVel -= gravity * timeStep / 1000;
+
+    /* Apply new coordinates to Html Ball element*/
+    ball.style.left = `${xPosBall * scaleX}%`;
+    ball.style.bottom = `${yPosBall * scaleY}%`;
+
+    /* reset the ball 5 seconds after it is thrown */
+    if (resetTimer > ((1000 / (3 * timeStep)) * 5)) {
+        resetBall();
+    }
+
+    /* score a point if ball passes through hoop from above */
+    if ((xPosBall > (xPosHoop - xVel-30) && xPosBall < (xPosHoop + hoopSize - xVel+30)
+        && yPosBall < (yPosHoop - yVel) && yPosBall >= (yPosHoop)) &&
+        yVel < 0 && scoreReady == true) {
+        if (xPosBall < ((xPosHoop -xVel) + 25) || xPosBall > ((xPosHoop + hoopSize -xVel) - 25)) {
+            yVel = -yVel / 2;
+        } else {
+            score += 1;
+            changeScore = true;
+            scoreReady = false;
+            scoreBox.innerText = `${score}/5`;
+            colorHoop("brightness(200%)");
+            happyBoop.play();
+            setColorHoop = setInterval(colorHoop, 100, "brightness(100%)");
+            if (score === 5) {
+                completeLevel();
+            }
+        }
+    }
+
+    if ((xPosBall > (xPosHoop) && xPosBall < (xPosHoop + hoopSize)
+        && yPosBall + ballSize > (yPosHoop - yVel) && yPosBall <= (yPosHoop)) &&
+        yVel > 0 && !bumped) {
+        yVel = -yVel;
+        bumpHoop(10);
+        sadBoop.play();
+        setBump = setInterval(bumpHoop, 50, -10);
+    }
+}
+
+function moveHoop() {
+    /* Detect edges of game window */
+    if (yPosHoop > (850)) {
+        yVelHoop = -yVelHoop;
+        yPosHoop = (850);
+    }
+    if (yPosHoop < 350) {
+        yVelHoop = -yVelHoop;
+        yPosHoop = 350;
+    }
+
+    if (xPosHoop > (500 - hoopSize)) {
+        xVelHoop = -xVelHoop;
+        xPosHoop = (500 - hoopSize);
+    }
+    if (xPosHoop < 0) {
+        xVelHoop = -xVelHoop;
+        xPosHoop = 0;
+    }
+
+    /* Move the Hoop */
+    xPosHoop += (xVelHoop);
+    yPosHoop += (yVelHoop);
+
+    /* Apply new coordinates to Html Ball element*/
+    hoop1.style.left = `${xPosHoop * scaleX}%`;
+    hoop1.style.bottom = `${yPosHoop * scaleY}%`;
+    hoop2.style.left = `${xPosHoop * scaleX}%`;
+    hoop2.style.bottom = `${yPosHoop * scaleY}%`;
+}
+
+function colorHoop(brightness) {
+    hoop1.style.filter = brightness;
+    hoop2.style.filter = brightness;
+    clearInterval(setColorHoop);
+}
+
+function bumpHoop(bump) {
+    yPosHoop += bump;
+    hoop1.style.bottom = `${yPosHoop * scaleY}%`;
+    hoop2.style.bottom = `${yPosHoop * scaleY}%`;
+    clearInterval(setBump);
+}
+
+/* Level control functions */
+
+/* Run the level countdown timer */
+function countDown() {
+    levelTimer = levelTimer - 1;
+    clock.innerText = `${levelTimer}`;
+    if (levelTimer < 1) {
+        clearInterval(setCountDown);
+        gameOver();
+    }
+}
+
+function completeLevel() {
+    clearInterval(setCountDown);
+    nextLevelScreen();
+}
+
+function gameOver() {
+    clearInterval(setRotation);
+    clearInterval(setCountDown);
+    gamerOverScreen();
+    levelTimer = 60;
+    score = 0;
+    level = 1;
+    scoreBox.innerText = `${score}/5`;
+}
+
+/**
+ * Function to set the hoop position and velocity for each stage and level
+ */
 function stageStart() {
     switch (level) {
         case 1:
@@ -308,232 +539,10 @@ function stageStart() {
     hoop2.style.left = `${xPosHoop * scaleX}%`
     hoop2.style.bottom = `${yPosHoop * scaleY}%`
 }
-/* Increase the throw force until touch/mouse is released */
-function aimThrow(event) {
-    /* Prevent touch from also triggering mouse event */
-    event.preventDefault();
 
-    /* Check that no instances of intervals are already running */
-    if (!isAiming && !isThrowing) {
-        clearInterval(setRotation);
-        setThrowPower = setInterval(growArrow, 20);
-        isAiming = true;
-    } else if (isThrowing) {
-        resetBall();
-    }
-}
-
-/* stop aiming and release throw when touch is released */
-function throwBall() {
-    /* Check that character is aiming and no instances of interval are running */
-    if (isAiming && !isThrowing) {
-        clearInterval(setThrowPower);
-        arrowImage.style.display = "none";
-        const timeStep = 1;
-        xVel = force * Math.cos(rotation * 2 * Math.PI / 360) * timeStep / 1000;
-        yVel = force * Math.sin(-rotation * 2 * Math.PI / 360) * timeStep / 1000;
-        isAiming = false;
-        isThrowing = true;
-        setMoveball = setInterval(() => moveBall(timeStep), timeStep);
-    }
-}
-
-/**
- * Function to move the ball
- * ,detect edges of game window
- * ,apply gravity
- * ,score when the ball passes through the hoop
+/** Function to play game sounds
+ * taken from W3 schools tutorials
  */
-function moveBall(timeStep) {
-    resetTimer += 1;
-    const ballSize = 40;
-    /* Detect edges of game window */
-    if (yPosBall > (1000 - ballSize)) {
-        tap.play();
-        yVel = -yVel;
-        yPosBall = (1000 - ballSize);
-    }
-    if (yPosBall < 0) {
-        if (yVel<-2){
-            tap.play();
-        }
-        yVel = -yVel / 2;
-        xVel = xVel / 2;
-        yPosBall = 0;
-    }
-    if (xPosBall > (500 - ballSize)) {
-        tap.play();
-        xVel = -xVel / 2;
-        xPosBall = (500 - ballSize);
-    }
-    if (xPosBall < 0) {
-        xVel = -xVel / 2;
-        xPosBall = 0;
-        tap.play();
-    }
-
-    /* Move the ball */
-    xPosBall += (xVel);
-    yPosBall += (yVel);
-    /* Add gravity acceleratoin */
-    gravity = 25;
-    yVel -= gravity * timeStep / 1000;
-
-    /* Apply new coordinates to Html Ball element*/
-    ball.style.left = `${xPosBall * scaleX}%`;
-    ball.style.bottom = `${yPosBall * scaleY}%`;
-
-    /* reset the ball 5 seconds after it is thrown */
-    if (resetTimer > ((1000 / (3 * timeStep)) * 5)) {
-        resetBall();
-    }
-
-    /* score a point if ball passes through hoop from above */
-    if ((xPosBall > (xPosHoop - xVel-30) && xPosBall < (xPosHoop + hoopSize - xVel+30)
-        && yPosBall < (yPosHoop - yVel) && yPosBall >= (yPosHoop)) &&
-        yVel < 0 && scoreReady == true) {
-        if (xPosBall < ((xPosHoop -xVel) + 25) || xPosBall > ((xPosHoop + hoopSize -xVel) - 25)) {
-            yVel = -yVel / 2;
-        } else {
-            score += 1;
-            changeScore = true;
-            scoreReady = false;
-            scoreBox.innerText = `${score}/5`;
-            colorHoop("brightness(200%)");
-            happyBoop.play();
-            setColorHoop = setInterval(colorHoop, 100, "brightness(100%)");
-            if (score === 5) {
-                completeLevel();
-            }
-        }
-    }
-
-    if ((xPosBall > (xPosHoop) && xPosBall < (xPosHoop + hoopSize)
-        && yPosBall + ballSize > (yPosHoop - yVel) && yPosBall <= (yPosHoop)) &&
-        yVel > 0 && !bumped) {
-        yVel = -yVel;
-        bumpHoop(10);
-        sadBoop.play();
-        setBump = setInterval(bumpHoop, 50, -10);
-    }
-}
-
-function moveHoop() {
-    /* Detect edges of game window */
-    if (yPosHoop > (850)) {
-        yVelHoop = -yVelHoop;
-        yPosHoop = (850);
-    }
-    if (yPosHoop < 350) {
-        yVelHoop = -yVelHoop;
-        yPosHoop = 350;
-    }
-
-    if (xPosHoop > (500 - hoopSize)) {
-        xVelHoop = -xVelHoop;
-        xPosHoop = (500 - hoopSize);
-    }
-    if (xPosHoop < 0) {
-        xVelHoop = -xVelHoop;
-        xPosHoop = 0;
-    }
-
-    /* Move the Hoop */
-    xPosHoop += (xVelHoop);
-    yPosHoop += (yVelHoop);
-
-    /* Apply new coordinates to Html Ball element*/
-    hoop1.style.left = `${xPosHoop * scaleX}%`;
-    hoop1.style.bottom = `${yPosHoop * scaleY}%`;
-    hoop2.style.left = `${xPosHoop * scaleX}%`;
-    hoop2.style.bottom = `${yPosHoop * scaleY}%`;
-}
-
-function colorHoop(brightness) {
-    hoop1.style.filter = brightness;
-    hoop2.style.filter = brightness;
-    clearInterval(setColorHoop);
-}
-
-function bumpHoop(bump) {
-    yPosHoop += bump;
-    hoop1.style.bottom = `${yPosHoop * scaleY}%`;
-    hoop2.style.bottom = `${yPosHoop * scaleY}%`;
-    clearInterval(setBump);
-}
-
-/* Function to reset the ball to be thrown again */
-function resetBall() {
-    let rotationRate = 20;
-    clearInterval(setMoveball);
-    clearInterval(setThrowPower);
-    clearInterval(setRotation);
-    force = 0;
-    arrowWidth = 100;
-    xPosBall = xPos - 10;
-    yPosBall = yPos + 190;
-    ball.style.left = `${xPosBall * scaleX}%`;
-    ball.style.bottom = `${yPosBall * scaleY}%`;
-    arrowImage.style.display = "inline";
-    arrowImage.style.width = `${arrowWidth}%`;
-    setRotation = setInterval(rotateArrow, rotationRate);
-    resetTimer = 0;
-    isThrowing = false;
-    scoreReady = true;
-    if (changeScore == true) {
-        changeScore = false;
-        stageStart();
-    }
-
-}
-
-/**
- * Function to increase the arrow length and throw force while player is
- * holding the touch on the character
- */
-function growArrow() {
-    let growArrowIncrement = 30;
-    arrowImage.style.width = `${arrowWidth * 5}%`;
-    arrowWidth += growArrowIncrement;
-    force = (arrowWidth - 100) * 34;
-}
-
-/* Function to rotate the arrow by rotation increment */
-function rotateArrow() {
-    let rotationIncrement = 10;
-    rotation += rotationIncrement;
-    /* restrict angle to range 0-360 degrees for debugging purposes */
-    if (rotation === 360) {
-        rotation = 0;
-    }
-    arrowImage.style.transform = `rotate(${rotation}deg)`;
-}
-
-function countDown() {
-    levelTimer = levelTimer - 1;
-    clock.innerText = `${levelTimer}`;
-    if (levelTimer < 1) {
-        clearInterval(setCountDown);
-        gameOver();
-    }
-}
-
-function gameOver() {
-    clearInterval(setRotation);
-    clearInterval(setCountDown);
-    gamerOverScreen();
-    levelTimer = 60;
-    score = 0;
-    level = 1;
-    scoreBox.innerText = `${score}/5`;
-
-}
-
-function completeLevel() {
-    clearInterval(setCountDown);
-    nextLevelScreen();
-}
-
 function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
