@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Monoton&display=swap');
+
 body{
     padding:0px;
     margin:0px;
@@ -22,18 +26,25 @@ header {
     margin-bottom: 20px;
     background-color:rgb(132, 1, 1);
     padding:0px;
+  
 }
 
 h1 {
     font-size:500%;
     margin:0px;
     padding:0px;
+    font-family: "Monoton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 h2 {
     box-shadow:0px 5px 5px black;
     background-color: rgb(124, 59, 59);
     color:white;
+    font-family: "Monoton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 #game-window{
@@ -246,5 +257,8 @@ h2 {
         box-sizing: border-box;
         margin:0px 50px;
         color:rgb(132, 1, 1);
+        font-family: "Clicker Script", cursive;
+        font-weight: 400;
+        font-style: normal;
     }
 }
