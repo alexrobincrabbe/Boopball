@@ -34,7 +34,7 @@ header {
 }
 
 header span {
-    width:30%;
+    width:1%;
 }
 
 h1 {
@@ -64,6 +64,19 @@ hr {
     background-color: rgb(194,175,44);
     box-shadow: 0px -5px 20px white;
 }
+
+.line-animate {
+    transition: 2s;
+}
+.text{
+    max-height: 0px;
+    overflow: hidden;
+}
+
+.text-animate{
+    transition: 4s;
+}
+
 #game-window{
     z-index: 0;
     position: relative;

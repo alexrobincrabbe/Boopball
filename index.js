@@ -1,3 +1,16 @@
+lines = document.getElementsByClassName('line');
+
+for (line of lines){
+    line.classList.add('line-animate');
+}
+window.addEventListener('load', ()=> {
+    lines[0].style.width="30%";
+});
+window.addEventListener('load', ()=> {
+    lines[1].style.width="30%";
+});
+
+
 /* Global variables */
 
 /* Arrow control variables */
