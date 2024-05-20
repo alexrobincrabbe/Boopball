@@ -1,6 +1,11 @@
 body{
     padding:0px;
     margin:0px;
+    
+    background-color: rgb(101, 93, 91);
+}
+
+main{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,6 +15,9 @@ body{
 
 header {
     color:white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
@@ -198,4 +206,21 @@ h1 {
     padding:5px;
     border-radius:5px;
     box-shadow: -5px 5px 5px black;
+}
+
+@media screen and (min-width:600px){
+    main{
+        flex-direction: row;
+    }
+    #instructions{
+        order:1;
+    }
+    #game-window{
+        order:2;
+    }
+    #controls{
+        order:3;
+    }
+
+    
 }
