@@ -39,7 +39,7 @@ header span {
 
 h1 {
     font-size:500%;
-    margin:0px;
+    margin:0px 0px 0px 10px;
     padding:0px;
     font-family: "Monoton", sans-serif;
     font-weight: 400;
@@ -55,6 +55,8 @@ h2 {
     font-weight: 400;
     font-style: normal;
     margin:0;
+    padding-left: 5px;
+
 }
 
 hr {
@@ -69,7 +71,10 @@ hr {
     height:180vw;
     max-width: 40vh;
     max-height:80vh;
-    border:solid rgb(194,175,44) 5px;
+    border-right:solid rgb(83,48,72) 5px;
+    border-bottom:solid rgb(83,48,72) 5px;
+    border-left:solid rgb(124, 59, 59) 5px;
+    border-top:solid rgb(124, 59, 59) 5px;
     border-radius: 20px;
     margin:0px 0px 0px 0px;
     padding:0px;
@@ -77,7 +82,7 @@ hr {
     background:  url("../images/background.png") no-repeat top center/cover;
     background-size: 125%;
     background-color: black;
-    border-style:outset;
+   
     border-width: 10px;
 }
 
@@ -276,7 +281,13 @@ hr {
         font-weight: 600;
         font-style: normal;
         border-radius: 10px;
-        box-shadow:-5px 5px 5px black;
+        box-shadow:-1px 1px 100px rgb(164, 147, 34),1px -1px 100px rgb(164, 147, 34),
+                    -1px -1px 100px rgb(164, 147, 34),1px 1px 100px rgb(164, 147, 34);
         overflow: hidden;
+        text-shadow:-2px 2px 2px black;
+    }
+
+    .text-box ul {
+        margin:10px;
     }
 }
