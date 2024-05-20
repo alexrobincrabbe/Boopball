@@ -16,8 +16,6 @@ header {
     display:flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 10px 10px black;
-    margin-bottom: 20px;
     background-color:rgb(83,48,72);
     padding:0px;
   
@@ -56,15 +54,30 @@ main{
     align-items: center;
     background-color: rgb(184   ,109,44);
     font-family: "Rock Salt", cursive;
-  font-weight: 400;
-  font-style: normal;
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* Text box styles */
-
 .text-box{
-}
+        max-width: 100%;
+        font-size:100%;
+        padding:0px 0px 10px 0px;
+        background-color: rgb(124, 59, 59);        
+        box-sizing: border-box;
+        margin:0px;
+        color:rgb(194,175,44);
+        font-family: "Merienda", cursive;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        overflow: hidden;
+        text-shadow:-2px 2px 2px black;
+    }
 
+.text-box ul {
+    margin:10px;
+}
 
 h2 {
     box-shadow:0px 5px 5px black;
@@ -83,23 +96,15 @@ h2 {
 #game-window{
     z-index: 0;
     position: relative;
-    width:90vw;
-    height:180vw;
-    max-width: 40vh;
-    max-height:80vh;
-    border-right:solid rgb(83,48,72) 5px;
-    border-bottom:solid rgb(83,48,72) 5px;
-    border-left:solid rgb(124, 59, 59) 5px;
-    border-top:solid rgb(124, 59, 59) 5px;
-    border-radius: 20px;
-    margin:0px 0px 10px 0px;
+    width:100vw;
+    height:200vw;
+    max-height: 100vh;
+    max-width:50vh;
     padding:0px;
     overflow: hidden;
     background:  url("../images/background.png") no-repeat top center/cover;
     background-size: 125%;
     background-color: black;
-   
-    border-width: 10px;
 }
 
 /* Game window graphic elements */
@@ -110,13 +115,13 @@ h2 {
     position: absolute;
     left:5%;
     bottom:0%;
+    width:45%;
 }
 
 #character img{
+    width:100%;
     pointer-events: none;
     user-select: none;
-    width: 40.5vw;
-    max-width:18vh;
     height:auto;
 }
 
@@ -127,11 +132,11 @@ h2 {
     position: absolute;
     bottom:19%;/*14*/
     left:8%;
+    width:10%;
 }
 
 #ball img{
-    width:9vw;
-    max-width:4vh ;
+    width:100%;
     height:auto;
     border-radius:50%;
     box-shadow:0px 0px 30px rgb(255, 255, 255);
@@ -140,10 +145,9 @@ h2 {
 #arrow{
     z-index:1;
     height:4.4%;
-    width:11.1vw;
-    max-width:4.94vh;
+    width:12%;
     position: absolute;
-    bottom:22%;
+    bottom:21%;
     left:13%;
 }
 
@@ -160,14 +164,13 @@ h2 {
     position: absolute;
     bottom:35%;
     right:0%;
-    width:auto;
+    width:40%;
+    height:4.5%;
 }
 
 #hoop1 img {
-    height:9vw;
-    width:36vw;
-    max-width:16vh;
-    max-height:4vh;
+    height:100%;
+    width:100%;
 }
 
 #hoop2 {
@@ -177,14 +180,13 @@ h2 {
     position: absolute;
     bottom:35%;
     right:0%;
-    width:auto;
+    width:40%;
+    height:4.5%;
 }
 
 #hoop2 img {
-    height:9vw;
-    width:36vw;
-    max-width:16vh;
-    max-height:4vh;
+    height:100%;
+    width:100%;
 }
 
 /* Info bar styles */
@@ -277,6 +279,10 @@ h2 {
 /* Tablets and larger screen sizes */
 @media screen and (min-width:900px){
     /* Header Styles */
+    header{
+        box-shadow: 0px 10px 10px black;
+        margin-bottom: 20px;
+    }
     h1 {
         font-size:500%;
     }
@@ -289,10 +295,6 @@ h2 {
     #instructions{
         order:1;
         
-    }
-
-    #game-window{
-        order:2;
     }
 
     #controls{
@@ -318,7 +320,18 @@ h2 {
         text-shadow:-2px 2px 2px black;
     }
 
-    .text-box ul {
-        margin:10px;
+    #game-window{
+        order:2;
+        width:90vw;
+        height:180vw;
+        max-width: 40vh;
+        max-height:80vh;
+        border-radius: 20px;
+        border-right:solid rgb(83,48,72) 5px;
+        border-bottom:solid rgb(83,48,72) 5px;
+        border-left:solid rgb(124, 59, 59) 5px;
+        border-top:solid rgb(124, 59, 59) 5px;
+        border-width: 10px;
+        margin:0px 0px 10px 0px;
     }
 }

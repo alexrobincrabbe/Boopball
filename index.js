@@ -389,10 +389,10 @@ function moveBall(timeStep) {
     }
 
     /* score a point if ball passes through hoop from above */
-    if ((xPosBall > (xPosHoop) && xPosBall < (xPosHoop + hoopSize)
-        && yPosBall - ballSize < (yPosHoop - yVel) && yPosBall >= (yPosHoop)) &&
+    if ((xPosBall > (xPosHoop - xVel-30) && xPosBall < (xPosHoop + hoopSize - xVel+30)
+        && yPosBall < (yPosHoop - yVel) && yPosBall >= (yPosHoop)) &&
         yVel < 0 && scoreReady == true) {
-        if (xPosBall < ((xPosHoop) + 20) || xPosBall > ((xPosHoop + hoopSize) - 20)) {
+        if (xPosBall < ((xPosHoop -xVel) + 25) || xPosBall > ((xPosHoop + hoopSize -xVel) - 25)) {
             yVel = -yVel / 2;
         } else {
             score += 1;
