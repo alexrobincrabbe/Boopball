@@ -38,7 +38,7 @@ header span {
 }
 
 h1 {
-    font-size:500%;
+    font-size:250%;
     margin:0px 0px 0px 10px;
     padding:0px;
     font-family: "Monoton", sans-serif;
@@ -68,14 +68,6 @@ hr {
 .line-animate {
     transition: 2s;
 }
-.text{
-    max-height: 0px;
-    overflow: hidden;
-}
-
-.text-animate{
-    transition: 4s;
-}
 
 #game-window{
     z-index: 0;
@@ -89,7 +81,7 @@ hr {
     border-left:solid rgb(124, 59, 59) 5px;
     border-top:solid rgb(124, 59, 59) 5px;
     border-radius: 20px;
-    margin:0px 0px 0px 0px;
+    margin:0px 0px 10px 0px;
     padding:0px;
     overflow: hidden;
     background:  url("../images/background.png") no-repeat top center/cover;
@@ -139,7 +131,7 @@ hr {
     width:11.1vw;
     max-width:4.94vh;
     position: absolute;
-    bottom:21%;
+    bottom:22%;
     left:13%;
 }
 
@@ -305,5 +297,9 @@ hr {
 
     .text-box ul {
         margin:10px;
+    }
+
+    h1 {
+        font-size:500%;
     }
 }

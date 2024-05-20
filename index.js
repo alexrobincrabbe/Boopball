@@ -121,8 +121,8 @@ function gamerOverScreen() {
 }
 
 function nextLevelScreen() {
-    alertMessage.innerText = `LEVEL ${level} Complete`;
-    option1.innerHTML = "<strong>PLAY NEXT LEVEL</strong>"
+    alertMessage.innerText = `Level ${level} Complete`;
+    option1.innerHTML = "<strong>PLAY NEXT</strong>"
     option2.innerHTML = "<strong>QUIT</strong>"
     arrowImage.style.display = "none";
     level = level + 1;
