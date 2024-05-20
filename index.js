@@ -54,7 +54,7 @@ const alertMessage = document.getElementById('alert');
 const option1 = document.getElementById('alert-option1');
 const option2 = document.getElementById('alert-option2');
 const lines = document.getElementsByClassName('line');
-
+const gameWindow = document.getElementById('gameWindow');
 
 /* level variables */
 let levelTimer = 60;
@@ -67,20 +67,19 @@ const scaleY = 100 / 1000;
 /* Sounds */
 const sadBoop = new sound('assets/sounds/sad_boop.m4a');
 const happyBoop = new sound('assets/sounds/happy_boop.m4a');
-const tap =new sound('assets/sounds/tap.wav');
+const tap = new sound('assets/sounds/tap.wav');
 const button = new sound('assets/sounds/buttonclick.mp3');
 
 /* Header animation on page load */
-for (let line of lines){
+for (let line of lines) {
     line.classList.add('line-animate');
-    window.addEventListener('load', ()=> {
-        line.style.width="30%";
+    window.addEventListener('load', () => {
+        line.style.width = "30%";
     });
 }
 
 /* load start screen */
 startScreen();
-
 
 /* Game functions */
 /* Game alert windows */
@@ -92,13 +91,12 @@ function startScreen() {
     option1.innerHTML = "<strong>PLAY GAME</strong>"
     option2.innerHTML = "<strong>SETTINGS</strong>"
     arrowImage.style.display = "none";
-    option1.addEventListener("click", ()=>button.play());
+    option1.addEventListener("click", () => button.play());
     option1.addEventListener("click", runGame);
-    option2.addEventListener("click", ()=>button.play());
+    option2.addEventListener("click", () => button.play());
     option2.addEventListener("click", alertSettings);
     alertWindow.style.display = "flex";
 }
-
 
 function gamerOverScreen() {
     alertMessage.innerText = "GAME OVER...";
@@ -206,7 +204,6 @@ function resetBall() {
         changeScore = false;
         stageStart();
     }
-
 }
 
 /**
@@ -264,7 +261,7 @@ function moveBall(timeStep) {
         yPosBall = (1000 - ballSize);
     }
     if (yPosBall < 0) {
-        if (yVel<-2){
+        if (yVel < -2) {
             tap.play();
         }
         yVel = -yVel / 2;
@@ -299,10 +296,10 @@ function moveBall(timeStep) {
     }
 
     /* score a point if ball passes through hoop from above */
-    if ((xPosBall > (xPosHoop - xVel-30) && xPosBall < (xPosHoop + hoopSize - xVel+30)
+    if ((xPosBall > (xPosHoop - xVel - 30) && xPosBall < (xPosHoop + hoopSize - xVel + 30)
         && yPosBall < (yPosHoop - yVel) && yPosBall >= (yPosHoop)) &&
         yVel < 0 && scoreReady == true) {
-        if (xPosBall < ((xPosHoop -xVel) + 25) || xPosBall > ((xPosHoop + hoopSize -xVel) - 25)) {
+        if (xPosBall < ((xPosHoop - xVel) + 25) || xPosBall > ((xPosHoop + hoopSize - xVel) - 25)) {
             yVel = -yVel / 2;
         } else {
             score += 1;
@@ -532,12 +529,21 @@ function stageStart() {
                     break;
             }
             break;
+            case 5:
+                winGame();
+                break;
     }
-
     hoop1.style.left = `${xPosHoop * scaleX}%`
     hoop1.style.bottom = `${yPosHoop * scaleY}%`
     hoop2.style.left = `${xPosHoop * scaleX}%`
     hoop2.style.bottom = `${yPosHoop * scaleY}%`
+}
+
+function winGame(){
+    alert('Congratulations, you won!') 
+    score=0;
+    level=0;
+    startScreen();
 }
 
 /** Function to play game sounds
