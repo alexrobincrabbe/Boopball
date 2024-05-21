@@ -73,7 +73,7 @@ const sadBoop = new sound('assets/sounds/sad_boop.m4a');
 const happyBoop = new sound('assets/sounds/happy_boop.m4a');
 const tap = new sound('assets/sounds/tap.wav');
 const button = new sound('assets/sounds/buttonclick.mp3');
-
+const blip = new sound('assets/sounds/blip.mp3');
 /* Header animation on page load */
 for (let line of lines) {
     line.classList.add('line-animate');
@@ -420,6 +420,11 @@ function bumpHoop(bump) {
 
 /* Run the level countdown timer */
 function countDown() {
+    if (levelTimer<10) {
+        blip.play();
+    }else{
+        levelDisplay.style.borderColor="black";
+    }
     levelTimer = levelTimer - 1;
     clock.innerText = `${levelTimer}`;
     if (levelTimer < 1) {
