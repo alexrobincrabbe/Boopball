@@ -29,6 +29,7 @@ let isThrowing = false;
 let scoreReady = true;
 let resetTimer = 0;
 let score = 0;
+let aimInterrupted=false;
 
 /* Interval functions*/
 let setRotation;
@@ -54,12 +55,15 @@ const alertMessage = document.getElementById('alert');
 const option1 = document.getElementById('alert-option1');
 const option2 = document.getElementById('alert-option2');
 const lines = document.getElementsByClassName('line');
-const gameWindow = document.getElementById('gameWindow');
+const gameWindow = document.getElementById('game-window');
 
 /* level variables */
 let levelTimer = 60;
 let level = 1;
 let changeScore = false;
+let paused=false;
+let stageReady=true;
+const timeStep = 1;
 
 const scaleX = 100 / 500;
 const scaleY = 100 / 1000;
@@ -84,6 +88,8 @@ startScreen();
 /* Game functions */
 /* Game alert windows */
 function startScreen() {
+    stageReady=false;
+    paused=false;
     score = 0;
     level = 1;
     levelTimer = 60;
@@ -99,6 +105,7 @@ function startScreen() {
 }
 
 function gamerOverScreen() {
+    stageReady=false;
     alertMessage.innerText = "GAME OVER...";
     option1.innerHTML = "<strong>PLAY AGAIN</strong>"
     option2.innerHTML = "<strong>QUIT</strong>"
@@ -109,6 +116,7 @@ function gamerOverScreen() {
 }
 
 function nextLevelScreen() {
+    stageReady=false;
     alertMessage.innerText = `Level ${level} Complete`;
     option1.innerHTML = "<strong>PLAY NEXT</strong>"
     option2.innerHTML = "<strong>QUIT</strong>"
@@ -121,6 +129,29 @@ function nextLevelScreen() {
     alertWindow.style.display = "flex";
 }
 
+function pauseScreen(){
+    alertMessage.innerText = `Game Paused`;
+    option1.innerHTML = "<strong>CONTINUE</strong>"
+    option2.innerHTML = "<strong>QUIT</strong>"
+    arrowImage.style.display = "none";
+    clearInterval(setCountDown);
+    clearInterval(setMoveHoop);
+    clearInterval(setMoveball);
+    clearInterval(setThrowPower);
+    clearInterval(setRotation);
+    character.removeEventListener('touchstart', aimThrow);
+    character.removeEventListener('mousedown', aimThrow);
+    if(isAiming===true){
+        isAiming=false;
+        aimInterrupted=true;
+    }
+    force=0;
+    arrowWidth=100;
+    paused=true;
+    option1.addEventListener("click", runGame);
+    option2.addEventListener("click", startScreen);
+    alertWindow.style.display = "flex";
+}
 /* Placeholder function */
 function alertSettings() {
     alert('settings');
@@ -139,13 +170,23 @@ function runGame() {
     /* hid alert window */
     alertWindow.style.display = "none";
     /* Postion ball at player and set arrow rotation interval*/
-    arrowImage.style.display = "block";
-    resetBall();
-    /* Start level timer */
-    clearInterval(setCountDown);
-    levelTimer = 60;
+    if (paused==false) {
+        resetBall();
+        /* Start level timer */
+        levelTimer = 60;
+        score = 0;
+    }else{
+        paused=false;
+        if(aimInterrupted==true){
+            resetBall();
+            aimInterrupted=false;
+        }else{
+            setMoveball = setInterval(() => moveBall(timeStep), timeStep);
+        }
+    }
+    
     setCountDown = setInterval(countDown, 1000)
-    score = 0;
+    
     /* update infobar display */
     levelDisplay.innerText = level;
     scoreBox.innerText = `${score}/5`
@@ -158,6 +199,13 @@ function runGame() {
     or reset the ball if it is already thrown*/
     character.addEventListener('touchend', throwBall);
     character.addEventListener('mouseup', throwBall);
+    stageReady=true;
+    document.addEventListener('keydown', function (event) {
+        if (event.key === "Escape" && stageReady) {
+            pauseScreen();
+        }
+    })
+
     /* Set the hoop postion and velocity for current stage */
     stageStart();
     /* Move the hoop */
@@ -234,7 +282,6 @@ function throwBall() {
     if (isAiming && !isThrowing) {
         clearInterval(setThrowPower);
         arrowImage.style.display = "none";
-        const timeStep = 1;
         xVel = force * Math.cos(rotation * 2 * Math.PI / 360) * timeStep / 1000;
         yVel = force * Math.sin(-rotation * 2 * Math.PI / 360) * timeStep / 1000;
         isAiming = false;
@@ -301,7 +348,7 @@ function moveBall(timeStep) {
         yVel < 0 && scoreReady == true) {
         if (xPosBall < ((xPosHoop - xVel) + 25) || xPosBall > ((xPosHoop + hoopSize - xVel) - 25)) {
             yVel = -yVel / 2;
-        } else {
+        } else if(stageReady){
             score += 1;
             changeScore = true;
             scoreReady = false;
@@ -396,6 +443,12 @@ function gameOver() {
     scoreBox.innerText = `${score}/5`;
 }
 
+/** settings function */
+function settings() {
+    settingsWindow.style.display = "block";
+
+}
+
 /**
  * Function to set the hoop position and velocity for each stage and level
  */
@@ -422,8 +475,8 @@ function stageStart() {
                     yPosHoop = 350;
                     break;
                 case 4:
-                    xPosHoop = 300;
-                    yPosHoop = 850;
+                    xPosHoop = 150;
+                    yPosHoop = 700;
                     break;
             }
             break;
@@ -529,9 +582,43 @@ function stageStart() {
                     break;
             }
             break;
-            case 5:
-                winGame();
-                break;
+        case 5:
+            switch (score) {
+                case 0:
+                    xVelHoop = 0;
+                    yVelHoop = 0;
+                    xPosHoop = 300;
+                    yPosHoop = 850;
+                    break;
+                case 1:
+                    xVelHoop = 0;
+                    yVelHoop = 0;
+                    xPosHoop = 0;
+                    yPosHoop = 850;
+                    break;
+                case 2:
+                    xVelHoop = 0;
+                    yVelHoop = 0;
+                    xPosHoop = 150;
+                    yPosHoop = 850;
+                    break;
+                case 3:
+                    xVelHoop = -1;
+                    yVelHoop = 0;
+                    xPosHoop = 300;
+                    yPosHoop = 850;
+                    break;
+                case 4:
+                    xVelHoop = -6;
+                    yVelHoop = 0;
+                    xPosHoop = 300;
+                    yPosHoop = 850;
+                    break;
+            }
+            break;
+        case 6:
+            winGame();
+            break;
     }
     hoop1.style.left = `${xPosHoop * scaleX}%`
     hoop1.style.bottom = `${yPosHoop * scaleY}%`
@@ -539,10 +626,10 @@ function stageStart() {
     hoop2.style.bottom = `${yPosHoop * scaleY}%`
 }
 
-function winGame(){
-    alert('Congratulations, you won!') 
-    score=0;
-    level=0;
+function winGame() {
+    alert('Congratulations, you won!')
+    score = 0;
+    level = 0;
     startScreen();
 }
 
