@@ -457,6 +457,11 @@ function settings() {
 
 }
 
+function settings(){
+    settingsWindow.style.display="flex";
+
+}
+
 /**
  * Function to set the hoop position and velocity for each stage and level
  */

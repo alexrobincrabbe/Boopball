@@ -11,9 +11,13 @@
 <body>
     <!-- header contains logo and link to settings-->
     <header>
-        <span class="line"><hr></span>
+        <span class="line">
+            <hr>
+        </span>
         <h1>Boopball</h1>
-        <span class="line"><hr></span>
+        <span class="line">
+            <hr>
+        </span>
     </header>
     <main>
         <!-- This is the area which the game will be played in-->
@@ -29,9 +33,22 @@
                 <span class="alert-option" id="alert-option2"><strong>SETTINGS</strong></span>
             </div>
             <div id="settings-window">
-                <div>background music:</div>
-                <div>sound effects:</div>
-                <div>Difficulty:</div>
+                <div>
+                    <div>Background music:
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div>sound effects:
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div>Difficulty:</div>
+                    <div id="confirm-settings">confirm</div>
+                </div>
             </div>
             <!-- graphical elements in the game:character, ball, arrow, hoop-->
             <div id="character">
@@ -55,12 +72,12 @@
         <div id="instructions" class="text-box">
             <h2>The &nbsp Game</h2>
             <p>
-                <ul>
+            <ul>
                 <li>To score, pass the ball through the hoop, from above</li>
                 <li>Score five hoops to proceed to the next level</li>
                 <li>Each level has a time limit of 60 seconds</li>
                 <li>Win by completing all 5 levels before you run out of time!</li>
-                </ul>
+            </ul>
             </p>
         </div>
         <div id="controls" class="text-box">
