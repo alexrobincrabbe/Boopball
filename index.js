@@ -176,13 +176,13 @@ function runGame() {
         levelTimer = 60;
         score = 0;
     }else{
-        paused=false;
         if(aimInterrupted==true){
             resetBall();
             aimInterrupted=false;
-        }else{
+        }else if(isThrowing == true){
             setMoveball = setInterval(() => moveBall(timeStep), timeStep);
-        }
+        }else{
+            resetBall()}
     }
     
     setCountDown = setInterval(countDown, 1000)
@@ -207,7 +207,10 @@ function runGame() {
     })
 
     /* Set the hoop postion and velocity for current stage */
-    stageStart();
+    if (paused==false){
+        stageStart();
+    }
+    paused=false;
     /* Move the hoop */
     clearInterval(setMoveHoop);
     setMoveHoop = setInterval(moveHoop, 1);
