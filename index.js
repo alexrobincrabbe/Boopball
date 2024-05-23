@@ -38,7 +38,6 @@ let setMoveball;
 let setCountDown;
 let setBump;
 let setColorHoop;
-let toggleBackgroundMusic=false;
 let toggleSoundEffects=false;
 let setMoveHoop
 
@@ -79,6 +78,12 @@ const happyBoop = new sound('assets/sounds/happy_boop.m4a');
 const tap = new sound('assets/sounds/tap.wav');
 const button = new sound('assets/sounds/buttonclick.mp3');
 const blip = new sound('assets/sounds/blip.mp3');
+
+const BackgroundMusic = document.createElement('audio');
+BackgroundMusic.setAttribute('src', 'assets/sounds/backgroundmusic.mp3');
+BackgroundMusic.loop=true;
+let toggleBackgroundMusic=false;
+
 /* Header animation on page load */
 for (let line of lines) {
     line.classList.add('line-animate');
@@ -109,6 +114,11 @@ function startScreen() {
     option2.addEventListener("click", () => button.play());
     option2.addEventListener("click", settings);
     alertWindow.style.display = "flex";
+    if (toggleBackgroundMusic==true){
+        BackgroundMusic.play();
+    }else{
+        BackgroundMusic.pause();
+    }
 }
 
 function gamerOverScreen() {
