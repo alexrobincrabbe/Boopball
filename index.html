@@ -36,17 +36,32 @@
                 <div>
                     <div>Background music:
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="background-music">
                             <span class="slider round"></span>
                         </label>
                     </div>
                     <div>sound effects:
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="sound-effects">
                             <span class="slider round"></span>
                         </label>
                     </div>
-                    <div>Difficulty:</div>
+                    <div>Time Limit:
+                        <select name="timer-setting" id="timer-setting">
+                            <option value="30">
+                            30 seconds (hard)
+                            </option>
+                            <option value="60" selected>
+                                60 seconds (default)
+                            </option>
+                            <option value="120">
+                                2 minutes (easy)
+                            </option>
+                            <option value="none">
+                                no time limit (relaxed)
+                            </option>
+                        </select>
+                    </div>
                     <div id="confirm-settings">confirm</div>
                 </div>
             </div>

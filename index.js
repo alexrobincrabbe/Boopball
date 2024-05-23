@@ -38,7 +38,8 @@ let setMoveball;
 let setCountDown;
 let setBump;
 let setColorHoop;
-let setBackgroundMusic
+let toggleBackgroundMusic=false;
+let toggleSoundEffects=false;
 let setMoveHoop
 
 /* Set Html element variables */
@@ -56,9 +57,13 @@ const option1 = document.getElementById('alert-option1');
 const option2 = document.getElementById('alert-option2');
 const lines = document.getElementsByClassName('line');
 const gameWindow = document.getElementById('game-window');
+const settingsWindow=document.getElementById('settings-window');
+
 
 /* level variables */
-let levelTimer = 60;
+let levelTimer;
+let levelTimerStart = 60;
+let timeSetting=true;
 let level = 1;
 let changeScore = false;
 let paused=false;
@@ -88,11 +93,13 @@ startScreen();
 /* Game functions */
 /* Game alert windows */
 function startScreen() {
+    settingsWindow.style.display="none";
     stageReady=false;
     paused=false;
     score = 0;
     level = 1;
-    levelTimer = 60;
+    levelTimer = levelTimerStart;
+    clock.innerText = `${levelTimer}`;
     alertMessage.innerText = "WELCOME!";
     option1.innerHTML = "<strong>PLAY GAME</strong>"
     option2.innerHTML = "<strong>SETTINGS</strong>"
@@ -100,7 +107,7 @@ function startScreen() {
     option1.addEventListener("click", () => button.play());
     option1.addEventListener("click", runGame);
     option2.addEventListener("click", () => button.play());
-    option2.addEventListener("click", alertSettings);
+    option2.addEventListener("click", settings);
     alertWindow.style.display = "flex";
 }
 
@@ -122,7 +129,7 @@ function nextLevelScreen() {
     option2.innerHTML = "<strong>QUIT</strong>"
     arrowImage.style.display = "none";
     level = level + 1;
-    levelTimer = 60;
+    levelTimer = levelTimerStart;
     score = 0;
     option1.addEventListener("click", runGame);
     option2.addEventListener("click", startScreen);
@@ -152,10 +159,6 @@ function pauseScreen(){
     option2.addEventListener("click", startScreen);
     alertWindow.style.display = "flex";
 }
-/* Placeholder function */
-function alertSettings() {
-    alert('settings');
-}
 
 /**
  * Main game function:
@@ -165,7 +168,7 @@ function alertSettings() {
 function runGame() {
     /* clear event listeners from alert window buttons */
     option1.removeEventListener("click", runGame);
-    option2.removeEventListener("click", alertSettings);
+    option2.removeEventListener("click", settings);
     option2.removeEventListener("click", startScreen);
     /* hid alert window */
     alertWindow.style.display = "none";
@@ -173,7 +176,7 @@ function runGame() {
     if (paused==false) {
         resetBall();
         /* Start level timer */
-        levelTimer = 60;
+        levelTimer = levelTimerStart;
         score = 0;
     }else{
         if(aimInterrupted==true){
@@ -445,21 +448,35 @@ function gameOver() {
     clearInterval(setRotation);
     clearInterval(setCountDown);
     gamerOverScreen();
-    levelTimer = 60;
+    levelTimer = levelTimerStart;
     score = 0;
     level = 1;
     scoreBox.innerText = `${score}/5`;
 }
 
 /** settings function */
-function settings() {
-    settingsWindow.style.display = "block";
-
-}
 
 function settings(){
     settingsWindow.style.display="flex";
+    alertWindow.style.display="none";
+    const confirmButton=document.getElementById('confirm-settings');
+    confirmButton.addEventListener("click", () => button.play());
+    confirmButton.addEventListener('click', confirmSettings);
+}
 
+function confirmSettings() {
+    toggleBackgroundMusic=document.getElementById("background-music").checked;
+    toggleSoundEffects=document.getElementById("sound-effects").checked;
+    timeSettingDropdown=document.getElementById('timer-setting').value; 
+    if (timeSettingDropdown=="none"){
+        timeSetting=false;
+        levelTimerStart="-";
+    }else{
+        timeSetting=true;
+        levelTimerStart=timeSettingDropdown;
+    }
+    startScreen();
+    console.log('clicked')
 }
 
 /**
