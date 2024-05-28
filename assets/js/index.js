@@ -80,6 +80,8 @@ const happyBoop = new sound('assets/sounds/happy_boop.m4a');
 const tap = new sound('assets/sounds/tap.wav');
 const button = new sound('assets/sounds/buttonclick.mp3');
 const blip = new sound('assets/sounds/blip.mp3');
+const disappointed = new sound('assets/sounds/gameover.mp3');
+
 
 /* Background Music */
 const BackgroundMusic = document.createElement('audio');
@@ -488,6 +490,7 @@ function completeLevel() {
 }
 
 function gameOver() {
+    disappointed.play();
     clearInterval(setRotation);
     clearInterval(setCountDown);
     gamerOverScreen();
