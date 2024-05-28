@@ -159,6 +159,11 @@ function nextLevelScreen() {
     alertWindow.style.display = "flex"; //show the alert window
 }
 
+function checkDirection(touchstartX,touchendX) {
+    if (touchendX < touchstartX) pauseScreen();
+  }
+
+
 function pauseScreen() {
     /* Update alert window content */
     alertMessage.innerText = `Game Paused`;
@@ -215,7 +220,7 @@ function runGame() {
         }
     }
     /* start the level timer */
-    if(timeSetting){
+    if (timeSetting) {
         setCountDown = setInterval(countDown, 1000)
     }
     /* update infobar display */
@@ -235,7 +240,16 @@ function runGame() {
             pauseScreen();
         }
     })
+    let touchstartX = 0;
+    let touchendX = 0;
+    gameWindow.addEventListener('touchstart', e => {
+        touchstartX = e.changedTouches[0].screenX
+    })
 
+    gameWindow.addEventListener('touchend', e => {
+        touchendX = e.changedTouches[0].screenX;
+        checkDirection(touchendX,touchstartX);
+    })
     /* Set the hoop postion and velocity for current stage 
     unless runGame was called after the game was paused*/
     if (paused == false) {
@@ -494,8 +508,8 @@ function completeLevel() {
 }
 
 function gameOver() {
-    if(soundEffects){
-    disappointed.play();
+    if (soundEffects) {
+        disappointed.play();
     }
     clearInterval(setRotation);
     clearInterval(setCountDown);
@@ -705,7 +719,7 @@ function stageStart() {
 }
 
 function winGame() {
-    if(soundEffects){
+    if (soundEffects) {
         horay.play();
     }
     confettiAnimation();
