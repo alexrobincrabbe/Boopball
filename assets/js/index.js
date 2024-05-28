@@ -393,7 +393,7 @@ function moveBall(timeStep) {
     xPosBall += (xVel);
     yPosBall += (yVel);
     /* Add gravity acceleratoin */
-    gravity = 25;
+    let gravity = 25;
     yVel -= gravity * timeStep / 1000;
 
     /* Apply new coordinates to Html Ball element*/
@@ -537,7 +537,7 @@ function settings() {
 function confirmSettings() {
     toggleBackgroundMusic = document.getElementById("background-music").checked;
     soundEffects = document.getElementById("sound-effects").checked;
-    timeSettingDropdown = document.getElementById('timer-setting').value;
+    let timeSettingDropdown = document.getElementById('timer-setting').value;
     if (timeSettingDropdown == "none") {
         timeSetting = false;
         levelTimerStart = "-";
@@ -781,8 +781,7 @@ function confettiAnimation() {
         , frame = undefined
         , confetti = [];
 
-    var particles = 10
-        , spread = 40
+    var   spread = 40
         , sizeMin = 3
         , sizeMax = 12 - sizeMin
         , eccentricity = 10

@@ -22,8 +22,9 @@ header {
     z-index: 1000;
 }
 
-header span {
+.line {
     width: 1%;
+    display: inline;
 }
 
 h1 {
@@ -70,7 +71,6 @@ main {
     margin: 10px 0px;
     color: rgb(194, 175, 44);
     font-family: "Merienda", cursive;
-    font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
     overflow: hidden;
@@ -434,7 +434,6 @@ input:checked+.slider:before {
         margin: 0px 50px;
         color: rgb(194, 175, 44);
         font-family: "Merienda", cursive;
-        font-optical-sizing: auto;
         font-weight: 600;
         font-style: normal;
         border-radius: 10px;
