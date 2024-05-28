@@ -240,6 +240,10 @@ function runGame() {
             pauseScreen();
         }
     })
+    /* Pause the game on swipe right
+    code taken from:
+    https://stackoverflow.com/questions/2264072/
+    detect-a-finger-swipe-through-javascript-on-the-iphone-and-android */
     let touchstartX = 0;
     let touchendX = 0;
     gameWindow.addEventListener('touchstart', e => {
