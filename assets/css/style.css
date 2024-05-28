@@ -69,7 +69,7 @@ main {
     background-color: rgb(124, 59, 59);
     box-sizing: border-box;
     margin: 10px 0px;
-    color: rgb(194, 175, 44);
+    color: rgb(237, 206, 70);
     font-family: "Merienda", cursive;
     font-weight: 600;
     font-style: normal;
@@ -283,15 +283,16 @@ h2 {
 
 
 #alert {
-    font-size: 200%
+    font-size: 200%;
 }
 
 .alert-option {
-    background-color: rgb(58, 160, 223);
+    background-color: rgb(40, 106, 148);
     border: solid white 1px;
     padding: 5px;
     border-radius: 5px;
     box-shadow: -5px 5px 5px black;
+    
 }
 
 /* Settings window styles */
@@ -332,7 +333,7 @@ h2 {
     border: solid white 2px;
     border-radius: 25px;
     padding: 0px 5px;
-    background-color: rgb(58, 160, 223);
+    background-color: rgb(40, 106, 148);
 }
 
 #confirm-settings:hover {
