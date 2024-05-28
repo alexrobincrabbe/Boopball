@@ -1,45 +1,45 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Monoton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Monoton&family=Rock+Salt&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Merienda:wght@300..900&family=Monoton&family=Rock+Salt&display=swap');
 
-body{
-    padding:0px;
-    margin:0px;
-    background-color: rgb(184   ,109,44)
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(184, 109, 44)
 }
 
 /* Header styles */
 header {
-    color:rgb(194,175,44);
-    display:flex;
+    color: rgb(194, 175, 44);
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-color:rgb(83,48,72);
-    padding:0px;
+    background-color: rgb(83, 48, 72);
+    padding: 0px;
     position: sticky;
-    top:0px;
+    top: 0px;
     z-index: 1000;
 }
 
 header span {
-    width:1%;
+    width: 1%;
 }
 
 h1 {
-    font-size:250%;
-    margin:0px 0px 0px 10px;
-    padding:0px;
+    font-size: 250%;
+    margin: 0px 0px 0px 10px;
+    padding: 0px;
     font-family: "Monoton", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color:rgb(237, 206, 70);;
+    color: rgb(237, 206, 70);
+    ;
 }
 
 hr {
     height: 5px;
-    background-color: rgb(194,175,44);
+    background-color: rgb(194, 175, 44);
     box-shadow: 0px -5px 20px white;
 }
 
@@ -49,211 +49,229 @@ hr {
 }
 
 /*Main page section styles */
-main{
+main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(184   ,109,44);
+    background-color: rgb(184, 109, 44);
     font-family: "Rock Salt", cursive;
     font-weight: 400;
     font-style: normal;
 }
 
 /* Text box styles */
-.text-box{
-        max-width: 100%;
-        font-size:100%;
-        padding:0px 0px 10px 0px;
-        background-color: rgb(124, 59, 59);        
-        box-sizing: border-box;
-        margin:0px;
-        color:rgb(194,175,44);
-        font-family: "Merienda", cursive;
-        font-optical-sizing: auto;
-        font-weight: 600;
-        font-style: normal;
-        overflow: hidden;
-        text-shadow:-2px 2px 2px black;
-    }
+.text-box {
+    width: 100%;
+    font-size: 100%;
+    padding: 0px 0px 10px 0px;
+    background-color: rgb(124, 59, 59);
+    box-sizing: border-box;
+    margin: 10px 0px;
+    color: rgb(194, 175, 44);
+    font-family: "Merienda", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    overflow: hidden;
+    text-shadow: -2px 2px 2px black;
+}
 
 .text-box ul {
-    margin:10px;
+    margin: 10px;
 }
 
 h2 {
-    box-shadow:0px 5px 5px black;
-    background-color:rgb(83,48,72);
-    color:rgb(237, 206, 70);
+    box-shadow: 0px 5px 5px black;
+    background-color: rgb(83, 48, 72);
+    color: rgb(237, 206, 70);
     font-family: "Monoton", sans-serif;
     font-weight: 400;
     font-style: normal;
-    margin:0;
+    margin: 0;
     padding-left: 5px;
 }
 
-/* Game window styles */ 
-#game-window{
+#instructions {
+    order: 1;
+
+}
+
+#controls {
+    order: 3;
+}
+
+/* Game window styles */
+#game-window {
+    order:2;
     z-index: 0;
     position: relative;
-    width:100vw;
-    height:200vw;
+    width: 95vw;
+    height: 190vw;
     max-height: 100vh;
-    max-width:50vh;
-    padding:0px;
+    max-width: 50vh;
+    padding: 0px;
     overflow: hidden;
-    background:  url("../images/background.png") no-repeat top center/cover;
+    background: url("../images/background.png") no-repeat top center/cover;
     background-size: 125%;
     background-color: black;
+    border-radius: 20px;
+    border-right: solid rgb(83, 48, 72) 5px;
+    border-bottom: solid rgb(83, 48, 72) 5px;
+    border-left: solid rgb(124, 59, 59) 5px;
+    border-top: solid rgb(124, 59, 59) 5px;
+    border-width: 10px;
 }
 
 /* Game window graphic elements */
-#character{
+#character {
     z-index: 3;
-    height:fit-content;
-    width:auto;
+    height: fit-content;
+    width: auto;
     position: absolute;
-    left:5%;
-    bottom:0%;
-    width:45%;
+    left: 5%;
+    bottom: 0%;
+    width: 45%;
 }
 
-#character img{
-    width:100%;
+#character img {
+    width: 100%;
     pointer-events: none;
     user-select: none;
-    height:auto;
+    height: auto;
 }
 
-#ball{
-    z-index:2;
-    height:fit-content;
-    width:auto;
+#ball {
+    z-index: 2;
+    height: fit-content;
+    width: auto;
     position: absolute;
-    bottom:19%;/*14*/
-    left:8%;
-    width:10%;
+    bottom: 19%;
+    /*14*/
+    left: 8%;
+    width: 10%;
 }
 
-#ball img{
-    width:100%;
-    height:auto;
-    border-radius:50%;
-    box-shadow:0px 0px 30px rgb(255, 255, 255);
+#ball img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0px 0px 30px rgb(255, 255, 255);
 }
 
-#arrow{
-    z-index:1;
-    height:4.4%;
-    width:12%;
+#arrow {
+    z-index: 1;
+    height: 4.4%;
+    width: 12%;
     position: absolute;
-    bottom:21%;
-    left:13%;
+    bottom: 21%;
+    left: 13%;
 }
 
-#arrow img{
-    height:100%;
-    width:100%;
+#arrow img {
+    height: 100%;
+    width: 100%;
     transform-origin: 0% 50%;
 }
 
 #hoop1 {
-    z-index:3;
-    height:fit-content;
-    width:auto;
+    z-index: 3;
+    height: fit-content;
+    width: auto;
     position: absolute;
-    bottom:35%;
-    right:0%;
-    width:40%;
-    height:4.5%;
+    bottom: 35%;
+    right: 0%;
+    width: 40%;
+    height: 4.5%;
 }
 
 #hoop1 img {
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
 #hoop2 {
-    z-index:1;
-    height:fit-content;
-    width:auto;
+    z-index: 1;
+    height: fit-content;
+    width: auto;
     position: absolute;
-    bottom:35%;
-    right:0%;
-    width:40%;
-    height:4.5%;
+    bottom: 35%;
+    right: 0%;
+    width: 40%;
+    height: 4.5%;
 }
 
 #hoop2 img {
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
 /* Info bar styles */
 #info-bar {
-    background-color: rgba(0,0,0,0.5);
-    color:white;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
     display: flex;
     justify-content: space-around;
     align-content: center;
     align-items: center;
     flex-grow: 1;
-    width:100%;
-    margin:auto;
+    width: 100%;
+    margin: auto;
 }
 
-#info-bar span{
+#info-bar span {
     display: flex;
     align-content: center;
     justify-content: center;
     align-content: center;
 }
 
-#info-bar > span {
+#info-bar>span {
     font-size: 80%;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-content: center;
     align-items: center;
-    margin:3px;
-    width:30%;
+    margin: 3px;
+    width: 30%;
 }
 
 #clock {
-    border:solid black 3px;
-    color:black;
+    border: solid black 3px;
+    color: black;
     background-color: white;
-    border-radius:50%;
-    padding:5px;
-    margin:5px;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 5px;
 }
 
 #score-box {
     border-radius: 5px;
-    color:black;
-    border:solid black 3px;
+    color: black;
+    border: solid black 3px;
     background-color: white;
-    padding:3px 5px;
+    padding: 3px 5px;
 }
 
 #level {
     font-size: 170%;
-    padding:0px 5px;
+    padding: 0px 5px;
 }
 
 /* Alert window styles */
 #alert-window {
     z-index: 10;
-    background-color: rgba(0,0,0,0.5);
-    border:solid rgb(194,175,44) 3px;
-    margin:5%;;
-    position:absolute;
-    bottom:50%;
-    left:0%;
-    width:90%;
-    height:30%;
-    color:white;
-    display:flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: solid rgb(194, 175, 44) 3px;
+    margin: 5%;
+    ;
+    position: absolute;
+    bottom: 50%;
+    left: 0%;
+    width: 90%;
+    height: 30%;
+    color: white;
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -265,61 +283,62 @@ h2 {
 
 
 #alert {
-    font-size:200%
+    font-size: 200%
 }
 
-.alert-option{
-    background-color: rgb(58, 160,223);
-    border:solid white 1px;
-    padding:5px;
-    border-radius:5px;
+.alert-option {
+    background-color: rgb(58, 160, 223);
+    border: solid white 1px;
+    padding: 5px;
+    border-radius: 5px;
     box-shadow: -5px 5px 5px black;
 }
 
 /* Settings window styles */
-#settings-window{
+#settings-window {
     display: none;
-    font-size:70%;
-    position:absolute;
-    top:10%;
-    left:5%;
+    font-size: 70%;
+    position: absolute;
+    top: 10%;
+    left: 5%;
     z-index: 100;
-    background-color: rgb(0,0,0,0.5);
-    color:white;
-    height:40%;
-    width:90%;
+    background-color: rgb(0, 0, 0, 0.5);
+    color: white;
+    height: 40%;
+    width: 90%;
     border-radius: 10px;
-    justify-content: space-around; 
+    justify-content: space-around;
     align-items: center;
-    border:rgb(194,175,44) solid 3px;
+    border: rgb(194, 175, 44) solid 3px;
 }
 
-#settings-window > div {
-    height:100%;
+#settings-window>div {
+    height: 100%;
     display: flex;
     align-items: flex-end;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: space-around;
-   
+
 }
 
-#confirm-settings{
+#confirm-settings {
     align-self: center;
-    border:solid white 2px;
-    border-radius:25px;
-    padding:0px 5px;
-    background-color: rgb(58, 160,223);
+    border: solid white 2px;
+    border-radius: 25px;
+    padding: 0px 5px;
+    background-color: rgb(58, 160, 223);
 }
 
 #confirm-settings:hover {
-   box-shadow:0px 0px 10px white;
+    box-shadow: 0px 0px 10px white;
 }
+
 select {
     background-color: black;
-    color:white;
+    color: white;
     border-radius: 15px;
-    padding:3px 0px 3px 0px;
-    border:solid white 2px;
+    padding: 3px 0px 3px 0px;
+    border: solid white 2px;
 }
 
 /* The switch - the box around the slider */
@@ -328,18 +347,19 @@ select {
     display: inline-block;
     width: 40px;
     height: 23px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
+}
+
+/* Hide default HTML checkbox */
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  /* Slider styles take from W3 schools:
+}
+
+/* Slider styles take from W3 schools:
    https://www.w3schools.com/howto/howto_css_switch.asp*/
-  /* The slider */
-  .slider {
+/* The slider */
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -349,100 +369,93 @@ select {
     background-color: black;
     -webkit-transition: .4s;
     transition: .4s;
-    border:solid white 2px;
-  }
-  
-  .slider:before {
+    border: solid white 2px;
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 17px;
     width: 17px;
     left: 2px;
     bottom: 1px;
-    background-color: rgb(58, 160,223);
+    background-color: rgb(58, 160, 223);
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked+.slider {
     background-color: white;
-  }
-  
-  input:focus + .slider {
+}
+
+input:focus+.slider {
     box-shadow: 0 0 1px rgb(237, 206, 70);
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     -webkit-transform: translateX(17px);
     -ms-transform: translateX(17px);
     transform: translateX(17px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
+}
+
+/* Rounded sliders */
+.slider.round {
     border-radius: 34px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
+}
 
 /* Tablets and larger screen sizes */
-@media screen and (min-width:900px){
+@media screen and (min-width:900px) {
+
     /* Header Styles */
-    header{
+    header {
         box-shadow: 0px 10px 10px black;
         margin-bottom: 20px;
     }
+
     h1 {
-        font-size:500%;
+        font-size: 500%;
     }
 
     /* Main page section styles */
-    main{
+    main {
         flex-direction: row;
     }
-    
-    #instructions{
-        order:1;
-        
-    }
 
-    #controls{
-        order:3;  
-    }
-
-    .text-box{
-        width:30%;
-        font-size:100%;
-        padding:0px 0px 10px 0px;
-        background-color: rgb(124, 59, 59);        
+    .text-box {
+        width: 30%;
+        font-size: 100%;
+        padding: 0px 0px 10px 0px;
+        background-color: rgb(124, 59, 59);
         box-sizing: border-box;
-        margin:0px 50px;
-        color:rgb(194,175,44);
+        margin: 0px 50px;
+        color: rgb(194, 175, 44);
         font-family: "Merienda", cursive;
         font-optical-sizing: auto;
         font-weight: 600;
         font-style: normal;
         border-radius: 10px;
-        box-shadow:-1px 1px 100px rgb(164, 147, 34),1px -1px 100px rgb(164, 147, 34),
-                    -1px -1px 100px rgb(164, 147, 34),1px 1px 100px rgb(164, 147, 34);
+        box-shadow: -1px 1px 100px rgb(164, 147, 34), 1px -1px 100px rgb(164, 147, 34),
+            -1px -1px 100px rgb(164, 147, 34), 1px 1px 100px rgb(164, 147, 34);
         overflow: hidden;
-        text-shadow:-2px 2px 2px black;
+        text-shadow: -2px 2px 2px black;
     }
 
-    #game-window{
-        order:2;
-        width:90vw;
-        height:180vw;
+    #game-window {
+        order: 2;
+        width: 90vw;
+        height: 180vw;
         max-width: 40vh;
-        max-height:80vh;
+        max-height: 80vh;
         border-radius: 20px;
-        border-right:solid rgb(83,48,72) 5px;
-        border-bottom:solid rgb(83,48,72) 5px;
-        border-left:solid rgb(124, 59, 59) 5px;
-        border-top:solid rgb(124, 59, 59) 5px;
+        border-right: solid rgb(83, 48, 72) 5px;
+        border-bottom: solid rgb(83, 48, 72) 5px;
+        border-left: solid rgb(124, 59, 59) 5px;
+        border-top: solid rgb(124, 59, 59) 5px;
         border-width: 10px;
-        margin:0px 0px 10px 0px;
+        margin: 0px 0px 10px 0px;
     }
 }
