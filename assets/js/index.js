@@ -490,7 +490,9 @@ function completeLevel() {
 }
 
 function gameOver() {
+    if(soundEffects){
     disappointed.play();
+    }
     clearInterval(setRotation);
     clearInterval(setCountDown);
     gamerOverScreen();
