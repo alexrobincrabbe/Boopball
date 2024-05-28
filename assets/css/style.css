@@ -18,7 +18,9 @@ header {
     align-items: center;
     background-color:rgb(83,48,72);
     padding:0px;
-  
+    position: sticky;
+    top:0px;
+    z-index: 1000;
 }
 
 header span {
