@@ -519,7 +519,6 @@ function confirmSettings() {
         levelTimerStart = timeSettingDropdown;
     }
     startScreen();
-    console.log('clicked')
 }
 
 /**
