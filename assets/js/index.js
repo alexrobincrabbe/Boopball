@@ -160,7 +160,7 @@ function nextLevelScreen() {
 }
 
 function checkDirection(touchstartX,touchendX) {
-    if (touchendX < touchstartX) pauseScreen();
+    if (touchendX < touchstartX-100) pauseScreen();
   }
 
 
