@@ -213,7 +213,9 @@ function runGame() {
         }
     }
     /* start the level timer */
-    setCountDown = setInterval(countDown, 1000)
+    if(timeSetting){
+        setCountDown = setInterval(countDown, 1000)
+    }
     /* update infobar display */
     levelDisplay.innerText = level;
     scoreBox.innerText = `${score}/5`
