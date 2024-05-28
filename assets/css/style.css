@@ -299,7 +299,7 @@ h2 {
     display: none;
     font-size: 70%;
     position: absolute;
-    top: 10%;
+    top: 20%;
     left: 5%;
     z-index: 100;
     background-color: rgb(0, 0, 0, 0.5);
@@ -310,6 +310,12 @@ h2 {
     justify-content: space-around;
     align-items: center;
     border: rgb(194, 175, 44) solid 3px;
+}
+
+#select-time-limit{
+    width:100%;
+    text-align: center;
+    display: inline-block;
 }
 
 #settings-window>div {
