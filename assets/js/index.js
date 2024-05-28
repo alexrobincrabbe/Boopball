@@ -80,7 +80,9 @@ const happyBoop = new sound('assets/sounds/happy_boop.m4a');
 const tap = new sound('assets/sounds/tap.wav');
 const button = new sound('assets/sounds/buttonclick.mp3');
 const blip = new sound('assets/sounds/blip.mp3');
-const disappointed = new sound('assets/sounds/gameover.mp3');
+const disappointed = new sound('assets/sounds/disappointment.mp3');
+const horay = new sound('assets/sounds/horay.mp3');
+
 
 
 /* Background Music */
@@ -703,6 +705,9 @@ function stageStart() {
 }
 
 function winGame() {
+    if(soundEffects){
+        horay.play();
+    }
     confettiAnimation();
     winGameScreen()
     score = 0;
