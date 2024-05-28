@@ -735,7 +735,7 @@ function winGame() {
 
 function winGameScreen() {
     stageReady = false;
-    alertMessage.innerText = "CONGRATULATIONS!!!";
+    alertMessage.innerText = "CONGRATS!!!";
     option2.innerHTML = "<strong>OK</strong>"
     arrowImage.style.display = "none";
     option1.style.display = "none";
