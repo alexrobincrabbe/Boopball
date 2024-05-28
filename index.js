@@ -29,7 +29,7 @@ let isThrowing = false;
 let scoreReady = true;
 let resetTimer = 0;
 let score = 0;
-let aimInterrupted=false;
+let aimInterrupted = false;
 
 /* Interval functions*/
 let setRotation;
@@ -38,7 +38,7 @@ let setMoveball;
 let setCountDown;
 let setBump;
 let setColorHoop;
-let toggleSoundEffects=false;
+let soundEffects = false;
 let setMoveHoop
 
 /* Set Html element variables */
@@ -56,17 +56,17 @@ const option1 = document.getElementById('alert-option1');
 const option2 = document.getElementById('alert-option2');
 const lines = document.getElementsByClassName('line');
 const gameWindow = document.getElementById('game-window');
-const settingsWindow=document.getElementById('settings-window');
+const settingsWindow = document.getElementById('settings-window');
 
 
 /* level variables */
 let levelTimer;
 let levelTimerStart = 60;
-let timeSetting=true;
+let timeSetting = true;
 let level = 1;
 let changeScore = false;
-let paused=false;
-let stageReady=true;
+let paused = false;
+let stageReady = true;
 const timeStep = 1;
 
 /* Scale the game window cordinates: Window is 500x1000px */
@@ -84,8 +84,8 @@ const blip = new sound('assets/sounds/blip.mp3');
 /* Background Music */
 const BackgroundMusic = document.createElement('audio');
 BackgroundMusic.setAttribute('src', 'assets/sounds/backgroundmusic.mp3');
-BackgroundMusic.loop=true;
-let toggleBackgroundMusic=false;
+BackgroundMusic.loop = true;
+let toggleBackgroundMusic = false;
 
 /* Header animation on page load */
 for (let line of lines) {
@@ -102,10 +102,10 @@ startScreen();
 
 /* Game alert windows */
 function startScreen() {
-    settingsWindow.style.display="none"; //ensure the settings window is hidden
+    settingsWindow.style.display = "none"; //ensure the settings window is hidden
     /* Game variables initialization */
-    stageReady=false;
-    paused=false;
+    stageReady = false;
+    paused = false;
     score = 0;
     level = 1;
     levelTimer = levelTimerStart;
@@ -121,15 +121,15 @@ function startScreen() {
     option2.addEventListener("click", settings);
     alertWindow.style.display = "flex"; // show the alert window
     /* start the background music if it is turned on  */
-    if (toggleBackgroundMusic==true){
+    if (toggleBackgroundMusic == true) {
         BackgroundMusic.play();
-    }else{
+    } else {
         BackgroundMusic.pause();
     }
 }
 
 function gamerOverScreen() {
-    stageReady=false; // stop scoring after game is over
+    stageReady = false; // stop scoring after game is over
     /* update alert window content */
     alertMessage.innerText = "GAME OVER...";
     option1.innerHTML = "<strong>PLAY AGAIN</strong>"
@@ -141,7 +141,7 @@ function gamerOverScreen() {
 }
 
 function nextLevelScreen() {
-    stageReady=false; // stop scoring before next nevel starts
+    stageReady = false; // stop scoring before next nevel starts
     /* Update alert window content */
     alertMessage.innerText = `Level ${level} Complete`;
     option1.innerHTML = "<strong>PLAY NEXT</strong>"
@@ -155,7 +155,7 @@ function nextLevelScreen() {
     alertWindow.style.display = "flex"; //show the alert window
 }
 
-function pauseScreen(){
+function pauseScreen() {
     /* Update alert window content */
     alertMessage.innerText = `Game Paused`;
     option1.innerHTML = "<strong>CONTINUE</strong>"
@@ -173,13 +173,13 @@ function pauseScreen(){
     character.removeEventListener('mousedown', aimThrow);
     alertWindow.style.display = "flex";
     /* Fixes bug, in case the game is paused while the player is aiming */
-    if(isAiming===true){
-        isAiming=false;
-        aimInterrupted=true;
+    if (isAiming === true) {
+        isAiming = false;
+        aimInterrupted = true;
     }
-    force=0;
-    arrowWidth=100;
-    paused=true;
+    force = 0;
+    arrowWidth = 100;
+    paused = true;
 }
 
 /**
@@ -195,19 +195,20 @@ function runGame() {
     /* Hide alert window */
     alertWindow.style.display = "none";
     /* Postion ball at player and set arrow rotation interval */
-    if (paused==false) {
+    if (paused == false) {
         resetBall();
         /* Start level timer */
         levelTimer = levelTimerStart;
         score = 0;
-    }else{
-        if(aimInterrupted==true){
+    } else {
+        if (aimInterrupted == true) {
             resetBall();
-            aimInterrupted=false;
-        }else if(isThrowing == true){
+            aimInterrupted = false;
+        } else if (isThrowing == true) {
             setMoveball = setInterval(() => moveBall(timeStep), timeStep);
-        }else{
-            resetBall()}
+        } else {
+            resetBall()
+        }
     }
     /* start the level timer */
     setCountDown = setInterval(countDown, 1000)
@@ -221,7 +222,7 @@ function runGame() {
     or reset the ball if it is already thrown*/
     character.addEventListener('touchend', throwBall);
     character.addEventListener('mouseup', throwBall);
-    stageReady=true; // allow scoring
+    stageReady = true; // allow scoring
     /* pause the game when escape key is pressed */
     document.addEventListener('keydown', function (event) {
         if (event.key === "Escape" && stageReady) {
@@ -231,10 +232,10 @@ function runGame() {
 
     /* Set the hoop postion and velocity for current stage 
     unless runGame was called after the game was paused*/
-    if (paused==false){
+    if (paused == false) {
         stageStart();
     }
-    paused=false;
+    paused = false;
     /* Move the hoop */
     clearInterval(setMoveHoop);
     setMoveHoop = setInterval(moveHoop, 1);
@@ -274,7 +275,7 @@ function resetBall() {
     arrowImage.style.width = `${arrowWidth}%`;
     /* Rotate the arrow */
     setRotation = setInterval(rotateArrow, rotationRate);
-    resetTimer = 0; 
+    resetTimer = 0;
     isThrowing = false;
     scoreReady = true;
     /* if the player has scored, start the next stage when the ball resets */
@@ -333,25 +334,33 @@ function moveBall(timeStep) {
     const ballSize = 40;
     /* Detect edges of game window */
     if (yPosBall > (1000 - ballSize)) {
-        tap.play();
+        if (soundEffects) {
+            tap.play();
+        }
         yVel = -yVel;
         yPosBall = (1000 - ballSize);
     }
     if (yPosBall < 0) {
         if (yVel < -2) {
-            tap.play();
+            if (soundEffects) {
+                tap.play();
+            }
         }
         yVel = -yVel / 2;
         xVel = xVel / 2;
         yPosBall = 0;
     }
     if (xPosBall > (500 - ballSize)) {
-        tap.play();
+        if (soundEffects) {
+            tap.play();
+        }
         xVel = -xVel / 2;
         xPosBall = (500 - ballSize);
     }
     if (xPosBall < 0) {
-        tap.play();
+        if (soundEffects) {
+            tap.play();
+        }
         xVel = -xVel / 2;
         xPosBall = 0;
     }
@@ -379,7 +388,7 @@ function moveBall(timeStep) {
         /* If the ball hits the edge of the hoop, it bounces off */
         if (xPosBall < ((xPosHoop - xVel) + 25) || xPosBall > ((xPosHoop + hoopSize - xVel) - 25)) {
             yVel = -yVel / 2;
-        } else if(stageReady){
+        } else if (stageReady) {
             score += 1;
             changeScore = true;
             scoreReady = false; //only score once on each throw
@@ -387,10 +396,12 @@ function moveBall(timeStep) {
             /* Highlight the hoop */
             colorHoop("brightness(200%)");
             setColorHoop = setInterval(colorHoop, 100, "brightness(100%)");
-            happyBoop.play();
+            if (soundEffects) {
+                happyBoop.play();
+            }
             if (score === 5 && level < 5) {
                 completeLevel();
-            }else if(score ===5 && level ==5){
+            } else if (score === 5 && level == 5) {
                 winGame();
             }
         }
@@ -401,7 +412,9 @@ function moveBall(timeStep) {
         yVel > 0 && !bumped) {
         yVel = -yVel;
         bumpHoop(10);
-        sadBoop.play();
+        if (soundEffects) {
+            sadBoop.play();
+        }
         setBump = setInterval(bumpHoop, 50, -10);
     }
 }
@@ -454,10 +467,12 @@ function bumpHoop(bump) {
 
 /* Run the level countdown timer */
 function countDown() {
-    if (levelTimer<10) {
-        blip.play();
-    }else{
-        levelDisplay.style.borderColor="black";
+    if (levelTimer < 10) {
+        if (soundEffects) {
+            blip.play();
+        }
+    } else {
+        levelDisplay.style.borderColor = "black";
     }
     levelTimer = levelTimer - 1;
     clock.innerText = `${levelTimer}`;
@@ -484,24 +499,24 @@ function gameOver() {
 
 /** settings function */
 
-function settings(){
-    settingsWindow.style.display="flex";
-    alertWindow.style.display="none";
-    const confirmButton=document.getElementById('confirm-settings');
+function settings() {
+    settingsWindow.style.display = "flex";
+    alertWindow.style.display = "none";
+    const confirmButton = document.getElementById('confirm-settings');
     confirmButton.addEventListener("click", () => button.play());
     confirmButton.addEventListener('click', confirmSettings);
 }
 
 function confirmSettings() {
-    toggleBackgroundMusic=document.getElementById("background-music").checked;
-    toggleSoundEffects=document.getElementById("sound-effects").checked;
-    timeSettingDropdown=document.getElementById('timer-setting').value; 
-    if (timeSettingDropdown=="none"){
-        timeSetting=false;
-        levelTimerStart="-";
-    }else{
-        timeSetting=true;
-        levelTimerStart=timeSettingDropdown;
+    toggleBackgroundMusic = document.getElementById("background-music").checked;
+    soundEffects = document.getElementById("sound-effects").checked;
+    timeSettingDropdown = document.getElementById('timer-setting').value;
+    if (timeSettingDropdown == "none") {
+        timeSetting = false;
+        levelTimerStart = "-";
+    } else {
+        timeSetting = true;
+        levelTimerStart = timeSettingDropdown;
     }
     startScreen();
     console.log('clicked')
@@ -689,17 +704,17 @@ function winGame() {
     /*location.reload();*/
 }
 
-function winGameScreen () {
-    stageReady=false;
+function winGameScreen() {
+    stageReady = false;
     alertMessage.innerText = "CONGRATULATIONS!!!";
     option2.innerHTML = "<strong>OK</strong>"
     arrowImage.style.display = "none";
-    option1.style.display="none";
+    option1.style.display = "none";
     option2.addEventListener("click", reloadGame);
     alertWindow.style.display = "flex";
     clearInterval(setCountDown);
 }
-function reloadGame(){
+function reloadGame() {
     location.reload();
 }
 
@@ -727,214 +742,214 @@ function sound(src) {
  */
 
 function confettiAnimation() {
-  // Globals
-  var random = Math.random
-    , cos = Math.cos
-    , sin = Math.sin
-    , PI = Math.PI
-    , PI2 = PI * 2
-    , timer = undefined
-    , frame = undefined
-    , confetti = [];
+    // Globals
+    var random = Math.random
+        , cos = Math.cos
+        , sin = Math.sin
+        , PI = Math.PI
+        , PI2 = PI * 2
+        , timer = undefined
+        , frame = undefined
+        , confetti = [];
 
-  var particles = 10
-    , spread = 40
-    , sizeMin = 3
-    , sizeMax = 12 - sizeMin
-    , eccentricity = 10
-    , deviation = 100
-    , dxThetaMin = -.1
-    , dxThetaMax = -dxThetaMin - dxThetaMin
-    , dyMin = .13
-    , dyMax = .18
-    , dThetaMin = .4
-    , dThetaMax = .7 - dThetaMin;
+    var particles = 10
+        , spread = 40
+        , sizeMin = 3
+        , sizeMax = 12 - sizeMin
+        , eccentricity = 10
+        , deviation = 100
+        , dxThetaMin = -.1
+        , dxThetaMax = -dxThetaMin - dxThetaMin
+        , dyMin = .13
+        , dyMax = .18
+        , dThetaMin = .4
+        , dThetaMax = .7 - dThetaMin;
 
-  var colorThemes = [
-    function() {
-      return color(200 * random()|0, 200 * random()|0, 200 * random()|0);
-    }, function() {
-      var black = 200 * random()|0; return color(200, black, black);
-    }, function() {
-      var black = 200 * random()|0; return color(black, 200, black);
-    }, function() {
-      var black = 200 * random()|0; return color(black, black, 200);
-    }, function() {
-      return color(200, 100, 200 * random()|0);
-    }, function() {
-      return color(200 * random()|0, 200, 200);
-    }, function() {
-      var black = 256 * random()|0; return color(black, black, black);
-    }, function() {
-      return colorThemes[random() < .5 ? 1 : 2]();
-    }, function() {
-      return colorThemes[random() < .5 ? 3 : 5]();
-    }, function() {
-      return colorThemes[random() < .5 ? 2 : 4]();
-    }
-  ];
-  function color(r, g, b) {
-    return 'rgb(' + r + ',' + g + ',' + b + ')';
-  }
-
-  // Cosine interpolation
-  function interpolation(a, b, t) {
-    return (1-cos(PI*t))/2 * (b-a) + a;
-  }
-
-  // Create a 1D Maximal Poisson Disc over [0, 1]
-  var radius = 1/eccentricity, radius2 = radius+radius;
-  function createPoisson() {
-    // domain is the set of points which are still available to pick from
-    // D = union{ [d_i, d_i+1] | i is even }
-    var domain = [radius, 1-radius], measure = 1-radius2, spline = [0, 1];
-    while (measure) {
-      var dart = measure * random(), i, l, interval, a, b, c, d;
-
-      // Find where dart lies
-      for (i = 0, l = domain.length, measure = 0; i < l; i += 2) {
-        a = domain[i], b = domain[i+1], interval = b-a;
-        if (dart < measure+interval) {
-          spline.push(dart += a-measure);
-          break;
+    var colorThemes = [
+        function () {
+            return color(200 * random() | 0, 200 * random() | 0, 200 * random() | 0);
+        }, function () {
+            var black = 200 * random() | 0; return color(200, black, black);
+        }, function () {
+            var black = 200 * random() | 0; return color(black, 200, black);
+        }, function () {
+            var black = 200 * random() | 0; return color(black, black, 200);
+        }, function () {
+            return color(200, 100, 200 * random() | 0);
+        }, function () {
+            return color(200 * random() | 0, 200, 200);
+        }, function () {
+            var black = 256 * random() | 0; return color(black, black, black);
+        }, function () {
+            return colorThemes[random() < .5 ? 1 : 2]();
+        }, function () {
+            return colorThemes[random() < .5 ? 3 : 5]();
+        }, function () {
+            return colorThemes[random() < .5 ? 2 : 4]();
         }
-        measure += interval;
-      }
-      c = dart-radius, d = dart+radius;
-
-      // Update the domain
-      for (i = domain.length-1; i > 0; i -= 2) {
-        l = i-1, a = domain[l], b = domain[i];
-        // c---d          c---d  Do nothing
-        //   c-----d  c-----d    Move interior
-        //   c--------------d    Delete interval
-        //         c--d          Split interval
-        //       a------b
-        if (a >= c && a < d)
-          if (b > d) domain[l] = d; // Move interior (Left case)
-          else domain.splice(l, 2); // Delete interval
-        else if (a < c && b > c)
-          if (b <= d) domain[i] = c; // Move interior (Right case)
-          else domain.splice(i, 0, c, d); // Split interval
-      }
-
-      // Re-measure the domain
-      for (i = 0, l = domain.length, measure = 0; i < l; i += 2)
-        measure += domain[i+1]-domain[i];
+    ];
+    function color(r, g, b) {
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
     }
 
-    return spline.sort();
-  }
+    // Cosine interpolation
+    function interpolation(a, b, t) {
+        return (1 - cos(PI * t)) / 2 * (b - a) + a;
+    }
 
-  // Create the overarching container
-  var container = document.createElement('div');
-  container.style.position = 'fixed';
-  container.style.top      = '0';
-  container.style.left     = '0';
-  container.style.width    = '100%';
-  container.style.height   = '0';
-  container.style.overflow = 'visible';
-  container.style.zIndex   = '9999';
+    // Create a 1D Maximal Poisson Disc over [0, 1]
+    var radius = 1 / eccentricity, radius2 = radius + radius;
+    function createPoisson() {
+        // domain is the set of points which are still available to pick from
+        // D = union{ [d_i, d_i+1] | i is even }
+        var domain = [radius, 1 - radius], measure = 1 - radius2, spline = [0, 1];
+        while (measure) {
+            var dart = measure * random(), i, l, interval, a, b, c, d;
 
-  // Confetto constructor
-  function Confetto(theme) {
-    this.frame = 0;
-    this.outer = document.createElement('div');
-    this.inner = document.createElement('div');
-    this.outer.appendChild(this.inner);
+            // Find where dart lies
+            for (i = 0, l = domain.length, measure = 0; i < l; i += 2) {
+                a = domain[i], b = domain[i + 1], interval = b - a;
+                if (dart < measure + interval) {
+                    spline.push(dart += a - measure);
+                    break;
+                }
+                measure += interval;
+            }
+            c = dart - radius, d = dart + radius;
 
-    var outerStyle = this.outer.style, innerStyle = this.inner.style;
-    outerStyle.position = 'absolute';
-    outerStyle.width  = (sizeMin + sizeMax * random()) + 'px';
-    outerStyle.height = (sizeMin + sizeMax * random()) + 'px';
-    innerStyle.width  = '100%';
-    innerStyle.height = '100%';
-    innerStyle.backgroundColor = theme();
+            // Update the domain
+            for (i = domain.length - 1; i > 0; i -= 2) {
+                l = i - 1, a = domain[l], b = domain[i];
+                // c---d          c---d  Do nothing
+                //   c-----d  c-----d    Move interior
+                //   c--------------d    Delete interval
+                //         c--d          Split interval
+                //       a------b
+                if (a >= c && a < d)
+                    if (b > d) domain[l] = d; // Move interior (Left case)
+                    else domain.splice(l, 2); // Delete interval
+                else if (a < c && b > c)
+                    if (b <= d) domain[i] = c; // Move interior (Right case)
+                    else domain.splice(i, 0, c, d); // Split interval
+            }
 
-    outerStyle.perspective = '50px';
-    outerStyle.transform = 'rotate(' + (360 * random()) + 'deg)';
-    this.axis = 'rotate3D(' +
-      cos(360 * random()) + ',' +
-      cos(360 * random()) + ',0,';
-    this.theta = 360 * random();
-    this.dTheta = dThetaMin + dThetaMax * random();
-    innerStyle.transform = this.axis + this.theta + 'deg)';
-
-    this.x = window.innerWidth * random();
-    this.y = -deviation;
-    this.dx = sin(dxThetaMin + dxThetaMax * random());
-    this.dy = dyMin + dyMax * random();
-    outerStyle.left = this.x + 'px';
-    outerStyle.top  = this.y + 'px';
-
-    // Create the periodic spline
-    this.splineX = createPoisson();
-    this.splineY = [];
-    for (var i = 1, l = this.splineX.length-1; i < l; ++i)
-      this.splineY[i] = deviation * random();
-    this.splineY[0] = this.splineY[l] = deviation * random();
-
-    this.update = function(height, delta) {
-      this.frame += delta;
-      this.x += this.dx * delta;
-      this.y += this.dy * delta;
-      this.theta += this.dTheta * delta;
-
-      // Compute spline and convert to polar
-      var phi = this.frame % 7777 / 7777, i = 0, j = 1;
-      while (phi >= this.splineX[j]) i = j++;
-      var rho = interpolation(
-        this.splineY[i],
-        this.splineY[j],
-        (phi-this.splineX[i]) / (this.splineX[j]-this.splineX[i])
-      );
-      phi *= PI2;
-
-      outerStyle.left = this.x + rho * cos(phi) + 'px';
-      outerStyle.top  = this.y + rho * sin(phi) + 'px';
-      innerStyle.transform = this.axis + this.theta + 'deg)';
-      return this.y > height+deviation;
-    };
-  }
-
-  function poof() {
-    if (!frame) {
-      // Append the container
-      document.body.appendChild(container);
-
-      // Add confetti
-      var theme = colorThemes[0]
-        , count = 0;
-      (function addConfetto() {
-        var confetto = new Confetto(theme);
-        confetti.push(confetto);
-        container.appendChild(confetto.outer);
-        timer = setTimeout(addConfetto, spread * random());
-      })(0);
-
-      // Start the loop
-      var prev = undefined;
-      requestAnimationFrame(function loop(timestamp) {
-        var delta = prev ? timestamp - prev : 0;
-        prev = timestamp;
-        var height = window.innerHeight;
-
-        for (var i = confetti.length-1; i >= 0; --i) {
-          if (confetti[i].update(height, delta)) {
-            container.removeChild(confetti[i].outer);
-            confetti.splice(i, 1);
-          }
+            // Re-measure the domain
+            for (i = 0, l = domain.length, measure = 0; i < l; i += 2)
+                measure += domain[i + 1] - domain[i];
         }
 
-        if (timer || confetti.length)
-          return frame = requestAnimationFrame(loop);
-
-        // Cleanup
-        document.body.removeChild(container);
-        frame = undefined;
-      });
+        return spline.sort();
     }
-  }
 
-  poof();
+    // Create the overarching container
+    var container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.top = '0';
+    container.style.left = '0';
+    container.style.width = '100%';
+    container.style.height = '0';
+    container.style.overflow = 'visible';
+    container.style.zIndex = '9999';
+
+    // Confetto constructor
+    function Confetto(theme) {
+        this.frame = 0;
+        this.outer = document.createElement('div');
+        this.inner = document.createElement('div');
+        this.outer.appendChild(this.inner);
+
+        var outerStyle = this.outer.style, innerStyle = this.inner.style;
+        outerStyle.position = 'absolute';
+        outerStyle.width = (sizeMin + sizeMax * random()) + 'px';
+        outerStyle.height = (sizeMin + sizeMax * random()) + 'px';
+        innerStyle.width = '100%';
+        innerStyle.height = '100%';
+        innerStyle.backgroundColor = theme();
+
+        outerStyle.perspective = '50px';
+        outerStyle.transform = 'rotate(' + (360 * random()) + 'deg)';
+        this.axis = 'rotate3D(' +
+            cos(360 * random()) + ',' +
+            cos(360 * random()) + ',0,';
+        this.theta = 360 * random();
+        this.dTheta = dThetaMin + dThetaMax * random();
+        innerStyle.transform = this.axis + this.theta + 'deg)';
+
+        this.x = window.innerWidth * random();
+        this.y = -deviation;
+        this.dx = sin(dxThetaMin + dxThetaMax * random());
+        this.dy = dyMin + dyMax * random();
+        outerStyle.left = this.x + 'px';
+        outerStyle.top = this.y + 'px';
+
+        // Create the periodic spline
+        this.splineX = createPoisson();
+        this.splineY = [];
+        for (var i = 1, l = this.splineX.length - 1; i < l; ++i)
+            this.splineY[i] = deviation * random();
+        this.splineY[0] = this.splineY[l] = deviation * random();
+
+        this.update = function (height, delta) {
+            this.frame += delta;
+            this.x += this.dx * delta;
+            this.y += this.dy * delta;
+            this.theta += this.dTheta * delta;
+
+            // Compute spline and convert to polar
+            var phi = this.frame % 7777 / 7777, i = 0, j = 1;
+            while (phi >= this.splineX[j]) i = j++;
+            var rho = interpolation(
+                this.splineY[i],
+                this.splineY[j],
+                (phi - this.splineX[i]) / (this.splineX[j] - this.splineX[i])
+            );
+            phi *= PI2;
+
+            outerStyle.left = this.x + rho * cos(phi) + 'px';
+            outerStyle.top = this.y + rho * sin(phi) + 'px';
+            innerStyle.transform = this.axis + this.theta + 'deg)';
+            return this.y > height + deviation;
+        };
+    }
+
+    function poof() {
+        if (!frame) {
+            // Append the container
+            document.body.appendChild(container);
+
+            // Add confetti
+            var theme = colorThemes[0]
+                , count = 0;
+            (function addConfetto() {
+                var confetto = new Confetto(theme);
+                confetti.push(confetto);
+                container.appendChild(confetto.outer);
+                timer = setTimeout(addConfetto, spread * random());
+            })(0);
+
+            // Start the loop
+            var prev = undefined;
+            requestAnimationFrame(function loop(timestamp) {
+                var delta = prev ? timestamp - prev : 0;
+                prev = timestamp;
+                var height = window.innerHeight;
+
+                for (var i = confetti.length - 1; i >= 0; --i) {
+                    if (confetti[i].update(height, delta)) {
+                        container.removeChild(confetti[i].outer);
+                        confetti.splice(i, 1);
+                    }
+                }
+
+                if (timer || confetti.length)
+                    return frame = requestAnimationFrame(loop);
+
+                // Cleanup
+                document.body.removeChild(container);
+                frame = undefined;
+            });
+        }
+    }
+
+    poof();
 };
