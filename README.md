@@ -101,7 +101,7 @@
 # UX
 ## Goals
 ### Visitor Goals
-The target audience for Build a Treehouse are:
+The target audience for Boopball are:
 - People who want are interested in building their own treehouse.
 - People who are interested in seeing beautiful picture of things built by other people.
 - People who want to share things they have built and exchange ideas with the website owner.
