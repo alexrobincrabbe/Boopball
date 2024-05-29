@@ -321,9 +321,7 @@ In the settings window, the user can choose to turn on game sound effects, and b
 - HTML has been validated with [W3C HTML5 Validator](https://validator.w3.org/).
 
 <div align="center">
-  <img src="assets/readme_images/testing/index_w3.png">
-  <img src="assets/readme_images/testing/gallery_w3.png">
-  <img src="assets/readme_images/testing/contact_w3.png">
+  <img src="assets/readme_images/HTML_checker.png">
 </div>
 
 #### CSS
@@ -331,7 +329,7 @@ In the settings window, the user can choose to turn on game sound effects, and b
 - CSS has been validated with [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) 
 
 <div align="center">
-    <img src="assets/readme_images/testing/css_w3.png">
+    <img src="assets/readme_images/CSS_checker.png">
 </div>
 
 #### Lighthouse
