@@ -102,35 +102,32 @@
 ## Goals
 ### Visitor Goals
 The target audience for Boopball are:
-- People who want are interested in building their own treehouse.
-- People who are interested in seeing beautiful picture of things built by other people.
-- People who want to share things they have built and exchange ideas with the website owner.
+- People who want to play a fun and colourful game
 
 User goals are:
-- Be inspired to build a treehouse.
-- Get an idea of the steps involved in building a treehouse.
-- Contact the website owner, to share projects or get tips.
-- Follow the progress of the website owner's treehouse.
+- Have fun
+- Try the game on different difficulty settings for replayability
+- Be able to play for as long as I want, and pause the game if necessary
 
-Build a Treehouse fills these needs by:
-- Providing a broad overview of the steps to build a treehouse on the home page.
-- Providing external links to inspire and inform the visitor.
-- Links in the text to the gallery, to show specific examples and show by example.
-- Providing a contact page to write a message to the website owner, ask for more info, share their own ideas.
+Boopball fills these needs by:
+- Providing a simple easy to understand game interface that allows the user to play the game with a short learning curve
+- Allowing the user to select different time limits to adjust the difficulty if the game is too hard, and to try different difficulties after they have completed the game
+- Providing 5 different levels with different challenges to engage the player
+- Displaying colourful and fun graphics
+- Allowing the option to add sound effects to enhance the game experience
 
 ### Business Goals
-The Business Goals of Build a Treehouse are:
-- Provide a source of information about building a treehouse.
-- Showcase the treehouse built by the website owner.
-- Gain subscribers through the newsletter.
-- Make contact with people with similar interests, exchange ideas.
+The Business Goals of Boopball are:
+- Provide a fun game to engage visitors to the website
+- Showcase the skills of the website owner
+
 
 ### User Stories
-1. As a user interested in making a treehouse, I expect to see different kinds of treehouses.
-2. I expect to see different stages of treehouse construction.
-3. I expect to find information to inform me how I should build a treehouse.
-4. I expect to be able to contact the website owner for more information and to have questions answered.
-5. I would like to be able to follow the website owners' progress in building a treehouse through the newsletter.
+1. As a user looking to fill in some empty time, I expect to be quickly understand and be engaged in the game.
+2. I expect a game that is moderately challenging and to be able to adjust the difficulty if the game is too hard or too easy.
+3. I expect the game instructions to be immediately visible and easy to understand
+4. I expect the game controls to be clear and easy to understand
+5. I expect to be able to choose to turn sounds and background music on, according to my own preferences
 
 ## Visual Design
 ### Wireframes
