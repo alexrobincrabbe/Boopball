@@ -3,7 +3,7 @@
   <img src="assets/readme_images/responsive.png" style="background-color: black" alt="Boopball responsive photos">
 </div>
 
-[Build a Treehouse](https://alexrobincrabbe.github.io/build_a_treehouse/) as the name indicates, is a site about how to build a treehouse. It is aimed at people who are interested in building a treehouse, and looking for ideas and inspiration, as well as a showcase for the website owner's work. The main feature is a brief guide to how to build a treehouse, which is complemented by photos that show examples of particular features. 
+[Boopball](https://alexrobincrabbe.github.io/Boopball/) Is a . 
 
 ## Table of Contents
 1. <details open>
