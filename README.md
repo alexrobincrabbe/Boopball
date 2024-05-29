@@ -67,7 +67,6 @@
     <summary><a href="#methods">Methods</a></summary>
 
     - [Validation](#validation)
-    - [General Testing](#general-testing)
     - [Mobile Testing](#mobile-testing)
     - [Desktop Testing](#desktop-testing)
     </details></li>
@@ -93,9 +92,9 @@
     <summary><a href="#credits">Credits</a></summary>
 
     - [Images](#images)
+    - [sounds](#sounds)
     - [Code](#code)
-    - [Tests](#tests)
-    - [Readme](#readme)
+    - [Testing](#testing)
 </details>
 
 ----
@@ -332,96 +331,63 @@ In the settings window, the user can choose to turn on game sound effects, and b
     <img src="assets/readme_images/CSS_checker.png">
 </div>
 
+#### Javascript
+
+- Javascript has been validated with [jshint](https://jshint.com/)
+
+<div align="center">
+    <img src="assets/readme_images/jshint.png">
+</div>
+
+The warnings appear in a part of the code that I did not write, but is a function that generates a confetti effect when the game is won (credited in code comments and the end of this readme). 
+
 #### Lighthouse
 
-- Home Page (Desktop)
+- Desktop
 
 <div align="center">
-    <img src="assets/readme_images/testing/index_desktop_lighthouse.png">
+    <img src="assets/readme_images/lighthouse_desktop.png">
 </div>
 
-- Home Page (Mobile)
+- Mobile
 
 <div align="center">
-    <img src="assets/readme_images/testing/index_mobile_lighthouse.png">
+    <img src="assets/readme_images/lighthouse_mobile.png">
 </div>
 
-- Gallery Page (Desktop)
-
-<div align="center">
-    <img src="assets/readme_images/testing/gallery_desktop_lighthouse.png">
-</div>
-
-- Gallery Page (Mobile)
-
-<div align="center">
-    <img src="assets/readme_images/testing/gallery_mobile_lighthouse.png">
-</div>
-
-- Contact Page (Desktop)
-
-<div align="center">
-   <img src="assets/readme_images/testing/contact_desktop_lighthouse.png">
-</div>
-
-- Contact Page (Mobile)
-
-<div align="center">
-    <img src="assets/readme_images/testing/contact_mobile_lighthouse.png">
-</div>
-
-#### Mobile Testing
+### Mobile Testing
 
 - I tested the site on my android device. All pages and links worked correctly.
 
-- On iOS the submit button on the contact page seems to have a minor issue:
+### Desktop Testing
 
-<div align="center">
-    <img src="assets/readme_images/testing/contact_ios.png" width="200">
-</div>
+- I checked all pages and links on Chrome, Safari, Microsoft Edge, Opera and Mozilla Firefox
 
-#### Desktop Testing
+- No problems were found on Chrome, Safari, Opera or Microsoft Edge
 
-- I checked all pages and links on Chrome, Safari, Microsoft Edge, and Mozilla Firefox.
+- The ball moves slowly on Mozilla Firefox
 
-- No problems were found on Chrome, Safari, or Microsoft Edge.
-
-- A problem was found on the gallery page in Mozilla Firefox (see [unfixed bugs](#unfixed-bugs)).
 
 ## Bugs
 
 ### Unfixed Bugs
 
-- In Mozzilla Firefox, a bug was found on the gallery page. There is a large spacing between
-gallery images. 
+<ul>
+<li> On certain levels somtimes no score is detected when the ball passes through the hoop
 
-<div align="center">
-    <img src="assets/readme_images/testing/Firefox_bug.png">
-</div>
+- When the hoop is moving, it is possible for the hoop to move past the ball without a detection
 
-- The source of the bug was determined to be the sizing of the image-container class divs.
+- In order to fix this, it would require a significant restructuring of the code. There are two seperate functions that move the ball and the hoop, these both should be handled in one function
 
- - I checked the size of the gallery container, which contain the divs, and the images and labels inside the divs to see if any of these were the causing the image containers to be resized, but all other elements had the correct sizing. 
+- The moveHoop function was added later in the development of the game, as this wasn't in my original concept. Due to time contraints
 
-- Shown below are the dimensions of the image containers.
-
-<div align="center">
-    <img src="assets/readme_images/testing/container-size.png">
-</div>
-
-- The only way I could get the container width to change was by setting a fixed width, however since the images are different sizes, this was not a solution to the bug. 
-
-- The sizing works correctly on all other browsers (Chrome, Edge, Safari).
+- I have left this in future improvements
+</li>
+</ul>
 
 ### Fixed Bugs
 
-- A bug was found: The image labels in the gallery showed in front of the header when scrolling.
-
-<div align="center">
-    <img src="assets/readme_images/bug.png">
-</div>
-
-- The bug was fixed by changing the z-index of the image labels to be lower than the z-index of the header.
+- There were several bugs related to mutliple instances of intervals being started. To handle these, I introduced bolean variables to be check whenever an interval is started if the last instance has already been closed. 
 
 # Deployment
 
@@ -432,13 +398,13 @@ gallery images.
 2. In the terminal type:
 
     ```
-      git clone https://github.com/alexrobincrabbe/build_a_treehouse
+      git clone https://github.com/alexrobincrabbe/Boopball
     ```
 
 3. Change to the repository folder:
 
     ```
-      cd .\build_a_treehouse\
+      cd .\Boopball\
     ```
 
 6. Remove the origin:
@@ -481,28 +447,28 @@ gallery images.
 
 ## Images
 
-All images on the site are photos taken by myself of a treehouse I built, with the exception of the Mini-Gallery images (which only features in the desktop version).
+All images used were created by myself.
 
-Image sources:
+## Sounds
 
-https://cdn.apartmenttherapy.info/image/upload/v1558432909/at/archive/5ba159856722b52e4c3be0545e70c1a37282623e.jpg
+- Background music: [Pub In The Woods](https://onemansymphony.bandcamp.com/album/a-new-days-hurry-free)
 
-https://www.familyhandyman.com/wp-content/uploads/2019/05/FH12MAR_52_651_005-treehouse-building-tips-1.jpg
+- button click sound: [Pixbay](https://pixabay.com/sound-effects/blip-131856/)
 
-https://i.pinimg.com/736x/f5/ec/3b/f5ec3b5c87e410f437f42002f82ee563.jpg
+- Ball hitting edge sound: [soundsnap](https://www.soundsnap.com/drop_cushion_hardsurface_light_02)
 
-https://www.pinterest.de/pin/548946642072268690/
-
-https://d3emaq2p21aram.cloudfront.net/media/cache/venue_roundup_single_image/uploads/%200Regular_Roundup/Treehouse2017/Cindercone_05.jpg
+Thanks to Leda for being the voice of Booper.
 
 ## Code
 
-The [Love Running](https://github.com/Code-Institute-Solutions/love-running-v3) project was used as a template for the header and footer in the html code.
+- CSS for slider buttons: [W3schools](https://www.w3schools.com/howto/howto_css_switch.asp)
+
+- Sound effects function: [W3schools](https://www.w3schools.com/graphics/game_sound.asp)
+
+- Touch screen swipe function: [stackoverflow](https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android)
+
+- Confetti effect: [codepen](https://codepen.io/bananascript/pen/EyZeWm)
 
 ## Tests
 
-Thanks to Lewis for checking my site on his iPhone, and Ioan for helping me optimize the images.
-
-## Readme
-
-The [readme](https://github.com/Ri-Dearg/horizon-photo/blob/master/README.md?plain=1) by Rory Patrick (mentor) was used as a template. 
+Thanks Alexander for testing the game.
