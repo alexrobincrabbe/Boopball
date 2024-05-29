@@ -208,7 +208,18 @@ These were made with MS paint 3D. The hoop was cut into two images using MS pain
 
 ## Background music
 
+- The background music can be turned on or off by the user
+- It was chosen to be upbeat, and mellow enough to blend into the backgroud
+- I reduced the volume so that it didn't overwhelm the sound effects.
+
 ## Sound Effects
+
+- Sound effects can be turned on or off by the user
+- In game sound effects were included to add immersion
+- The hoop effects were voice recorded boop sounds, to go with the theme of the site
+- The game over and game winning sounds were also voice recorded
+- The button click and timer countdown effects are stock sounds
+- A pillow thump sound effect was chosen for the ball hitting the edge of the game window, to give a soft impact sound 
 
 # Features
 
@@ -379,9 +390,9 @@ The warnings appear in a part of the code that I did not write, but is a functio
 
 - In order to fix this, it would require a significant restructuring of the code. There are two seperate functions that move the ball and the hoop, these both should be handled in one function
 
-- The moveHoop function was added later in the development of the game, as this wasn't in my original concept. Due to time contraints
+- The moveHoop function was added later in the development of the game, as this wasn't in my original concept
 
-- I have left this in future improvements
+-  Due to time contraintsI have left this in future improvements
 </li>
 </ul>
 
