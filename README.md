@@ -25,28 +25,30 @@
     - [Fonts](#fonts)
     - [Icons](#icons)
     - [Colors](#colors)
+    </li>
     </ul>
+    </details>
 </details>
 
-2. <details open>
+2.  <details open>
     <summary><a href="#features">Features</a></summary>
-
     <ul>
+
     <li><details>
     <summary><a href="#page-elements">Page Elements</a></summary>
 
-    - [All Pages](#all-pages)
-    - [Index Page](#index-page)
-    - [Gallery Page](#gallery-page)
-    - [Contact Page](#contact-page)
+    - [Header](#header)
+    - [Introduction](#introduction)
+    - [Controls](#controls)
     </li>
-    <li>
+    
+    <li><details>
+    <summary><a href="#game-window">Game Window</a></summary>
 
-    [Feature Ideas](#feature-ideas)
-    </li>
-
+    - [Main Window](#main-window)
+    - [Alert Windows](#alert-windows)
+    - [Settings Window](#settings-window)
     </ul>
-</details>
 
 3. <details open>
     <summary><a href="#technologies-used">Technologies Used</a></summary>
@@ -132,100 +134,88 @@ The Business Goals of Boopball are:
 ## Visual Design
 ### Wireframes
 
-Wireframes were made using [Balsamiq](https://balsamiq.com/wireframes).
+Wireframes were made with pencil and paper.
 
-<details>
-<summary>Mobile Wireframes</summary>
-
-- Home page
-
-<div align="center">
-<img src="assets/readme_images/wireframes/home_page_mobile.png" width=200>
-</div>
-
-- Gallery Page
-
-<div align="center">
-<img src="assets/readme_images/wireframes/gallery_mobile.png" width=200>
-</div>
-
-- Contact Page 
-
-<div align="center">
-<img src="assets/readme_images/wireframes/contact_mobile.png" width=200>
-</div>
-
-</details>
-
-<details>
-<summary>Desktop Wireframes</summary>
-
-- Home page
-
-<div align="center">
-<img src="assets/readme_images/wireframes/home_page_desktop.png" width=600>
-</div>
-
-- Gallery Page
-
-<div align="center">
-<img src="assets/readme_images/wireframes/gallery_desktop.png" width=600>
-</div>
-
-- Contact Page 
-
-<div align="center">
-<img src="assets/readme_images/wireframes/contact_desktop.png" width=600>
-</div>
-
-</details>
 
 ### Fonts
 <div align="left">
-<img src="assets/readme_images/font1.png">
+<img src="assets/readme_images/font1.jpg">
 </div>
 <div align="left">
-<img src="assets/readme_images/font2.png">
+<img src="assets/readme_images/font2.jpg">
+</div>
+<div align="left">
+<img src="assets/readme_images/font3.jpg">
 </div>
 
 <br>
 
-- The primary font [handlee](https://fonts.google.com/specimen/Handlee) was chosen to give a more informal feel to the website. It is used for the body of the text and the logo, because it is stylised, but still easy to read.
+- The primary font [monoton](https://fonts.google.com/specimen/Monoton) was chosen for its immediate visual impact and retro style feel. It was used for the header and headings.
 
-- The secondary font [caveat](https://fonts.google.com/specimen/Caveat) was chosen to complement and contrast the primary font. It is used for the header, footer and headings, but not for the logo, as I wanted the logo to stand out and be clear.
+- The secondary font [merienda](https://fonts.google.com/specimen/Merienda) was chosen for the game instructions. It is easy to read, but is still somewhat stylised.
+
+- The tertiary font [rock salt](https://fonts.google.com/specimen/Merienda) was used for the in game text. It has a cartoony look, which goes with the game graphics style.
 
 ### Icons
-<div align="center">
-  <img src="assets/readme_images/icons.png" alt="Icons">
-</div>
-
-- Icons are taken from the [Fontawesome](https://fontawesome.com/) Icon library and are utilised as classes in the `<i>` tag.
-- Icons are utilised in the footer for links to external sites, the dropdown menus and the back to top link.
 
 #### Favicon
 
 <div align="center">
-  <img src="assets/favicon/favicon.ico" alt="Favicon"  width="80">
+  <img src="favicon.ico" alt="Favicon"  width="80">
 </div>
 
-- The Favicon was designed using a [favicon generator](https://www.favicon.cc/). Original design used brown and green, but the colours were changed to match the website design. 
+- The Favicon was made by taking a screenshot of the site logo, converting it with an [ICO converter](https://cloudconvert.com/png-to-ico), then removing the background with MS Paint.
 
 ### Colors
 <div align="center">
   <img src="assets/readme_images/colors.png" alt="Color Pallette">
 </div>
 
-- The primary colour used for the site is RGB(49, 113, 80)(#317150) a dark green,  which was chosen because of the treehouse theme. A darker shade was chosen for good contrast with the text. I used rgb for this colour so that I could easily change the opacity.
-- An off-white colour (#EDE8E1) was chosen for the text, to contrast well with the background, while the hint of yellow/green complements the green shades and softens the contrast slightly.
-- RGB(253, 234, 192)(#FDEAC0) was chosen for the in text links to give contrast to both the background and the main text. 
-- A light grey (#f1f1f1) was used for some background elements to give them a slight contrast with lighter elements. I used this instead of #EDE8E1 because it had a cleaner appearance.
-- RGB(40, 98, 68)(#286244) was used specifically for the link to the current page. It is a slightly darkened shade of #317150. This had to be changed to increase the contrast with the background, for accessibility reasons.
-- Black and white were used for borders and shadows.
+- The primary colour used for the site is RGB(184, 109, 44)(#B86D2C) a dark orange. It was chosen for it's warm colourful feel.
+- Darker purple/pinks - RGB(83,48,72)(#533048)/RGB(127,59,59)(#7F3B3B) were chosen to contrast the text.
+- RGB(237, 206, 70)(#EDCE46) was chosen for the text, to give a good contrast with the background, and compliment the orange theme. 
+- RGB(40,106,148)(#286A94) was chosen for the in-game buttons, to compliment the game graphic colours. The colour was darkened a little to give a better text contrast.
+
+### Game graphics
+
+#### Background image
+
+<div align="left">
+  <img src="assets/images/background.png" height="200px">
+</div>
+
+I drew the background image using MS paint, then used [pixlr](https://pixlr.com/express/) to add a liquifying effect, and finally blurred the image to make the foreground stand out.
+
+#### Booper
+
+<div align="left">
+  <img src="assets/images/character.png" height="100px">
+</div>
+
+I made  the booper image entirely using MS paint.
+
+#### Ball and hoop
+
+<div align="left">
+  <img src="assets/images/hoop1.png" width="100px">
+  <img src="assets/images/hoop2.png" width="100px">
+  <img src="assets/images/ball.png" width="30px">
+</div>
+
+
+These were made with MS paint 3D. The hoop was cut into two images using MS paint to give the effect of the ball passing through the hoop. 
+
+# Sounds
+
+## Background music
+
+## Sound Effects
 
 # Features
+
 ## Page Elements
-### All Pages
-#### Navbar
+
+### Header
 
 <div align="center">
   <img src="assets/readme_images/header_desktop.png" alt="navbar">
@@ -234,123 +224,67 @@ Wireframes were made using [Balsamiq](https://balsamiq.com/wireframes).
   <img src="assets/readme_images/header_mobile.png" alt="navbar mobile">
 </div>
 
-- The Navbar was based largely on the Love Running example. Other than the specific styling, a transition animation was added to the dropdown menu. 
-- On larger screens the Navigation links are shown by default.
-- The link to the current page is highlighted using combined text-shadow effects to create an aura effect.
-- The Navbar is fixed and does not scroll with the rest of the content.
+- As the site is only one page, the header just contains the site logo
+- The header stays at the top of the screen when scrolled
+- Once the document has loaded, the two lines expand out from the logo at either side (just because it looks cool)
 
-#### Footer
-
-<div align="center">
-  <img src="assets/readme_images/footer_desktop.png" alt="footer">
-</div>
-
-
-- The footer is styled similarly to the header, however is not fixed, and is only visible when scrolling down.
-- It contains links to external sites, with more information about treehouses for interested users.
-
-### Index Page
-#### Introduction
-<div align="center">
-  <img src="assets/readme_images/intro_desktop.png" alt="Introduction">
-  <img src="assets/readme_images/intro_mobile.png" alt="Introduction mobile view">
-</div>
-
-- The top section of the index page is an introduction that gives an overview of the kinds of treehouses that can be built, any of which may apply to the interested user.
-
-- The first image was chosen to be visually inviting, and immediately capture the interest of user visting the home page.
-
-- Simpler styles were used for the mobile version, to clearly deleanate the sections.
-
-##### Mini-Gallery
+### Introduction
 
 <div align="center">
-  <img src="assets/readme_images/mini-gallery_desktop.png" alt="Mini-gallery">
+  <img src="assets/readme_images/intro_desktop.png">
+<img src="assets/readme_images/intro_mobile.png">
 </div>
 
-- The mini-gallery appears only on the screen for tablet screens or larger. It was included to add variety to the layout on larger screens and utilise the screenspace. The border and shadow were added to make it stand out, as it is the only part of the site that uses images from external sources. Arrows were added to make it clear that this image is in a window that is scrollable. The scrollbars were removed for stylistic reasons.
+The introduction contains information about the rules of the game, summarized in bullet points.
 
-- The Mini-Gallery is the only part of the site that uses images from external sources.
-
-##### Subsection links
+### Controls
 
 <div align="center">
-  <img src="assets/readme_images/shortcuts_mobile.png" alt="Subsection links">
+  <img src="assets/readme_images/controls_desktop.png">
+<img src="assets/readme_images/controls_mobile.png">
 </div>
 
-- These only appear on the mobile version. They were added to allow users to quickly jump to sections without scrolling.
+This section explains the controls for the game, for both desktop and mobiel.
 
+## Game Window
 
-#### Floor, Stairs and Walls/Roof sections
+### Main Window
 
 <div align="center">
-  <img src="assets/readme_images/section_desktop.png" alt="Floor section">
-</div>
-<div align="center">
-  <img src="assets/readme_images/section_mobile.png" alt="Floor section">
+  <img src="assets/readme_images/game_desktop.png">
 </div>
 
-- The images of the following sections show various stages of construction of a treehouse, and relate to the titles of each section. They were chosen to be both visually appealing, and informative.
-- On larger screens the text for the following sections appears in front of the corresponding image for each subsection. This was done to make the page visually appealing on all screensizes, without leaving large sections of empty space.
+The game window size is optimized for mobile screens. On larger screens is is positioned at the center, with the text boxes on either side to fill the screen space. All of the game controls take place on this part of the screen, except for the pause function, which can be triggered on desktop using the escape key at any time.
 
-#### Scroll to top button
+### Alert Windows
 
 <div align="center">
-  <img src="assets/readme_images/backtotop_mobile.png" alt="Back to top button">
+  <img src="assets/readme_images/alert_windows.png">
 </div>
 
-- This only appears on the mobile view. It appears just above the footer at the end of the page. 
-- It is overlaid on top of the content, to avoid blank space appearing between the content and the footer.
+These contain messages and control buttons, to either continue, quit, or go to the settings. They are triggered at the start of the game, when the game is paused, when the game is over, or when a level is completed. There is only one alert window HTML element, and the content is manipulated with javascript.
 
-### Gallery Page
+### Settings Window
 
 <div align="center">
-  <img src="assets/readme_images/gallery_desktop.png" alt="Gallery">
+  <img src="assets/readme_images/settings_window.png">
 </div>
 
-<div align="center">
-  <img src="assets/readme_images/gallery_mobile.png" alt="Gallery mobile view">
-</div>
-
-
-- The Gallery page contains images to specific parts of the treehouse.
-- It is intended to be browsed, simply for people interested in seeing the images.
-- It is intended to be functional. Individual images are linked by words in the text on the main page. This allows users to see images that show more detail than is shown on the home page, if they are interested, without overcrowding the homepage with images.
-- On larger screens the scroll direction was changed to horizontal. This was to allow several images to be shown on the screen at the same time, utilising the whole screen and reducing the amount of scrolling. It also means that the images can be scaled with a uniform height and all fit entirely on the screen.
-- On mobile view, the scroll to top button also appears.
-
-### Contact Page
-
-<div align="center">
-  <img src="assets/readme_images/contact-form_desktop.png" alt="Contact form">
-</div>
-
-<div align="center">
-  <img src="assets/readme_images/contact-form_mobile.png" alt="Contact form mobile view">
-</div>
-
-- The contact page contains a simple contact form, which allows users to contact the website owner and subcribe to a newsletter.
-- The form is reponsive, so that space is used efficiently on mobile screens.
-- All fields must be filled out to submit the form and the email field only accepts a valid email format.
-
-## Feature Ideas
-
-- In order to keep the scope of the project manageable, the instructions on the site were kept very brief. In practice much more detail should be included on building a tree house. This would include more expansive and specific sections
-- A cost caculator, with the floor area and type of treehouse (with/without roof), would likely need Javascript to implement.
-- An extra page listing tools and materials that are needed.
+In the settings window, the user can choose to turn on game sound effects, and background music (which are disables by default). The user can also change the game difficulty by selecting a different time limit for each level.
 
 # Technologies Used
 ## Languages
-- [HTML](w3.org/standards/webdesign/htmlcss)
-    * Page markup.
-- [CSS](w3.org/standards/webdesign/htmlcss)
-    * Styling.
+- HTML
+    * Page markup
+- CSS
+    * Styling
+- Javascript
+    * Game mechanics
+    * Manipulating DOM content
 
 ## Libraries
 - [Google Fonts](https://fonts.google.com)
-    * Font Styles.
-- [Fontawesome](https://fontawesome.com/)
-    * Used for icons
+    * Font Styles
 
 ## Platforms
 - [Github](https://github.com/)
@@ -359,17 +293,22 @@ Wireframes were made using [Balsamiq](https://balsamiq.com/wireframes).
     * IDE for project development.
 
 ## Other Tools
-- [Balsamiq](https://balsamiq.com/)
-    * To create wireframes.
-- [Favicon Generator](https://www.favicon.cc/)
-    * Favicons
-- [Reduce Images](https://www.reduceimages.com/)
-    * Optimize images
-- [Tinify](https://tinypng.com/)
-    * Optimize images
-- [Image Resizer](https://imageresizer.com/)
-    * Reduce image sizes
-
+### Sound editing
+- [Audiotrimmer](https://audiotrimmer.com/#)
+    * Trim sound effects clips
+- [mp3cut](https://mp3cut.net/change-volume)
+    * Adjust sound volumes
+- [noisereducer](https://noisereducer.media.io/speech-enhancement/)
+    * Remove background noise from sound clips
+### Image editing
+- [MSpaint](https://www.microsoft.com/en-us/windows/paint)
+    * Draw game graphics
+- [MSpaint3D](https://apps.microsoft.com/detail/9nblggh5fv99?hl=de-de&gl=DE)
+    * Draw game graphics
+- [pixlr](https://pixlr.com/express/)
+    * Add liquify and blur effect to game window background image
+- [cloudconvert](https://cloudconvert.com/png-to-ico)
+    * Convert favicon image from .png to .ico format
 
 ----
 
