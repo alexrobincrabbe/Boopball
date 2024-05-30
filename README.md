@@ -24,7 +24,7 @@
     - [Wireframes](#wireframes)
     - [Fonts](#fonts)
     - [Icons](#icons)
-    - [Colors](#colors)
+    - [Colors](#colours)
     </li>
     </ul>
     </details>
@@ -104,17 +104,17 @@
 # UX
 ## Goals
 ### Visitor Goals
-The target audience for Boopball are:
+The target audience for Boopball is:
 - People who want to play a fun and colourful game
 
 User goals are:
 - Have fun
 - Try the game on different difficulty settings for replayability
-- Be able to play for as long as I want, and pause the game if necessary
+- Be able to play for as long as I want and pause the game if necessary
 
 Boopball fills these needs by:
-- Providing a simple easy to understand game interface that allows the user to play the game with a short learning curve
-- Allowing the user to select different time limits to adjust the difficulty if the game is too hard, and to try different difficulties after they have completed the game
+- Providing a simple, easy to understand game interface that allows the user to play the game with a short learning curve
+- Allowing the user to select different time limits to adjust the difficulty if the game is too hard and to try different difficulties after they have completed the game
 - Providing 5 different levels with different challenges to engage the player
 - Displaying colourful and fun graphics
 - Allowing the option to add sound effects to enhance the game experience
@@ -126,8 +126,8 @@ The Business Goals of Boopball are:
 
 
 ### User Stories
-1. As a user looking to fill in some empty time, I expect to be quickly understand and be engaged in the game.
-2. I expect a game that is moderately challenging and to be able to adjust the difficulty if the game is too hard or too easy.
+1. As a user looking to fill in some empty time, I expect to quickly understand and be engaged in the game
+2. I expect a game that is moderately challenging and to be able to adjust the difficulty if the game is too hard or too easy
 3. I expect the game instructions to be immediately visible and easy to understand
 4. I expect the game controls to be clear and easy to understand
 5. I expect to be able to choose to turn sounds and background music on, according to my own preferences
@@ -136,6 +136,10 @@ The Business Goals of Boopball are:
 ### Wireframes
 
 Wireframes were made with pencil and paper.
+
+<div align="left">
+<img src="assets/readme_images/wireframe.jpg" height="300px">
+</div>
 
 
 ### Fonts
@@ -151,11 +155,11 @@ Wireframes were made with pencil and paper.
 
 <br>
 
-- The primary font [monoton](https://fonts.google.com/specimen/Monoton) was chosen for its immediate visual impact and retro style feel. It was used for the header and headings.
+- The primary font [monoton](https://fonts.google.com/specimen/Monoton) was chosen for its immediate visual impact and retro style feel. It was used for the header and headings
 
-- The secondary font [merienda](https://fonts.google.com/specimen/Merienda) was chosen for the game instructions. It is easy to read, but is still somewhat stylised.
+- The secondary font [merienda](https://fonts.google.com/specimen/Merienda) was chosen for the game instructions. It is easy to read, but is still somewhat stylised
 
-- The tertiary font [rock salt](https://fonts.google.com/specimen/Merienda) was used for the in game text. It has a cartoony look, which goes with the game graphics style.
+- The tertiary font [rock salt](https://fonts.google.com/specimen/Merienda) was used for the in-game text. It has a cartoony look, which goes with the game graphics style
 
 ### Icons
 
@@ -167,15 +171,15 @@ Wireframes were made with pencil and paper.
 
 - The Favicon was made by taking a screenshot of the site logo, converting it with an [ICO converter](https://cloudconvert.com/png-to-ico), then removing the background with MS Paint.
 
-### Colors
+### Colours
 <div align="center">
   <img src="assets/readme_images/colors.png" alt="Color Pallette">
 </div>
 
-- The primary colour used for the site is RGB(184, 109, 44)(#B86D2C) a dark orange. It was chosen for it's warm colourful feel.
-- Darker purple/pinks - RGB(83,48,72)(#533048)/RGB(127,59,59)(#7F3B3B) were chosen to contrast the text.
-- RGB(237, 206, 70)(#EDCE46) was chosen for the text, to give a good contrast with the background, and compliment the orange theme. 
-- RGB(40,106,148)(#286A94) was chosen for the in-game buttons, to compliment the game graphic colours. The colour was darkened a little to give a better text contrast.
+- The primary colour used for the site is RGB(184, 109, 44)(#B86D2C) a dark orange. It was chosen for its warm colourful feel
+- Darker purple/pinks - RGB(83,48,72)(#533048)/RGB(127,59,59)(#7F3B3B) were chosen to contrast the text
+- RGB(237, 206, 70)(#EDCE46) was chosen for the text, to give a good contrast with the background and complement the orange theme 
+- RGB(40,106,148)(#286A94) was chosen for the in-game buttons, to complement the game graphic colours. The colour was darkened a little to give a better text contrast
 
 ### Game graphics
 
@@ -185,7 +189,7 @@ Wireframes were made with pencil and paper.
   <img src="assets/images/background.png" height="200px">
 </div>
 
-I drew the background image using MS paint, then used [pixlr](https://pixlr.com/express/) to add a liquifying effect, and finally blurred the image to make the foreground stand out.
+I drew the background image using MS paint, then used [pixlr](https://pixlr.com/express/) to add a liquifying effect and finally, blurred the image to make the foreground stand out
 
 #### Booper
 
@@ -193,7 +197,7 @@ I drew the background image using MS paint, then used [pixlr](https://pixlr.com/
   <img src="assets/images/character.png" height="100px">
 </div>
 
-I made  the booper image entirely using MS paint.
+I made  the Booper image entirely using MS paint.
 
 #### Ball and hoop
 
@@ -204,20 +208,20 @@ I made  the booper image entirely using MS paint.
 </div>
 
 
-These were made with MS paint 3D. The hoop was cut into two images using MS paint to give the effect of the ball passing through the hoop. 
+These were made with MS paint 3D. The hoop was cut into two images using MS Paint to give the effect of the ball passing through the hoop. 
 
 # Sounds
 
 ## Background music
 
 - The background music can be turned on or off by the user
-- It was chosen to be upbeat, and mellow enough to blend into the backgroud
-- I reduced the volume so that it didn't overwhelm the sound effects.
+- It was chosen to be upbeat and mellow enough to blend into the backgroud
+- I reduced the volume so that it didn't overwhelm the sound effects
 
 ## Sound Effects
 
 - Sound effects can be turned on or off by the user
-- In game sound effects were included to add immersion
+- In-game sound effects were included to add immersion
 - The hoop effects were voice recorded boop sounds, to go with the theme of the site
 - The game over and game winning sounds were also voice recorded
 - The button click and timer countdown effects are stock sounds
@@ -247,7 +251,7 @@ These were made with MS paint 3D. The hoop was cut into two images using MS pain
 <img src="assets/readme_images/intro_mobile.png">
 </div>
 
-The introduction contains information about the rules of the game, summarized in bullet points.
+The introduction contains information about the rules of the game, summarised in bullet points.
 
 ### Controls
 
@@ -256,7 +260,7 @@ The introduction contains information about the rules of the game, summarized in
 <img src="assets/readme_images/controls_mobile.png">
 </div>
 
-This section explains the controls for the game, for both desktop and mobiel.
+This section explains the controls for the game, for both desktop and mobile.
 
 ## Game Window
 
@@ -266,7 +270,7 @@ This section explains the controls for the game, for both desktop and mobiel.
   <img src="assets/readme_images/game_desktop.png">
 </div>
 
-The game window size is optimized for mobile screens. On larger screens is is positioned at the center, with the text boxes on either side to fill the screen space. All of the game controls take place on this part of the screen, except for the pause function, which can be triggered on desktop using the escape key at any time.
+The game window size is optimised for mobile screens. On larger screens it is positioned at the center, with the text boxes on either side to fill the screen space. All of the game controls take place on this part of the screen, except for the pause function, which can be triggered on desktop using the escape key at any time.
 
 ### Alert Windows
 
@@ -274,7 +278,7 @@ The game window size is optimized for mobile screens. On larger screens is is po
   <img src="assets/readme_images/alert_windows.png">
 </div>
 
-These contain messages and control buttons, to either continue, quit, or go to the settings. They are triggered at the start of the game, when the game is paused, when the game is over, or when a level is completed. There is only one alert window HTML element, and the content is manipulated with javascript.
+These contain messages and control buttons, to either continue, quit, or go to the settings. They are triggered at the start of the game, when the game is paused, when the game is over, or when a level is completed. There is only one alert window HTML element and the content is manipulated with javascript.
 
 ### Settings Window
 
@@ -282,7 +286,7 @@ These contain messages and control buttons, to either continue, quit, or go to t
   <img src="assets/readme_images/settings_window.png">
 </div>
 
-In the settings window, the user can choose to turn on game sound effects, and background music (which are disables by default). The user can also change the game difficulty by selecting a different time limit for each level.
+In the settings window, the user can choose to turn on game sound effects, and background music (which are disabled by default). The user can also change the game difficulty by selecting a different time limit for each level.
 
 # Technologies Used
 ## Languages
@@ -302,12 +306,12 @@ In the settings window, the user can choose to turn on game sound effects, and b
 - [Github](https://github.com/)
     * Storing code remotely and deployment.
 - [Gitpod](https://gitpod.io/)
-    * IDE for project development.
+    * IDE for project development
 
 ## Other Tools
 ### Sound editing
 - [Audiotrimmer](https://audiotrimmer.com/#)
-    * Trim sound effects clips
+    * Trim sound effect clips
 - [mp3cut](https://mp3cut.net/change-volume)
     * Adjust sound volumes
 - [noisereducer](https://noisereducer.media.io/speech-enhancement/)
@@ -330,7 +334,7 @@ In the settings window, the user can choose to turn on game sound effects, and b
 
 #### HTML
 
-- HTML has been validated with [W3C HTML5 Validator](https://validator.w3.org/).
+- HTML has been validated with [W3C HTML5 Validator](https://validator.w3.org/)
 
 <div align="center">
   <img src="assets/readme_images/HTML_checker.png">
@@ -370,7 +374,7 @@ The warnings appear in a part of the code that I did not write, but is a functio
 
 ### Mobile Testing
 
-- I tested the site on my android device. All pages and links worked correctly.
+- I tested the site on my android device. All pages and links worked correctly
 
 ### Desktop Testing
 
@@ -386,7 +390,7 @@ The warnings appear in a part of the code that I did not write, but is a functio
 ### Unfixed Bugs
 
 <ul>
-<li> On certain levels somtimes no score is detected when the ball passes through the hoop
+<li> On certain levels sometimes no score is detected when the ball passes through the hoop
 
 - When the hoop is moving, it is possible for the hoop to move past the ball without a detection
 
@@ -400,7 +404,7 @@ The warnings appear in a part of the code that I did not write, but is a functio
 
 ### Fixed Bugs
 
-- There were several bugs related to mutliple instances of intervals being started. To handle these, I introduced boolean variables to be check whenever an interval is started if the last instance has already been closed. 
+- There were several bugs related to multiple instances of intervals being started. To handle these, I introduced boolean variables to be checked whenever an interval is started if the last instance has already been closed 
 
 # Future Improvements
 
@@ -421,7 +425,6 @@ The warnings appear in a part of the code that I did not write, but is a functio
 ## Clone the Repository
 
 1. Open a terminal in the folder you want to clone the project to.
-
 2. In the terminal type:
 
     ```
@@ -480,7 +483,7 @@ All images used were created by myself.
 
 - Background music: [Pub In The Woods](https://onemansymphony.bandcamp.com/album/a-new-days-hurry-free)
 
-- button click sound: [Pixbay](https://pixabay.com/sound-effects/blip-131856/)
+- Button click sound: [Pixbay](https://pixabay.com/sound-effects/blip-131856/)
 
 - Ball hitting edge sound: [soundsnap](https://www.soundsnap.com/drop_cushion_hardsurface_light_02)
 
