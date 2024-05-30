@@ -134,7 +134,7 @@ The Business Goals of Boopball are:
 2. I expect a game that is moderately challenging and to be able to adjust the difficulty if the game is too hard or too easy
 3. I expect the game instructions to be immediately visible and easy to understand
 4. I expect the game controls to be clear and easy to understand
-5. I expect to be able to choose to turn sounds and background music on, according to my own preferences
+5. I expect to be able to choose to turn sounds and background music on or off, according to my own preferences
 
 ## Visual Design
 ### Wireframes
@@ -173,7 +173,7 @@ Wireframes were made with pencil and paper.
   <img src="favicon.ico" alt="Favicon"  width="80">
 </div>
 
-- The Favicon was made by taking a screenshot of the site logo, converting it with an [ICO converter](https://cloudconvert.com/png-to-ico), then removing the background with MS Paint.
+- The Favicon was made by taking a screenshot of the site logo, converting it with an [ICO converter](https://cloudconvert.com/png-to-ico), then removing the background with MS Paint
 
 ### Colours
 <div align="center">
@@ -193,7 +193,7 @@ Wireframes were made with pencil and paper.
   <img src="assets/images/background.png" height="200px">
 </div>
 
-I drew the background image using MS paint, then used [pixlr](https://pixlr.com/express/) to add a liquifying effect and finally, blurred the image to make the foreground stand out
+I drew the background image using MS paint, then used [pixlr](https://pixlr.com/express/) to add a liquifying effect and, finally, blurred the image to make the foreground stand out.
 
 #### Booper
 
@@ -219,7 +219,7 @@ These were made with MS paint 3D. The hoop was cut into two images using MS Pain
 ## Background music
 
 - The background music can be turned on or off by the user
-- It was chosen to be upbeat and mellow enough to blend into the backgroud
+- It was chosen to be upbeat and mellow enough to blend into the background
 - I reduced the volume so that it didn't overwhelm the sound effects
 
 ## Sound Effects
@@ -308,7 +308,7 @@ In the settings window, the user can choose to turn on game sound effects, and b
 
 ## Platforms
 - [Github](https://github.com/)
-    * Storing code remotely and deployment.
+    * Storing code remotely and deployment
 - [Gitpod](https://gitpod.io/)
     * IDE for project development
 
