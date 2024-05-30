@@ -3,7 +3,7 @@ You can tailor the game to your preferences for sound and difficulty level.
 The game features a cute character called Booper and as the player you direct Booper to throw a ball into a moving hoop.
 You can look at it as just an enjoyable way of passing time, or you can look at it as a way to develop and improve your strategies to counter the effects of ricochet and a moving target. 
 
-Boopball was made as a project to showcase the javascript skills of the website developer.
+Boopball was made as a project to showcase the JavaScript skills of the website developer.
 
 <div align="center">
   <img src="assets/readme_images/responsive.png" style="background-color: black" alt="Boopball responsive photos">
@@ -282,7 +282,7 @@ The game window size is optimised for mobile screens. On larger screens it is po
   <img src="assets/readme_images/alert_windows.png">
 </div>
 
-These contain messages and control buttons, to either continue, quit, or go to the settings. They are triggered at the start of the game, when the game is paused, when the game is over, or when a level is completed. There is only one alert window HTML element and the content is manipulated with javascript.
+These contain messages and control buttons, to either continue, quit, or go to the settings. They are triggered at the start of the game, when the game is paused, when the game is over, or when a level is completed. There is only one alert window HTML element and the content is manipulated with JavaScript.
 
 ### Settings Window
 
