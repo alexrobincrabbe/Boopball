@@ -80,7 +80,9 @@
     </ul>
 </details>
 
-5. <details>
+5. <a href="#future-improvements">Future Improvements</a>
+
+6. <details>
     <summary><a href="#deployment">Deployment</a></summary>
 
     - [Clone Repository](#local-preparation)
@@ -88,7 +90,7 @@
     
 </details>
 
-6. <details>
+7. <details>
     <summary><a href="#credits">Credits</a></summary>
 
     - [Images](#images)
@@ -398,7 +400,21 @@ The warnings appear in a part of the code that I did not write, but is a functio
 
 ### Fixed Bugs
 
-- There were several bugs related to mutliple instances of intervals being started. To handle these, I introduced bolean variables to be check whenever an interval is started if the last instance has already been closed. 
+- There were several bugs related to mutliple instances of intervals being started. To handle these, I introduced boolean variables to be check whenever an interval is started if the last instance has already been closed. 
+
+# Future Improvements
+
+- Restructuring of the code to reduce number of global variables
+
+- Restructuring of the code to improve the score detection
+
+- Add timer on the untimed version of the game, so that the user can see how long they took to complete the game
+
+- Add login and best times scoreboard
+
+- More Levels
+
+- Additional settings, such as how fast the arrow rotates
 
 # Deployment
 
