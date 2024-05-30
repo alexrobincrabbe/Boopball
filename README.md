@@ -298,7 +298,7 @@ In the settings window, the user can choose to turn on game sound effects, and b
     * Page markup
 - CSS
     * Styling
-- Javascript
+- JavaScript
     * Game mechanics
     * Manipulating DOM content
 
@@ -352,9 +352,9 @@ In the settings window, the user can choose to turn on game sound effects, and b
     <img src="assets/readme_images/CSS_checker.png">
 </div>
 
-#### Javascript
+#### JavaScript
 
-- Javascript has been validated with [jshint](https://jshint.com/)
+- JavaScript has been validated with [jshint](https://jshint.com/)
 
 <div align="center">
     <img src="assets/readme_images/jshint.png">
