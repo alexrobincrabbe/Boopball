@@ -1,9 +1,13 @@
+[Boopball](https://alexrobincrabbe.github.io/Boopball/) is a colourful, fun and interactive game, suitable for players of all ages. 
+You can tailor the game to your preferences for sound and difficulty level. 
+The game features a cute character called Booper and as the player you direct Booper to throw a ball into a moving hoop.
+You can look at it as just an enjoyable way of passing time, or you can look at it as a way to develop and improve your strategies to counter the effects of ricochet and a moving target. 
+
+Boopball was made as a project to showcase the javascript skills of the website developer.
 
 <div align="center">
   <img src="assets/readme_images/responsive.png" style="background-color: black" alt="Boopball responsive photos">
 </div>
-
-[Boopball](https://alexrobincrabbe.github.io/Boopball/) Is a . 
 
 ## Table of Contents
 1. <details open>
@@ -398,7 +402,7 @@ The warnings appear in a part of the code that I did not write, but is a functio
 
 - The moveHoop function was added later in the development of the game, as this wasn't in my original concept
 
--  Due to time contraintsI have left this in future improvements
+-  Due to time constraints have left this in future improvements
 </li>
 </ul>
 
